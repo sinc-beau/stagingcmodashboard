@@ -97,6 +97,7 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
       .from('sponsor_events')
       .select(`
         id,
+        obligation_id,
         events (
           id,
           event_name,
@@ -145,7 +146,7 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
           source_event_id: evt.source_event_id,
           sponsorship_level: null,
           pricing: null,
-          obligation_id: null,
+          obligation_id: se.obligation_id,
           attendee_count: attendeeCountMap.get(evt.id),
           minimum_attendees: evt.minimum_attendees,
         };
