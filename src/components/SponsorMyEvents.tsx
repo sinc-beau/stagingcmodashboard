@@ -17,6 +17,8 @@ interface SponsorEvent {
   source_database: string;
   minimum_attendees?: number;
   attendee_count?: number;
+  obligation_id?: string | null;
+  obligation_label?: string | null;
 }
 
 interface SponsorMyEventsProps {
@@ -52,6 +54,7 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
           id,
           is_published,
           published_at,
+          obligation_id,
           events (
             id,
             event_name,
@@ -73,6 +76,24 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
         return;
       }
 
+      const obligationIds = sponsorEvents
+        .map((se: any) => se.obligation_id)
+        .filter((id): id is string => id !== null && id !== undefined);
+
+      const obligationsMap = new Map<string, string>();
+      if (obligationIds.length > 0) {
+        const { data: obligations } = await supabase
+          .from('sponsor_obligations')
+          .select('id')
+          .in('id', obligationIds);
+
+        if (obligations) {
+          obligations.forEach((obl) => {
+            obligationsMap.set(obl.id, `Obligation`);
+          });
+        }
+      }
+
       const eventsToDisplay: SponsorEvent[] = sponsorEvents
         .filter(se => se.events)
         .map((se: any) => {
@@ -89,7 +110,11 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
             published_at: se.published_at,
             source_event_id: evt.source_event_id,
             source_database: evt.source_database,
-            minimum_attendees: evt.minimum_attendees
+            minimum_attendees: evt.minimum_attendees,
+            obligation_id: se.obligation_id,
+            obligation_label: se.obligation_id && obligationsMap.has(se.obligation_id)
+              ? obligationsMap.get(se.obligation_id)
+              : null
           };
         });
 
@@ -172,6 +197,7 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obligation</th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Min Attendance</th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actual Attendance</th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -230,6 +256,15 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
                             year: 'numeric'
                           })
                         : 'Ongoing'}
+                    </td>
+                    <td className="px-4 py-4">
+                      {event.obligation_id && event.obligation_label ? (
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+                          {event.obligation_label}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-gray-400">-</span>
+                      )}
                     </td>
                     <td className="px-4 py-4 text-center">
                       <span className="text-sm font-medium text-gray-900">
