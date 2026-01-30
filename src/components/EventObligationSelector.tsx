@@ -20,10 +20,15 @@ export function EventObligationSelector({ eventId, sponsorId, currentObligationI
   const [obligations, setObligations] = useState<Obligation[]>([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const [localObligationId, setLocalObligationId] = useState<string | null>(currentObligationId);
 
   useEffect(() => {
     loadObligations();
   }, [sponsorId]);
+
+  useEffect(() => {
+    setLocalObligationId(currentObligationId);
+  }, [currentObligationId]);
 
   async function loadObligations() {
     setLoading(true);
@@ -45,7 +50,9 @@ export function EventObligationSelector({ eventId, sponsorId, currentObligationI
       return;
     }
 
+    setLocalObligationId(obligationId);
     setUpdating(true);
+
     const { error } = await supabase
       .from('sponsor_events')
       .update({ obligation_id: obligationId || null })
@@ -53,10 +60,13 @@ export function EventObligationSelector({ eventId, sponsorId, currentObligationI
 
     if (error) {
       console.error('Error updating obligation:', error);
+      setLocalObligationId(currentObligationId);
+      setUpdating(false);
+      return;
     }
 
     setUpdating(false);
-    onUpdate();
+    await onUpdate();
   }
 
   if (loading || obligations.length === 0 || !eventId) {
@@ -67,7 +77,7 @@ export function EventObligationSelector({ eventId, sponsorId, currentObligationI
     <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
       <DollarSign className="w-3 h-3 text-slate-400 flex-shrink-0" />
       <select
-        value={currentObligationId || ''}
+        value={localObligationId || ''}
         onChange={(e) => handleChange(e.target.value || null)}
         disabled={updating}
         className="flex-1 text-xs border border-slate-200 rounded px-1.5 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-white disabled:opacity-50"
