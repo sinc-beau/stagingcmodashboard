@@ -33,7 +33,6 @@ export function AdminSponsorChat({ sponsorId, conversationDone, onConversationDo
 
   useEffect(() => {
     loadMessages();
-    markMessagesAsRead();
 
     const subscription = supabase
       .channel(`admin_sponsor_messages_${sponsorId}`)

@@ -405,9 +405,7 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
                   >
                     Messages
                     {unreadMessageCount > 0 && (
-                      <span className="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold text-white bg-red-500 rounded-full">
-                        {unreadMessageCount}
-                      </span>
+                      <span className="ml-2 w-2.5 h-2.5 bg-red-500 rounded-full inline-block"></span>
                     )}
                   </button>
                   <button

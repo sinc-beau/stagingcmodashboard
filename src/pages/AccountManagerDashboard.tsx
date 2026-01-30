@@ -164,9 +164,7 @@ function AccountManagerDashboardContent() {
                 <MessageSquare className="w-4 h-4" />
                 <span className="text-sm font-medium">Messages</span>
                 {undoneMessagesCount > 0 && (
-                  <span className="ml-1 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold text-white bg-red-500 rounded-full">
-                    {undoneMessagesCount}
-                  </span>
+                  <span className="ml-1 w-2.5 h-2.5 bg-red-500 rounded-full inline-block"></span>
                 )}
               </a>
               {isAdmin && (
