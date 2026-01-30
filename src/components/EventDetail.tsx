@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check } from 'lucide-react';
 import { supabase, forumEventClient, nonForumEventClient, forumAttendeeClient, nonForumAttendeeClient } from '../lib/supabase';
 
 interface Attendee {
@@ -65,11 +65,13 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [syncing, setSyncing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [syncFilter, setSyncFilter] = useState<'all' | 'synced' | 'not_synced'>('all');
   const [sortBy, setSortBy] = useState<'name' | 'status'>('name');
   const [activeTab, setActiveTab] = useState<Tab>('attendees');
   const [showSyncModal, setShowSyncModal] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [intakeExpanded, setIntakeExpanded] = useState(false);
+  const [syncedAttendeeIds, setSyncedAttendeeIds] = useState<Set<string>>(new Set());
   const isLoadingIntakeItems = useRef(false);
 
   useEffect(() => {
@@ -106,6 +108,7 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     await loadAttendees();
     await loadIntakeItems();
     await loadOrCreateLocalEvent();
+    await loadSyncedAttendees();
 
     setLoading(false);
   }
@@ -285,6 +288,28 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     }
   }
 
+  async function loadSyncedAttendees() {
+    const { data: centralEvent } = await supabase
+      .from('events')
+      .select('id')
+      .eq('source_event_id', sourceEventId)
+      .eq('source_database', sourceDatabase)
+      .maybeSingle();
+
+    if (!centralEvent) return;
+
+    const { data: sponsorLeads } = await supabase
+      .from('sponsor_leads')
+      .select('attendee_id')
+      .eq('sponsor_id', sponsorId)
+      .eq('event_id', centralEvent.id);
+
+    if (sponsorLeads) {
+      const syncedIds = new Set(sponsorLeads.map(lead => lead.attendee_id));
+      setSyncedAttendeeIds(syncedIds);
+    }
+  }
+
   async function syncAttendees() {
     setSyncing(true);
     await loadAttendees();
@@ -382,6 +407,8 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
             ignoreDuplicates: false
           });
       }
+
+      await loadSyncedAttendees();
     } catch (error) {
       console.error('Error syncing attendees:', error);
     } finally {
@@ -460,9 +487,16 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     let filtered = attendees;
 
     if (statusFilter !== 'all') {
-      filtered = attendees.filter(attendee => {
+      filtered = filtered.filter(attendee => {
         const status = isForum ? attendee.stage : attendee.approval_status;
         return status === statusFilter;
+      });
+    }
+
+    if (syncFilter !== 'all') {
+      filtered = filtered.filter(attendee => {
+        const isSynced = syncedAttendeeIds.has(attendee.id);
+        return syncFilter === 'synced' ? isSynced : !isSynced;
       });
     }
 
@@ -597,7 +631,15 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
           <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
             <div className="p-6 border-b border-slate-200">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-bold text-slate-900">Attendees ({attendees.length})</h2>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-lg font-bold text-slate-900">Attendees ({attendees.length})</h2>
+                  <span className="text-sm text-slate-500">
+                    <span className="font-medium text-green-700">{syncedAttendeeIds.size}</span> synced
+                    {attendees.length > syncedAttendeeIds.size && (
+                      <span> • <span className="font-medium text-slate-700">{attendees.length - syncedAttendeeIds.size}</span> not synced</span>
+                    )}
+                  </span>
+                </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={syncAttendees}
@@ -620,32 +662,72 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
 
               {attendees.length > 0 && (
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Filter className="w-4 h-4 text-slate-500" />
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        onClick={() => setStatusFilter('all')}
-                        className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                          statusFilter === 'all'
-                            ? 'bg-slate-900 text-white'
-                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                        }`}
-                      >
-                        All
-                      </button>
-                      {uniqueStatuses.map(status => (
-                        <button
-                          key={status}
-                          onClick={() => setStatusFilter(status)}
-                          className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                            statusFilter === status
-                              ? 'bg-slate-900 text-white'
-                              : `${getStatusColor(status)} hover:opacity-80`
-                          }`}
-                        >
-                          {status}
-                        </button>
-                      ))}
+                  <div className="flex items-start gap-2">
+                    <Filter className="w-4 h-4 text-slate-500 mt-1" />
+                    <div className="flex-1 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-600 font-medium">Status:</span>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            onClick={() => setStatusFilter('all')}
+                            className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                              statusFilter === 'all'
+                                ? 'bg-slate-900 text-white'
+                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                            }`}
+                          >
+                            All
+                          </button>
+                          {uniqueStatuses.map(status => (
+                            <button
+                              key={status}
+                              onClick={() => setStatusFilter(status)}
+                              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                                statusFilter === status
+                                  ? 'bg-slate-900 text-white'
+                                  : `${getStatusColor(status)} hover:opacity-80`
+                              }`}
+                            >
+                              {status}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-600 font-medium">Sync Status:</span>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            onClick={() => setSyncFilter('all')}
+                            className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                              syncFilter === 'all'
+                                ? 'bg-slate-900 text-white'
+                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                            }`}
+                          >
+                            All
+                          </button>
+                          <button
+                            onClick={() => setSyncFilter('synced')}
+                            className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                              syncFilter === 'synced'
+                                ? 'bg-green-600 text-white'
+                                : 'bg-green-100 text-green-700 hover:bg-green-200'
+                            }`}
+                          >
+                            Synced ({syncedAttendeeIds.size})
+                          </button>
+                          <button
+                            onClick={() => setSyncFilter('not_synced')}
+                            className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                              syncFilter === 'not_synced'
+                                ? 'bg-orange-600 text-white'
+                                : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                            }`}
+                          >
+                            Not Synced ({attendees.length - syncedAttendeeIds.size})
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -688,6 +770,7 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                 <div className="space-y-3 max-h-96 overflow-y-auto">
                   {filteredSortedAttendees.map((attendee) => {
                     const status = isForum ? attendee.stage : attendee.approval_status;
+                    const isSynced = syncedAttendeeIds.has(attendee.id);
                     return (
                       <div key={attendee.id} className="p-4 bg-slate-50 rounded-lg border border-slate-200">
                         <div className="flex items-start justify-between gap-3 mb-2">
@@ -696,6 +779,12 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                             <div className="font-semibold text-slate-900 text-sm">
                               {attendee.name}
                             </div>
+                            {isSynced && (
+                              <span className="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-medium">
+                                <Check className="w-3 h-3" />
+                                Synced
+                              </span>
+                            )}
                           </div>
                           {status && (
                             <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(status)}`}>
