@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { DollarSign, Target, Calendar, Plus, Edit2, Trash2, Loader2 } from 'lucide-react';
+import { DollarSign, Target, Calendar, Plus, Edit2, Trash2, Loader2, TrendingUp } from 'lucide-react';
 import { ObligationManager } from './ObligationManager';
 
 interface Obligation {
@@ -30,16 +30,30 @@ const EVENT_MINIMUMS = {
   activation: 30
 };
 
+interface ObligationStats {
+  completedCount: number;
+  minimumRequired: number;
+  percentage: number;
+}
+
 export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps) {
   const [obligations, setObligations] = useState<Obligation[]>([]);
   const [loading, setLoading] = useState(true);
   const [showManager, setShowManager] = useState(false);
   const [selectedObligation, setSelectedObligation] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [obligationStats, setObligationStats] = useState<Record<string, ObligationStats>>({});
+  const [loadingStats, setLoadingStats] = useState(false);
 
   useEffect(() => {
     loadObligations();
   }, [sponsorId]);
+
+  useEffect(() => {
+    if (obligations.length > 0) {
+      loadAllObligationStats();
+    }
+  }, [obligations, sponsorId]);
 
   async function loadObligations() {
     setLoading(true);
@@ -53,6 +67,63 @@ export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps
       setObligations(data);
     }
     setLoading(false);
+  }
+
+  async function loadAllObligationStats() {
+    setLoadingStats(true);
+    const stats: Record<string, ObligationStats> = {};
+
+    for (const obligation of obligations) {
+      const completedCount = await loadCompletedCountForObligation(obligation.id);
+      const minimumRequired = calculateMinimumEngagements(obligation);
+      const percentage = minimumRequired > 0 ? Math.min(100, Math.round((completedCount / minimumRequired) * 100)) : 0;
+
+      stats[obligation.id] = {
+        completedCount,
+        minimumRequired,
+        percentage
+      };
+    }
+
+    setObligationStats(stats);
+    setLoadingStats(false);
+  }
+
+  async function loadCompletedCountForObligation(obligationId: string): Promise<number> {
+    const { data: sponsorEvents } = await supabase
+      .from('sponsor_events')
+      .select('id, event_id, events(event_date)')
+      .eq('sponsor_id', sponsorId)
+      .eq('obligation_id', obligationId);
+
+    if (!sponsorEvents || sponsorEvents.length === 0) {
+      return 0;
+    }
+
+    let total = 0;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    for (const sponsorEvent of sponsorEvents) {
+      const event = (sponsorEvent as any).events;
+      if (!event || !event.event_date) continue;
+
+      const eventDate = new Date(event.event_date);
+      eventDate.setHours(0, 0, 0, 0);
+
+      if (eventDate < now) {
+        const { count } = await supabase
+          .from('sponsor_leads')
+          .select('*', { count: 'exact', head: true })
+          .eq('sponsor_id', sponsorId)
+          .eq('event_id', (sponsorEvent as any).event_id)
+          .eq('attendance_status', 'attended');
+
+        total += count || 0;
+      }
+    }
+
+    return total;
   }
 
   function calculateMinimumEngagements(obligation: Obligation): number {
@@ -143,6 +214,7 @@ export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps
             const netAmount = calculateNetAmount(obligation);
             const minimumEngagements = calculateMinimumEngagements(obligation);
             const isDeleting = deleting === obligation.id;
+            const stats = obligationStats[obligation.id];
 
             return (
               <div
@@ -162,12 +234,20 @@ export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-1">
                       <Target className="w-4 h-4 text-slate-500" />
                       <span className="text-xs text-slate-600">
                         <span className="font-medium">{minimumEngagements}</span> minimum engagements
                       </span>
                     </div>
+                    {stats && (
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-slate-500" />
+                        <span className="text-xs text-slate-600">
+                          <span className="font-medium">{stats.completedCount}</span> completed ({stats.percentage}%)
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-1">
                     <button
@@ -191,6 +271,25 @@ export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps
                     </button>
                   </div>
                 </div>
+
+                {stats && (
+                  <div className="mb-2">
+                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full transition-all duration-500 ${
+                          stats.percentage >= 100
+                            ? 'bg-green-500'
+                            : stats.percentage >= 75
+                            ? 'bg-blue-500'
+                            : stats.percentage >= 50
+                            ? 'bg-yellow-500'
+                            : 'bg-red-500'
+                        }`}
+                        style={{ width: `${Math.min(100, stats.percentage)}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <Calendar className="w-3 h-3" />
