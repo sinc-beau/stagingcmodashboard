@@ -32,15 +32,6 @@ interface LocalEvent {
   minimum_attendees: number | null;
   solution_provider_topic: string | null;
   event_notes: string | null;
-  one_on_one_meetings: Record<string, { status: string; time_slot?: string; notes?: string }>;
-}
-
-interface OneOnOneMeeting {
-  attendee_id: string;
-  attendee_name: string;
-  status: 'requested' | 'confirmed' | 'scheduled';
-  time_slot?: string;
-  notes?: string;
 }
 
 interface TargetingItem {
@@ -68,7 +59,7 @@ interface EventDetailProps {
   onBack: () => void;
 }
 
-type Tab = 'attendees' | 'config' | 'meetings' | 'logistics';
+type Tab = 'attendees' | 'config' | 'logistics';
 
 export default function EventDetail({ eventId, eventName, eventType, sponsorId, sponsorName, sourceEventId, sourceDatabase, onBack }: EventDetailProps) {
   const [event, setEvent] = useState<any>(null);
@@ -174,7 +165,7 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
 
     const { data: sponsorEvent } = await supabase
       .from('sponsor_events')
-      .select('id, solution_provider_topic, event_notes, one_on_one_meetings')
+      .select('id, solution_provider_topic, event_notes')
       .eq('sponsor_id', sponsorId)
       .eq('event_id', centralEvent.id)
       .maybeSingle();
@@ -190,10 +181,9 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
         .insert({
           sponsor_id: sponsorId,
           event_id: centralEvent.id,
-          one_on_one_meetings: false,
           is_published: true
         })
-        .select('id, solution_provider_topic, event_notes, one_on_one_meetings')
+        .select('id, solution_provider_topic, event_notes')
         .single();
 
       if (newSponsorEvent) {
@@ -654,24 +644,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     setSaving(false);
   }
 
-  async function updateOneOnOneMeeting(attendeeId: string, status: 'requested' | 'confirmed' | 'scheduled', timeSlot?: string, notes?: string) {
-    if (!localEvent) return;
-
-    const meetings = { ...localEvent.one_on_one_meetings };
-
-    if (status === 'requested' && !timeSlot && !notes && meetings[attendeeId]) {
-      delete meetings[attendeeId];
-    } else {
-      meetings[attendeeId] = {
-        status,
-        ...(timeSlot && { time_slot: timeSlot }),
-        ...(notes && { notes })
-      };
-    }
-
-    await updateLocalEvent({ one_on_one_meetings: meetings });
-  }
-
   function exportTargetingToCSV() {
     if (!targetingData) return;
 
@@ -810,18 +782,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const totalCount = intakeItems.length;
   const progressPercent = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
 
-  const oneOnOneMeetings: OneOnOneMeeting[] = attendees
-    .filter(a => localEvent?.one_on_one_meetings?.[a.id])
-    .map(a => ({
-      attendee_id: a.id,
-      attendee_name: a.name,
-      status: localEvent?.one_on_one_meetings[a.id].status as 'requested' | 'confirmed' | 'scheduled',
-      time_slot: localEvent?.one_on_one_meetings[a.id].time_slot,
-      notes: localEvent?.one_on_one_meetings[a.id].notes
-    }));
-
-  const requestedMeetingsCount = oneOnOneMeetings.filter(m => m.status === 'requested').length;
-
   const isForum = eventType === 'forum';
   const uniqueStatuses = getUniqueStatuses();
   const filteredSortedAttendees = getFilteredAndSortedAttendees();
@@ -904,20 +864,8 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                     : 'border-transparent text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Event Logistics
+                Detailed Target Account Info
               </button>
-              {isForum && (
-                <button
-                  onClick={() => setActiveTab('meetings')}
-                  className={`px-4 py-3 font-medium text-sm transition-colors border-b-2 ${
-                    activeTab === 'meetings'
-                      ? 'border-blue-600 text-blue-600'
-                      : 'border-transparent text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  1:1 Meetings {requestedMeetingsCount > 0 && `(${requestedMeetingsCount})`}
-                </button>
-              )}
             </div>
           </div>
         </div>
@@ -1283,79 +1231,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                 </div>
               )}
             </div>
-          </div>
-        )}
-
-        {activeTab === 'meetings' && isForum && (
-          <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <h2 className="text-lg font-bold text-slate-900">1:1 Meeting Assignments</h2>
-                {requestedMeetingsCount > 0 && (
-                  <span className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold">
-                    <AlertCircle className="w-4 h-4" />
-                    {requestedMeetingsCount} Requested
-                  </span>
-                )}
-              </div>
-              <p className="text-sm text-slate-500">
-                {oneOnOneMeetings.length} of {attendees.length} attendees assigned
-              </p>
-            </div>
-
-            {attendees.length === 0 ? (
-              <p className="text-sm text-slate-400 text-center py-8">No attendees available</p>
-            ) : (
-              <div className="space-y-2 max-h-96 overflow-y-auto">
-                {attendees.map((attendee) => {
-                  const meeting = localEvent?.one_on_one_meetings?.[attendee.id];
-                  const isAssigned = !!meeting;
-
-                  return (
-                    <div key={attendee.id} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium text-slate-900 text-sm">{attendee.name}</span>
-                          {attendee.company && (
-                            <span className="text-xs text-slate-500">• {attendee.company}</span>
-                          )}
-                        </div>
-                        <p className="text-xs text-slate-600">{attendee.email}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {isAssigned && (
-                          <select
-                            value={meeting.status}
-                            onChange={(e) => updateOneOnOneMeeting(attendee.id, e.target.value as any, meeting.time_slot, meeting.notes)}
-                            className="text-xs px-2 py-1 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                          >
-                            <option value="requested">Requested</option>
-                            <option value="confirmed">Confirmed</option>
-                            <option value="scheduled">Scheduled</option>
-                          </select>
-                        )}
-                        <button
-                          onClick={() => {
-                            if (isAssigned) {
-                              updateOneOnOneMeeting(attendee.id, 'requested');
-                            } else {
-                              updateOneOnOneMeeting(attendee.id, 'requested', '', '');
-                            }
-                          }}
-                          className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                            isAssigned
-                              ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                              : 'bg-blue-600 text-white hover:bg-blue-700'
-                          }`}
-                        >
-                          {isAssigned ? 'Remove' : 'Assign'}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
           </div>
         )}
 
