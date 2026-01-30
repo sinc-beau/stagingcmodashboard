@@ -88,6 +88,10 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [syncedAttendeeIds, setSyncedAttendeeIds] = useState<Set<string>>(new Set());
   const [targetingData, setTargetingData] = useState<TargetingData | null>(null);
   const [loadingTargeting, setLoadingTargeting] = useState(false);
+  const [selectedAttendeeIds, setSelectedAttendeeIds] = useState<Set<string>>(new Set());
+  const [showUnsyncConfirm, setShowUnsyncConfirm] = useState(false);
+  const [attendeeToUnsync, setAttendeeToUnsync] = useState<string | null>(null);
+  const [syncingIndividual, setSyncingIndividual] = useState<Set<string>>(new Set());
   const isLoadingIntakeItems = useRef(false);
 
   useEffect(() => {
@@ -410,6 +414,231 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     } finally {
       setSyncing(false);
     }
+  }
+
+  async function syncSingleAttendee(attendee: Attendee) {
+    setSyncingIndividual(prev => new Set(prev).add(attendee.id));
+
+    try {
+      const { data: centralEvent } = await supabase
+        .from('events')
+        .select('id')
+        .eq('source_event_id', sourceEventId)
+        .eq('source_database', sourceDatabase)
+        .maybeSingle();
+
+      if (!centralEvent) {
+        console.error('Central event not found.');
+        return;
+      }
+
+      const isForum = sourceDatabase === 'forum_event';
+      const nameParts = attendee.name.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      await supabase
+        .from('sponsor_leads')
+        .upsert({
+          sponsor_id: sponsorId,
+          event_id: centralEvent.id,
+          attendee_id: attendee.id,
+          name: attendee.name,
+          first_name: firstName,
+          last_name: lastName,
+          email: attendee.email,
+          alternative_email: attendee.alternative_email || null,
+          company: attendee.company,
+          title: attendee.title,
+          register_number: attendee.phone,
+          alternative_number: attendee.alternative_number || null,
+          wishlist: attendee.wishlist || null,
+          stage: isForum ? attendee.stage : null,
+          attendance_status: isForum ? null : attendee.approval_status,
+          no_show_reason: attendee.no_show_reason || null,
+          lead_status: 'new',
+          source_database: sourceDatabase
+        }, {
+          onConflict: 'sponsor_id,attendee_id,event_id',
+          ignoreDuplicates: false
+        });
+
+      await loadSyncedAttendees();
+    } catch (error) {
+      console.error('Error syncing attendee:', error);
+    } finally {
+      setSyncingIndividual(prev => {
+        const next = new Set(prev);
+        next.delete(attendee.id);
+        return next;
+      });
+    }
+  }
+
+  async function unsyncSingleAttendee(attendeeId: string) {
+    setSyncingIndividual(prev => new Set(prev).add(attendeeId));
+
+    try {
+      const { data: centralEvent } = await supabase
+        .from('events')
+        .select('id')
+        .eq('source_event_id', sourceEventId)
+        .eq('source_database', sourceDatabase)
+        .maybeSingle();
+
+      if (!centralEvent) {
+        console.error('Central event not found.');
+        return;
+      }
+
+      await supabase
+        .from('sponsor_leads')
+        .delete()
+        .eq('sponsor_id', sponsorId)
+        .eq('event_id', centralEvent.id)
+        .eq('attendee_id', attendeeId);
+
+      await loadSyncedAttendees();
+    } catch (error) {
+      console.error('Error unsyncing attendee:', error);
+    } finally {
+      setSyncingIndividual(prev => {
+        const next = new Set(prev);
+        next.delete(attendeeId);
+        return next;
+      });
+      setShowUnsyncConfirm(false);
+      setAttendeeToUnsync(null);
+    }
+  }
+
+  async function syncMultipleAttendees() {
+    if (selectedAttendeeIds.size === 0) return;
+
+    setSyncing(true);
+
+    try {
+      const { data: centralEvent } = await supabase
+        .from('events')
+        .select('id')
+        .eq('source_event_id', sourceEventId)
+        .eq('source_database', sourceDatabase)
+        .maybeSingle();
+
+      if (!centralEvent) {
+        console.error('Central event not found.');
+        return;
+      }
+
+      const isForum = sourceDatabase === 'forum_event';
+      const attendeesToSync = attendees.filter(a => selectedAttendeeIds.has(a.id));
+
+      for (const attendee of attendeesToSync) {
+        const nameParts = attendee.name.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        await supabase
+          .from('sponsor_leads')
+          .upsert({
+            sponsor_id: sponsorId,
+            event_id: centralEvent.id,
+            attendee_id: attendee.id,
+            name: attendee.name,
+            first_name: firstName,
+            last_name: lastName,
+            email: attendee.email,
+            alternative_email: attendee.alternative_email || null,
+            company: attendee.company,
+            title: attendee.title,
+            register_number: attendee.phone,
+            alternative_number: attendee.alternative_number || null,
+            wishlist: attendee.wishlist || null,
+            stage: isForum ? attendee.stage : null,
+            attendance_status: isForum ? null : attendee.approval_status,
+            no_show_reason: attendee.no_show_reason || null,
+            lead_status: 'new',
+            source_database: sourceDatabase
+          }, {
+            onConflict: 'sponsor_id,attendee_id,event_id',
+            ignoreDuplicates: false
+          });
+      }
+
+      setSelectedAttendeeIds(new Set());
+      await loadSyncedAttendees();
+    } catch (error) {
+      console.error('Error syncing attendees:', error);
+    } finally {
+      setSyncing(false);
+    }
+  }
+
+  async function unsyncMultipleAttendees() {
+    if (selectedAttendeeIds.size === 0) return;
+
+    setSyncing(true);
+
+    try {
+      const { data: centralEvent } = await supabase
+        .from('events')
+        .select('id')
+        .eq('source_event_id', sourceEventId)
+        .eq('source_database', sourceDatabase)
+        .maybeSingle();
+
+      if (!centralEvent) {
+        console.error('Central event not found.');
+        return;
+      }
+
+      for (const attendeeId of Array.from(selectedAttendeeIds)) {
+        await supabase
+          .from('sponsor_leads')
+          .delete()
+          .eq('sponsor_id', sponsorId)
+          .eq('event_id', centralEvent.id)
+          .eq('attendee_id', attendeeId);
+      }
+
+      setSelectedAttendeeIds(new Set());
+      await loadSyncedAttendees();
+    } catch (error) {
+      console.error('Error unsyncing attendees:', error);
+    } finally {
+      setSyncing(false);
+      setShowUnsyncConfirm(false);
+    }
+  }
+
+  function toggleAttendeeSelection(attendeeId: string) {
+    setSelectedAttendeeIds(prev => {
+      const next = new Set(prev);
+      if (next.has(attendeeId)) {
+        next.delete(attendeeId);
+      } else {
+        next.add(attendeeId);
+      }
+      return next;
+    });
+  }
+
+  function toggleSelectAll() {
+    if (selectedAttendeeIds.size === filteredSortedAttendees.length) {
+      setSelectedAttendeeIds(new Set());
+    } else {
+      setSelectedAttendeeIds(new Set(filteredSortedAttendees.map(a => a.id)));
+    }
+  }
+
+  function handleUnsyncClick(attendeeId: string) {
+    setAttendeeToUnsync(attendeeId);
+    setShowUnsyncConfirm(true);
+  }
+
+  function handleBulkUnsyncClick() {
+    setAttendeeToUnsync(null);
+    setShowUnsyncConfirm(true);
   }
 
   async function updateLocalEvent(updates: Partial<LocalEvent>) {
@@ -833,62 +1062,115 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                   No attendees match the selected filter
                 </div>
               ) : (
-                <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {filteredSortedAttendees.map((attendee) => {
-                    const status = isForum ? attendee.stage : attendee.approval_status;
-                    const isSynced = syncedAttendeeIds.has(attendee.id);
-                    return (
-                      <div key={attendee.id} className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <div className="flex items-center gap-2">
-                            <User className="w-4 h-4 text-slate-400" />
-                            <div className="font-semibold text-slate-900 text-sm">
-                              {attendee.name}
+                <>
+                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-slate-200">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={selectedAttendeeIds.size === filteredSortedAttendees.length && filteredSortedAttendees.length > 0}
+                        onChange={toggleSelectAll}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm font-medium text-slate-700">
+                        Select All ({filteredSortedAttendees.length})
+                      </span>
+                    </label>
+                    {selectedAttendeeIds.size > 0 && (
+                      <span className="text-sm text-slate-600">
+                        {selectedAttendeeIds.size} selected
+                      </span>
+                    )}
+                  </div>
+                  <div className="space-y-3 max-h-96 overflow-y-auto">
+                    {filteredSortedAttendees.map((attendee) => {
+                      const status = isForum ? attendee.stage : attendee.approval_status;
+                      const isSynced = syncedAttendeeIds.has(attendee.id);
+                      const isSelected = selectedAttendeeIds.has(attendee.id);
+                      const isProcessing = syncingIndividual.has(attendee.id);
+                      return (
+                        <div key={attendee.id} className={`p-4 bg-slate-50 rounded-lg border transition-colors ${
+                          isSelected ? 'border-blue-500 bg-blue-50' : 'border-slate-200'
+                        }`}>
+                          <div className="flex items-start gap-3">
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => toggleAttendeeSelection(attendee.id)}
+                              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-start justify-between gap-3 mb-2">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <User className="w-4 h-4 text-slate-400" />
+                                  <div className="font-semibold text-slate-900 text-sm">
+                                    {attendee.name}
+                                  </div>
+                                  {isSynced && (
+                                    <span className="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-medium">
+                                      <Check className="w-3 h-3" />
+                                      Synced
+                                    </span>
+                                  )}
+                                  {status && (
+                                    <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(status)}`}>
+                                      {status}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  {isSynced ? (
+                                    <button
+                                      onClick={() => handleUnsyncClick(attendee.id)}
+                                      disabled={isProcessing}
+                                      className="px-3 py-1 text-xs font-medium bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors disabled:opacity-50"
+                                    >
+                                      {isProcessing ? 'Unsyncing...' : 'Unsync'}
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => syncSingleAttendee(attendee)}
+                                      disabled={isProcessing}
+                                      className="px-3 py-1 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50"
+                                    >
+                                      {isProcessing ? 'Syncing...' : 'Sync'}
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                              {(attendee.title || attendee.company) && (
+                                <div className="text-sm text-slate-600 mb-1">
+                                  {attendee.title}{attendee.title && attendee.company ? ' • ' : ''}{attendee.company}
+                                </div>
+                              )}
+                              <div className="text-sm text-slate-500 space-y-0.5">
+                                <div>{attendee.email}</div>
+                                {attendee.alternative_email && (
+                                  <div className="text-xs">Alt Email: {attendee.alternative_email}</div>
+                                )}
+                                {attendee.phone && (
+                                  <div>Phone: {attendee.phone}</div>
+                                )}
+                                {attendee.alternative_number && (
+                                  <div className="text-xs">Alt Phone: {attendee.alternative_number}</div>
+                                )}
+                                {attendee.wishlist && (
+                                  <div className="text-xs mt-1 pt-1 border-t border-slate-300">
+                                    <span className="font-medium">Wishlist:</span> {attendee.wishlist}
+                                  </div>
+                                )}
+                                {attendee.no_show_reason && status === 'no_show' && (
+                                  <div className="text-xs mt-1 pt-1 border-t border-slate-300 text-red-600">
+                                    <span className="font-medium">No Show Reason:</span> {attendee.no_show_reason}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            {isSynced && (
-                              <span className="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-medium">
-                                <Check className="w-3 h-3" />
-                                Synced
-                              </span>
-                            )}
                           </div>
-                          {status && (
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(status)}`}>
-                              {status}
-                            </span>
-                          )}
                         </div>
-                        {(attendee.title || attendee.company) && (
-                          <div className="text-sm text-slate-600 mb-1">
-                            {attendee.title}{attendee.title && attendee.company ? ' • ' : ''}{attendee.company}
-                          </div>
-                        )}
-                        <div className="text-sm text-slate-500 space-y-0.5">
-                          <div>{attendee.email}</div>
-                          {attendee.alternative_email && (
-                            <div className="text-xs">Alt Email: {attendee.alternative_email}</div>
-                          )}
-                          {attendee.phone && (
-                            <div>Phone: {attendee.phone}</div>
-                          )}
-                          {attendee.alternative_number && (
-                            <div className="text-xs">Alt Phone: {attendee.alternative_number}</div>
-                          )}
-                          {attendee.wishlist && (
-                            <div className="text-xs mt-1 pt-1 border-t border-slate-300">
-                              <span className="font-medium">Wishlist:</span> {attendee.wishlist}
-                            </div>
-                          )}
-                          {attendee.no_show_reason && status === 'no_show' && (
-                            <div className="text-xs mt-1 pt-1 border-t border-slate-300 text-red-600">
-                              <span className="font-medium">No Show Reason:</span> {attendee.no_show_reason}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -1184,6 +1466,39 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
         )}
       </div>
 
+      {selectedAttendeeIds.size > 0 && (
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
+          <div className="bg-slate-900 text-white rounded-lg shadow-2xl px-6 py-4 flex items-center gap-4">
+            <span className="font-medium">
+              {selectedAttendeeIds.size} attendee{selectedAttendeeIds.size !== 1 ? 's' : ''} selected
+            </span>
+            <div className="h-6 w-px bg-slate-700"></div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={syncMultipleAttendees}
+                disabled={syncing}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium disabled:opacity-50"
+              >
+                Sync Selected
+              </button>
+              <button
+                onClick={handleBulkUnsyncClick}
+                disabled={syncing}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium disabled:opacity-50"
+              >
+                Unsync Selected
+              </button>
+              <button
+                onClick={() => setSelectedAttendeeIds(new Set())}
+                className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors text-sm font-medium"
+              >
+                Clear Selection
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showSyncModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
@@ -1242,6 +1557,58 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                 className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Sync {attendeesToSync.length} Attendee{attendeesToSync.length !== 1 ? 's' : ''}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showUnsyncConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6 border-b border-slate-200">
+              <h3 className="text-lg font-bold text-slate-900">Confirm Unsync</h3>
+              <p className="text-sm text-slate-600 mt-1">
+                {attendeeToUnsync
+                  ? 'Are you sure you want to remove this attendee from the sponsor\'s lead list?'
+                  : `Are you sure you want to remove ${selectedAttendeeIds.size} attendee${selectedAttendeeIds.size !== 1 ? 's' : ''} from the sponsor's lead list?`
+                }
+              </p>
+            </div>
+
+            <div className="p-6 bg-red-50">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-red-900">This action cannot be undone</p>
+                  <p className="text-xs text-red-700 mt-1">
+                    The attendee data will be removed from the sponsor's lead list. You can re-sync them later if needed.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-slate-200 flex items-center justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowUnsyncConfirm(false);
+                  setAttendeeToUnsync(null);
+                }}
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  if (attendeeToUnsync) {
+                    unsyncSingleAttendee(attendeeToUnsync);
+                  } else {
+                    unsyncMultipleAttendees();
+                  }
+                }}
+                className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Yes, Unsync {attendeeToUnsync ? 'Attendee' : `${selectedAttendeeIds.size} Attendee${selectedAttendeeIds.size !== 1 ? 's' : ''}`}
               </button>
             </div>
           </div>
