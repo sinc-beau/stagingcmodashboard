@@ -243,6 +243,7 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
         .from('event_intake_items')
         .select('*')
         .eq('event_id', eventId)
+        .eq('sponsor_id', sponsorId)
         .order('display_order');
 
       if (existingItems && existingItems.length > 0) {
