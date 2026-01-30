@@ -8,8 +8,6 @@ import {
   Loader2,
   MessageSquare,
   Send,
-  CheckCircle,
-  Circle,
   BellOff
 } from 'lucide-react';
 
@@ -18,7 +16,6 @@ interface Sponsor {
   name: string;
   logo_url: string | null;
   unread_message_count: number;
-  conversation_done: boolean;
 }
 
 interface Message {
@@ -91,7 +88,7 @@ function MessageCenterContent() {
     try {
       const { data: sponsorsData } = await supabase
         .from('sponsors')
-        .select('id, name, logo_url, conversation_done')
+        .select('id, name, logo_url')
         .order('name', { ascending: true });
 
       const { data: messageCounts } = await supabase
@@ -107,14 +104,10 @@ function MessageCenterContent() {
 
       const sponsorsWithCounts: Sponsor[] = (sponsorsData || []).map((sponsor: any) => ({
         ...sponsor,
-        unread_message_count: unreadCountsBySponsor.get(sponsor.id) || 0,
-        conversation_done: sponsor.conversation_done || false
+        unread_message_count: unreadCountsBySponsor.get(sponsor.id) || 0
       }));
 
       sponsorsWithCounts.sort((a, b) => {
-        if (a.conversation_done !== b.conversation_done) {
-          return a.conversation_done ? 1 : -1;
-        }
         return b.unread_message_count - a.unread_message_count;
       });
 
@@ -186,26 +179,22 @@ function MessageCenterContent() {
   };
 
   const toggleConversationDone = async () => {
-    if (!selectedSponsorId || !sponsorUser?.id) return;
-
-    const selectedSponsor = sponsors.find(s => s.id === selectedSponsorId);
-    if (!selectedSponsor) return;
-
-    const newDoneStatus = !selectedSponsor.conversation_done;
+    if (!selectedSponsorId) return;
 
     try {
       await supabase
-        .from('sponsors')
+        .from('sponsor_messages')
         .update({
-          conversation_done: newDoneStatus,
-          conversation_done_at: newDoneStatus ? new Date().toISOString() : null,
-          conversation_done_by: newDoneStatus ? sponsorUser.id : null
+          is_read: true,
+          read_at: new Date().toISOString()
         })
-        .eq('id', selectedSponsorId);
+        .eq('sponsor_id', selectedSponsorId)
+        .eq('sent_by_role', 'sponsor')
+        .eq('is_read', false);
 
       await loadSponsors();
     } catch (error) {
-      console.error('Error updating conversation status:', error);
+      console.error('Error marking messages as read:', error);
     }
   };
 
@@ -354,7 +343,7 @@ function MessageCenterContent() {
                     selectedSponsorId === sponsor.id
                       ? 'bg-blue-50 border-l-4 border-l-blue-600'
                       : 'hover:bg-gray-50'
-                  } ${sponsor.conversation_done ? 'opacity-60' : ''}`}
+                  }`}
                 >
                   <div className="w-12 h-8 bg-blue-100 rounded flex items-center justify-center flex-shrink-0 overflow-hidden">
                     {sponsor.logo_url ? (
@@ -372,9 +361,6 @@ function MessageCenterContent() {
                       <h4 className="text-sm font-medium text-gray-900 truncate">
                         {sponsor.name}
                       </h4>
-                      {sponsor.conversation_done && (
-                        <CheckCircle className="w-3.5 h-3.5 text-green-600 flex-shrink-0" />
-                      )}
                     </div>
                   </div>
                   {sponsor.unread_message_count > 0 && (

@@ -27,12 +27,11 @@ export function SponsorMessages({ sponsorId }: SponsorMessagesProps) {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [newMessage, setNewMessage] = useState('');
-  const [conversationDone, setConversationDone] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    loadData();
+    loadMessages();
     const subscription = supabase
       .channel('messages')
       .on('postgres_changes', {
@@ -50,14 +49,8 @@ export function SponsorMessages({ sponsorId }: SponsorMessagesProps) {
     };
   }, [sponsorId]);
 
-  async function loadData() {
-    setLoading(true);
-    await loadMessages();
-    await loadConversationStatus();
-    setLoading(false);
-  }
-
   async function loadMessages() {
+    setLoading(true);
     const { data } = await supabase
       .from('sponsor_messages')
       .select('*')
@@ -68,18 +61,7 @@ export function SponsorMessages({ sponsorId }: SponsorMessagesProps) {
       setMessages(data);
       markUnreadAsRead(data);
     }
-  }
-
-  async function loadConversationStatus() {
-    const { data } = await supabase
-      .from('sponsors')
-      .select('conversation_done')
-      .eq('id', sponsorId)
-      .single();
-
-    if (data) {
-      setConversationDone(data.conversation_done || false);
-    }
+    setLoading(false);
   }
 
   async function markUnreadAsRead(msgs: Message[]) {
@@ -175,11 +157,16 @@ export function SponsorMessages({ sponsorId }: SponsorMessagesProps) {
 
   async function clearNotifications() {
     await supabase
-      .from('sponsors')
-      .update({ conversation_done: true })
-      .eq('id', sponsorId);
+      .from('sponsor_messages')
+      .update({
+        is_read: true,
+        read_at: new Date().toISOString()
+      })
+      .eq('sponsor_id', sponsorId)
+      .eq('sent_by_role', 'admin')
+      .eq('is_read', false);
 
-    setConversationDone(true);
+    await loadMessages();
   }
 
   if (loading) {

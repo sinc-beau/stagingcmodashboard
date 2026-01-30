@@ -76,17 +76,18 @@ function AccountManagerDashboardContent() {
         });
       }
 
-      const { data: undoneSponsors } = await supabase
-        .from('sponsors')
-        .select('id')
-        .eq('conversation_done', false);
+      const { data: unreadMessages } = await supabase
+        .from('sponsor_messages')
+        .select('sponsor_id')
+        .eq('sent_by_role', 'sponsor')
+        .eq('is_read', false);
 
-      const undoneConversationsSet = new Set<string>();
-      (undoneSponsors || []).forEach((sponsor: any) => {
-        undoneConversationsSet.add(sponsor.id);
+      const sponsorsWithUnreadMessages = new Set<string>();
+      (unreadMessages || []).forEach((message: any) => {
+        sponsorsWithUnreadMessages.add(message.sponsor_id);
       });
 
-      setUndoneMessagesCount(undoneSponsors?.length || 0);
+      setUndoneMessagesCount(sponsorsWithUnreadMessages.size);
 
       const sponsorsWithEvents: Sponsor[] = (sponsorsData || []).map((sponsor: any) => {
         const events = eventsBySponsorId.get(sponsor.id) || [];
@@ -101,7 +102,7 @@ function AccountManagerDashboardContent() {
           ...sponsor,
           event_count: events.length,
           eventTypeCounts,
-          undone_message_count: undoneConversationsSet.has(sponsor.id) ? 1 : 0
+          undone_message_count: sponsorsWithUnreadMessages.has(sponsor.id) ? 1 : 0
         };
       });
 

@@ -66,7 +66,7 @@ function AdminDashboardContent() {
 
   const loadDashboardData = async () => {
     try {
-      const [sponsorsData, pendingData, messagesData, undoneConversationsData] = await Promise.all([
+      const [sponsorsData, pendingData, messagesData, unreadMessagesData] = await Promise.all([
         supabase
           .from('sponsors')
           .select('*')
@@ -79,9 +79,10 @@ function AdminDashboardContent() {
           .from('sponsor_messages')
           .select('id', { count: 'exact', head: true }),
         supabase
-          .from('sponsors')
-          .select('id', { count: 'exact', head: true })
-          .eq('conversation_done', false)
+          .from('sponsor_messages')
+          .select('sponsor_id')
+          .eq('sent_by_role', 'sponsor')
+          .eq('is_read', false)
       ]);
 
       const { data: sponsorEventsData } = await supabase
@@ -106,9 +107,9 @@ function AdminDashboardContent() {
         });
       }
 
-      const undoneConversationsSet = new Set<string>();
-      (undoneConversationsData.data || []).forEach((sponsor: any) => {
-        undoneConversationsSet.add(sponsor.id);
+      const sponsorsWithUnreadMessages = new Set<string>();
+      (unreadMessagesData.data || []).forEach((message: any) => {
+        sponsorsWithUnreadMessages.add(message.sponsor_id);
       });
 
       const sponsorsWithEvents: Sponsor[] = (sponsorsData.data || []).map((sponsor: any) => {
@@ -124,7 +125,7 @@ function AdminDashboardContent() {
           ...sponsor,
           event_count: events.length,
           eventTypeCounts,
-          undone_message_count: undoneConversationsSet.has(sponsor.id) ? 1 : 0
+          undone_message_count: sponsorsWithUnreadMessages.has(sponsor.id) ? 1 : 0
         };
       });
 
@@ -134,7 +135,7 @@ function AdminDashboardContent() {
         totalSponsors: sponsorsData.data?.length || 0,
         pendingApprovals: pendingData.count || 0,
         totalMessages: messagesData.count || 0,
-        undoneMessages: undoneConversationsData.count || 0
+        undoneMessages: sponsorsWithUnreadMessages.size
       });
     } catch (error) {
       console.error('Error loading dashboard:', error);

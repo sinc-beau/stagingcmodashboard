@@ -238,16 +238,18 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
   }
 
   async function handleToggleConversationDone() {
-    const newDoneStatus = !sponsor.conversation_done;
     await supabase
-      .from('sponsors')
+      .from('sponsor_messages')
       .update({
-        conversation_done: newDoneStatus,
-        conversation_done_at: newDoneStatus ? new Date().toISOString() : null
+        is_read: true,
+        read_at: new Date().toISOString()
       })
-      .eq('id', sponsorId);
+      .eq('sponsor_id', sponsorId)
+      .eq('sent_by_role', 'sponsor')
+      .eq('is_read', false);
 
     await loadSponsorData();
+    await loadUnreadMessageCount();
   }
 
   async function handleSaveSincRep() {
