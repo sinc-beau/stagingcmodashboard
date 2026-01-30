@@ -52,6 +52,7 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
   const [editingMinAttendees, setEditingMinAttendees] = useState<string | null>(null);
   const [minAttendeesValue, setMinAttendeesValue] = useState<number>(0);
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [unreadMessageCount, setUnreadMessageCount] = useState<number>(0);
 
   const eventTypes = [
     { key: 'all', label: 'All Events' },
@@ -64,7 +65,32 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
 
   useEffect(() => {
     loadSponsorData();
+    loadUnreadMessageCount();
+
+    const subscription = supabase
+      .channel(`sponsor_detail_messages_${sponsorId}`)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'sponsor_messages',
+        filter: `sponsor_id=eq.${sponsorId}`
+      }, () => {
+        loadUnreadMessageCount();
+      })
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [sponsorId]);
+
+  useEffect(() => {
+    if (activeTab === 'messages') {
+      setTimeout(() => {
+        loadUnreadMessageCount();
+      }, 500);
+    }
+  }, [activeTab]);
 
   async function loadSponsorData() {
     try {
@@ -88,6 +114,21 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
       console.error('Error loading sponsor data:', error);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function loadUnreadMessageCount() {
+    try {
+      const { count } = await supabase
+        .from('sponsor_messages')
+        .select('id', { count: 'exact', head: true })
+        .eq('sponsor_id', sponsorId)
+        .eq('sent_by_role', 'sponsor')
+        .eq('is_read', false);
+
+      setUnreadMessageCount(count || 0);
+    } catch (error) {
+      console.error('Error loading unread message count:', error);
     }
   }
 
@@ -371,6 +412,9 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
                     }`}
                   >
                     Messages
+                    {unreadMessageCount > 0 && (
+                      <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+                    )}
                   </button>
                   <button
                     onClick={() => setActiveTab('obligations')}
