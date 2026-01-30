@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
-import { normalizeName, mapEventType } from '../lib/syncSponsors';
+import { supabase } from '../lib/supabase';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { UserManagement } from '../components/UserManagement';
 import {
@@ -85,50 +84,35 @@ function AdminDashboardContent() {
           .eq('conversation_done', false)
       ]);
 
-      // Load events from external databases
-      const [{ data: forumSponsors }, { data: eventSponsors }] = await Promise.all([
-        forumEventClient.from('sponsors').select('*, forums(*)'),
-        nonForumEventClient.from('event_sponsors').select('*, events(*)')
-      ]);
+      const { data: sponsorEventsData } = await supabase
+        .from('sponsor_events')
+        .select(`
+          sponsor_id,
+          events (
+            event_type
+          )
+        `);
 
-      // Build event counts by sponsor name
-      const eventsBySponsorName = new Map<string, string[]>();
+      const eventsBySponsorId = new Map<string, string[]>();
 
-      if (forumSponsors) {
-        forumSponsors.forEach((sponsor: any) => {
-          if (sponsor.forums) {
-            const normalizedName = normalizeName(sponsor.name);
-            if (!eventsBySponsorName.has(normalizedName)) {
-              eventsBySponsorName.set(normalizedName, []);
+      if (sponsorEventsData) {
+        sponsorEventsData.forEach((se: any) => {
+          if (se.events && se.sponsor_id) {
+            if (!eventsBySponsorId.has(se.sponsor_id)) {
+              eventsBySponsorId.set(se.sponsor_id, []);
             }
-            eventsBySponsorName.get(normalizedName)!.push('forum');
+            eventsBySponsorId.get(se.sponsor_id)!.push(se.events.event_type);
           }
         });
       }
 
-      if (eventSponsors) {
-        eventSponsors.forEach((sponsor: any) => {
-          if (sponsor.events) {
-            const normalizedName = normalizeName(sponsor.name);
-            if (!eventsBySponsorName.has(normalizedName)) {
-              eventsBySponsorName.set(normalizedName, []);
-            }
-            const eventType = mapEventType(sponsor.events.type);
-            eventsBySponsorName.get(normalizedName)!.push(eventType);
-          }
-        });
-      }
-
-      // Build set of sponsors with undone conversations
       const undoneConversationsSet = new Set<string>();
       (undoneConversationsData.data || []).forEach((sponsor: any) => {
         undoneConversationsSet.add(sponsor.id);
       });
 
-      // Merge event data with sponsors
       const sponsorsWithEvents: Sponsor[] = (sponsorsData.data || []).map((sponsor: any) => {
-        const normalizedName = normalizeName(sponsor.name);
-        const events = eventsBySponsorName.get(normalizedName) || [];
+        const events = eventsBySponsorId.get(sponsor.id) || [];
         const eventTypeCounts: Record<string, number> = {};
 
         events.forEach(type => {

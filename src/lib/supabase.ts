@@ -5,26 +5,6 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export const forumAttendeeClient = createClient(
-  import.meta.env.VITE_FORUM_ATTENDEE_URL,
-  import.meta.env.VITE_FORUM_ATTENDEE_ANON_KEY
-);
-
-export const forumEventClient = createClient(
-  import.meta.env.VITE_FORUM_EVENT_URL,
-  import.meta.env.VITE_FORUM_EVENT_ANON_KEY
-);
-
-export const nonForumAttendeeClient = createClient(
-  import.meta.env.VITE_NON_FORUM_ATTENDEE_URL,
-  import.meta.env.VITE_NON_FORUM_ATTENDEE_ANON_KEY
-);
-
-export const nonForumEventClient = createClient(
-  import.meta.env.VITE_NON_FORUM_EVENT_URL,
-  import.meta.env.VITE_NON_FORUM_EVENT_ANON_KEY
-);
-
 export type Sponsor = {
   id: string;
   name: string;

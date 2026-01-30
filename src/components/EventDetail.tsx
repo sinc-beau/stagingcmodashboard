@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target } from 'lucide-react';
-import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 
 interface Attendee {
   id: string;
@@ -110,13 +110,11 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   async function loadEventData() {
     setLoading(true);
 
-    const isForum = sourceDatabase === 'forum_event';
-    const eventClient = isForum ? forumEventClient : nonForumEventClient;
-
-    const { data: eventData } = await eventClient
-      .from(isForum ? 'forums' : 'events')
+    const { data: eventData } = await supabase
+      .from('events')
       .select('*')
-      .eq('id', sourceEventId)
+      .eq('source_event_id', sourceEventId)
+      .eq('source_database', sourceDatabase)
       .maybeSingle();
 
     setEvent(eventData);

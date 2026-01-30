@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
-import { formatEventType } from '../lib/syncSponsors';
+import { formatEventType } from '../lib/eventUtils';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { SponsorAllLeads } from '../components/SponsorAllLeads';
 import { SponsorMyEvents } from '../components/SponsorMyEvents';
