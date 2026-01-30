@@ -5,6 +5,7 @@ import { DollarSign, Target, Loader2, Save, Plus, Trash2 } from 'lucide-react';
 interface Obligation {
   id: string;
   sponsor_id: string;
+  contract_name: string;
   total_amount: number;
   discount_amount: number;
   dinner_count: number;
@@ -39,6 +40,7 @@ export function ObligationManager({ sponsorId, sponsorName, obligationId, onClos
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
+  const [contractName, setContractName] = useState('');
   const [totalAmount, setTotalAmount] = useState('0');
   const [discountAmount, setDiscountAmount] = useState('0');
   const [dinnerCount, setDinnerCount] = useState('0');
@@ -71,6 +73,7 @@ export function ObligationManager({ sponsorId, sponsorName, obligationId, onClos
 
     if (data) {
       setObligation(data);
+      setContractName(data.contract_name);
       setTotalAmount(data.total_amount.toString());
       setDiscountAmount(data.discount_amount.toString());
       setDinnerCount(data.dinner_count.toString());
@@ -112,6 +115,7 @@ export function ObligationManager({ sponsorId, sponsorName, obligationId, onClos
 
     const data = {
       sponsor_id: sponsorId,
+      contract_name: contractName || 'CONTRACT NAME',
       total_amount: parseFloat(totalAmount) || 0,
       discount_amount: parseFloat(discountAmount) || 0,
       dinner_count: parseInt(dinnerCount) || 0,
@@ -199,6 +203,20 @@ export function ObligationManager({ sponsorId, sponsorName, obligationId, onClos
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Contract Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={contractName}
+              onChange={(e) => setContractName(e.target.value)}
+              placeholder="CONTRACT NAME"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

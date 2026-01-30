@@ -4,6 +4,7 @@ import { Target, TrendingUp, Calendar, Loader2, DollarSign } from 'lucide-react'
 
 interface Obligation {
   id: string;
+  contract_name: string;
   total_amount: number;
   discount_amount: number;
   dinner_count: number;
@@ -172,7 +173,7 @@ export function ObligationDisplay({ sponsorId }: ObligationDisplayProps) {
                   <Target className="w-5 h-5 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900">Contract Obligation</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{obligation.contract_name}</h3>
                   <p className="text-xs text-gray-600">Created {new Date(obligation.created_at).toLocaleDateString()}</p>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import { ObligationManager } from './ObligationManager';
 
 interface Obligation {
   id: string;
+  contract_name: string;
   total_amount: number;
   discount_amount: number;
   dinner_count: number;
@@ -223,9 +224,10 @@ export function ObligationsList({ sponsorId, sponsorName }: ObligationsListProps
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
+                    <h3 className="text-sm font-bold text-slate-900 mb-2">{obligation.contract_name}</h3>
                     <div className="flex items-center gap-2 mb-1">
                       <DollarSign className="w-4 h-4 text-slate-500" />
-                      <span className="text-sm font-semibold text-slate-900">
+                      <span className="text-xs text-slate-700">
                         ${netAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                       {obligation.discount_amount > 0 && (
