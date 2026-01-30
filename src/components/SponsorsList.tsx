@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { syncSponsorsFromExternal, syncSponsorEventsFromExternal } from '../lib/syncSponsors';
 import { ExternalLink, Building2, RefreshCw, Download } from 'lucide-react';
 import { DatabaseDebug } from './DatabaseDebug';
 
@@ -32,10 +31,21 @@ export function SponsorsList({ onSponsorClick }: SponsorsListProps) {
 
   async function syncAndReload() {
     setSyncing(true);
-    await syncSponsorsFromExternal();
-    await syncSponsorEventsFromExternal();
-    await loadSponsors();
-    setSyncing(false);
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
+      const headers = {
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+      };
+
+      await fetch(`${apiUrl}/sync-sponsors`, { method: 'POST', headers });
+      await fetch(`${apiUrl}/sync-events`, { method: 'POST', headers });
+      await loadSponsors();
+    } catch (error) {
+      console.error('Sync error:', error);
+    } finally {
+      setSyncing(false);
+    }
   }
 
   async function exportContacts() {

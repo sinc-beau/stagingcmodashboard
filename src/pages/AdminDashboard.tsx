@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
-import { normalizeName, mapEventType, syncSponsorsFromExternal, syncSponsorEventsFromExternal } from '../lib/syncSponsors';
+import { normalizeName, mapEventType } from '../lib/syncSponsors';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { UserManagement } from '../components/UserManagement';
 import {
@@ -180,8 +180,14 @@ function AdminDashboardContent() {
   const handleSync = async () => {
     setSyncing(true);
     try {
-      await syncSponsorsFromExternal();
-      await syncSponsorEventsFromExternal();
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
+      const headers = {
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+      };
+
+      await fetch(`${apiUrl}/sync-sponsors`, { method: 'POST', headers });
+      await fetch(`${apiUrl}/sync-events`, { method: 'POST', headers });
       await loadDashboardData();
     } catch (error) {
       console.error('Sync error:', error);

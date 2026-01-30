@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, ChevronRight, User, Mail, Phone, Plus, X, Globe, TrendingUp, TrendingDown, Minus, Filter } from 'lucide-react';
-import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
-import { normalizeName, mapEventType } from '../lib/syncSponsors';
+import { supabase } from '../lib/supabase';
 import EventDetail from './EventDetail';
 import { ObligationsList } from './ObligationsList';
 import { EventObligationSelector } from './EventObligationSelector';

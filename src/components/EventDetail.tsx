@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target } from 'lucide-react';
-import { supabase, forumEventClient, nonForumEventClient, forumAttendeeClient, nonForumAttendeeClient } from '../lib/supabase';
+import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
 
 interface Attendee {
   id: string;
@@ -204,78 +204,32 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   }
 
   async function loadAttendees() {
-    const isForum = sourceDatabase === 'forum_event';
-    const attendeeClient = isForum ? forumAttendeeClient : nonForumAttendeeClient;
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/load-attendees`;
 
-    let attendeeData = [];
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sourceEventId,
+          sourceDatabase,
+          eventType
+        })
+      });
 
-    if (isForum) {
-      const { data } = await attendeeClient
-        .from('attendees')
-        .select('id, first_name, last_name, email, company, title, stage, cellphone, forum_id')
-        .eq('forum_id', sourceEventId);
+      if (!response.ok) {
+        throw new Error(`Failed to load attendees: ${response.statusText}`);
+      }
 
-      attendeeData = (data || []).map((a: any) => ({
-        id: a.id,
-        name: `${a.first_name || ''} ${a.last_name || ''}`.trim(),
-        email: a.email,
-        company: a.company,
-        title: a.title,
-        phone: a.cellphone,
-        stage: a.stage,
-        approval_status: null,
-      }));
-    } else {
-      const tableName = getAttendeeTableName(eventType);
-      const selectFields = getAttendeeSelectFields(eventType);
-
-      const { data } = await attendeeClient
-        .from(tableName)
-        .select(selectFields)
-        .eq('event_id', sourceEventId);
-
-      attendeeData = (data || []).map((a: any) => ({
-        id: a.id,
-        name: `${a.first_name || ''} ${a.last_name || ''}`.trim(),
-        email: a.email,
-        company: a.company,
-        title: a.title,
-        phone: a.register_number || null,
-        stage: null,
-        approval_status: a.attendance_status,
-        alternative_email: a.alternative_email || null,
-        alternative_number: a.alternative_number || null,
-        wishlist: a.wishlist || null,
-        no_show_reason: a.no_show_reason || null,
-      }));
+      const { attendees: attendeeData } = await response.json();
+      setAttendees(attendeeData || []);
+    } catch (error) {
+      console.error('Error loading attendees:', error);
+      setAttendees([]);
     }
-
-    setAttendees(attendeeData);
-  }
-
-  function getAttendeeTableName(type: string): string {
-    const tableMap: Record<string, string> = {
-      'dinner': 'dinner_attendees',
-      'veb': 'veb_attendees',
-      'vrt': 'vrt_attendees',
-      'activation': 'activation_attendees',
-      'learn_go': 'learn_go_attendees'
-    };
-    return tableMap[type] || 'attendees';
-  }
-
-  function getAttendeeSelectFields(type: string): string {
-    const baseFields = 'id, first_name, last_name, email, company, title, attendance_status, wishlist, no_show_reason, event_id';
-
-    const typeFieldsMap: Record<string, string> = {
-      'dinner': `${baseFields}, alternative_email, register_number, alternative_number`,
-      'activation': `${baseFields}, alternative_email, register_number, alternative_number`,
-      'veb': `${baseFields}, register_number, alternative_number`,
-      'vrt': `${baseFields}, register_number, alternative_number`,
-      'learn_go': 'id, first_name, last_name, email, company, title, attendance_status, no_show_reason, event_id'
-    };
-
-    return typeFieldsMap[type] || baseFields;
   }
 
   async function loadIntakeItems() {

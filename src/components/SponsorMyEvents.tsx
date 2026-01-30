@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { supabase, forumEventClient, nonForumEventClient } from '../lib/supabase';
-import { formatEventType, normalizeName, mapEventType } from '../lib/syncSponsors';
+import { supabase } from '../lib/supabase';
+import { formatEventType } from '../lib/syncSponsors';
 import { Calendar, Loader2, Filter, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface SponsorEvent {
