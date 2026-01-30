@@ -84,14 +84,6 @@ export default function SponsorDetail({ sponsorId, sponsorName, onBack }: Sponso
     };
   }, [sponsorId]);
 
-  useEffect(() => {
-    if (activeTab === 'messages') {
-      setTimeout(() => {
-        loadUnreadMessageCount();
-      }, 500);
-    }
-  }, [activeTab]);
-
   async function loadSponsorData() {
     try {
       const [
