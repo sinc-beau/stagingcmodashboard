@@ -76,19 +76,22 @@ export function ObligationDisplay({ sponsorId }: ObligationDisplayProps) {
   }
 
   async function loadCompletedCountForObligation(obligationId: string): Promise<number> {
-    const { data: events } = await supabase
+    const { data: sponsorEvents } = await supabase
       .from('sponsor_events')
-      .select('id, source_event_id, source_database')
+      .select('id, event_id, events(source_event_id, source_database)')
       .eq('sponsor_id', sponsorId)
       .eq('obligation_id', obligationId);
 
-    if (!events || events.length === 0) {
+    if (!sponsorEvents || sponsorEvents.length === 0) {
       return 0;
     }
 
     let total = 0;
 
-    for (const event of events) {
+    for (const sponsorEvent of sponsorEvents) {
+      const event = (sponsorEvent as any).events;
+      if (!event) continue;
+
       if (event.source_database === 'forum_event') {
         const { count } = await forumAttendeeClient
           .from('attendees', { count: 'exact', head: true })
