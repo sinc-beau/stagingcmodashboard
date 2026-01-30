@@ -55,7 +55,6 @@ function MessageCenterContent() {
   useEffect(() => {
     if (selectedSponsorId) {
       loadMessages(selectedSponsorId);
-      markMessagesAsRead(selectedSponsorId);
 
       const subscription = supabase
         .channel(`sponsor_messages_${selectedSponsorId}`)
@@ -134,19 +133,6 @@ function MessageCenterContent() {
       setMessages(data || []);
     } catch (error) {
       console.error('Error loading messages:', error);
-    }
-  };
-
-  const markMessagesAsRead = async (sponsorId: string) => {
-    try {
-      await supabase
-        .from('sponsor_messages')
-        .update({ is_read: true, read_at: new Date().toISOString() })
-        .eq('sponsor_id', sponsorId)
-        .eq('sent_by_role', 'sponsor')
-        .eq('is_read', false);
-    } catch (error) {
-      console.error('Error marking messages as read:', error);
     }
   };
 
