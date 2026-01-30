@@ -84,12 +84,22 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
       if (obligationIds.length > 0) {
         const { data: obligations } = await supabase
           .from('sponsor_obligations')
-          .select('id')
+          .select('id, total_amount, created_at')
           .in('id', obligationIds);
 
         if (obligations) {
           obligations.forEach((obl) => {
-            obligationsMap.set(obl.id, `Obligation`);
+            const date = new Date(obl.created_at).toLocaleDateString('en-US', {
+              month: 'short',
+              year: 'numeric'
+            });
+            const amount = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0
+            }).format(obl.total_amount);
+            obligationsMap.set(obl.id, `${date} - ${amount}`);
           });
         }
       }
