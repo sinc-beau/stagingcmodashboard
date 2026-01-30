@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, forumAttendeeClient, forumEventClient, nonForumAttendeeClient, nonForumEventClient } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 import { Target, TrendingUp, Calendar, Loader2, DollarSign } from 'lucide-react';
 
 interface Obligation {
@@ -78,7 +78,7 @@ export function ObligationDisplay({ sponsorId }: ObligationDisplayProps) {
   async function loadCompletedCountForObligation(obligationId: string): Promise<number> {
     const { data: sponsorEvents } = await supabase
       .from('sponsor_events')
-      .select('id, event_id, events(source_event_id, source_database)')
+      .select('id, event_id, events(event_date)')
       .eq('sponsor_id', sponsorId)
       .eq('obligation_id', obligationId);
 
@@ -88,40 +88,24 @@ export function ObligationDisplay({ sponsorId }: ObligationDisplayProps) {
 
     let total = 0;
     const now = new Date();
+    now.setHours(0, 0, 0, 0);
 
     for (const sponsorEvent of sponsorEvents) {
       const event = (sponsorEvent as any).events;
-      if (!event) continue;
+      if (!event || !event.event_date) continue;
 
-      if (event.source_database === 'forum_event') {
-        const { data: forumData } = await forumEventClient
-          .from('forums')
-          .select('date')
-          .eq('id', event.source_event_id)
-          .single();
+      const eventDate = new Date(event.event_date);
+      eventDate.setHours(0, 0, 0, 0);
 
-        if (forumData && new Date(forumData.date) < now) {
-          const { count } = await forumAttendeeClient
-            .from('attendees')
-            .select('*', { count: 'exact', head: true })
-            .eq('forum_id', event.source_event_id);
-          total += count || 0;
-        }
-      } else {
-        const { data: eventData } = await nonForumEventClient
-          .from('events')
-          .select('date')
-          .eq('id', event.source_event_id)
-          .single();
+      if (eventDate < now) {
+        const { count } = await supabase
+          .from('sponsor_leads')
+          .select('*', { count: 'exact', head: true })
+          .eq('sponsor_id', sponsorId)
+          .eq('event_id', (sponsorEvent as any).event_id)
+          .eq('attendance_status', 'attended');
 
-        if (eventData && new Date(eventData.date) < now) {
-          const { count } = await nonForumAttendeeClient
-            .from('attendees')
-            .select('*', { count: 'exact', head: true })
-            .eq('event_id', event.source_event_id)
-            .eq('approval_status', 'approved');
-          total += count || 0;
-        }
+        total += count || 0;
       }
     }
 
