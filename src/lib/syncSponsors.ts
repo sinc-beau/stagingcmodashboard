@@ -11,7 +11,7 @@ export function extractDomain(url: string | null): string {
 }
 
 export function normalizeName(name: string): string {
-  return name.toLowerCase().trim();
+  return name.toLowerCase().replace(/\s+/g, '').trim();
 }
 
 export function formatEventType(eventType: string): string {
