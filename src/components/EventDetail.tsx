@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target } from 'lucide-react';
 import { supabase, forumEventClient, nonForumEventClient, forumAttendeeClient, nonForumAttendeeClient } from '../lib/supabase';
 
 interface Attendee {
@@ -43,6 +43,20 @@ interface OneOnOneMeeting {
   notes?: string;
 }
 
+interface TargetingItem {
+  name: string;
+  relevance: 'high' | 'medium' | 'low' | 'not_relevant';
+}
+
+interface TargetingData {
+  technologies: TargetingItem[];
+  other_technologies: string | null;
+  seniority_levels: TargetingItem[];
+  job_titles: TargetingItem[];
+  excluded_titles: string | null;
+  updated_at: string | null;
+}
+
 interface EventDetailProps {
   eventId: string;
   eventName: string;
@@ -54,7 +68,7 @@ interface EventDetailProps {
   onBack: () => void;
 }
 
-type Tab = 'attendees' | 'config' | 'meetings';
+type Tab = 'attendees' | 'config' | 'meetings' | 'logistics';
 
 export default function EventDetail({ eventId, eventName, eventType, sponsorId, sponsorName, sourceEventId, sourceDatabase, onBack }: EventDetailProps) {
   const [event, setEvent] = useState<any>(null);
@@ -72,6 +86,8 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [intakeExpanded, setIntakeExpanded] = useState(false);
   const [syncedAttendeeIds, setSyncedAttendeeIds] = useState<Set<string>>(new Set());
+  const [targetingData, setTargetingData] = useState<TargetingData | null>(null);
+  const [loadingTargeting, setLoadingTargeting] = useState(false);
   const isLoadingIntakeItems = useRef(false);
 
   useEffect(() => {
@@ -109,8 +125,36 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     await loadIntakeItems();
     await loadOrCreateLocalEvent();
     await loadSyncedAttendees();
+    await loadTargetingData();
 
     setLoading(false);
+  }
+
+  async function loadTargetingData() {
+    setLoadingTargeting(true);
+    try {
+      const { data } = await supabase
+        .from('event_targeting_data')
+        .select('*')
+        .eq('sponsor_id', sponsorId)
+        .eq('event_id', eventId)
+        .maybeSingle();
+
+      if (data) {
+        setTargetingData({
+          technologies: data.technologies || [],
+          other_technologies: data.other_technologies || null,
+          seniority_levels: data.seniority_levels || [],
+          job_titles: data.job_titles || [],
+          excluded_titles: data.excluded_titles || null,
+          updated_at: data.updated_at || null
+        });
+      }
+    } catch (error) {
+      console.error('Error loading targeting data:', error);
+    } finally {
+      setLoadingTargeting(false);
+    }
   }
 
   async function loadOrCreateLocalEvent() {
@@ -447,6 +491,66 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     await updateLocalEvent({ one_on_one_meetings: meetings });
   }
 
+  function exportTargetingToCSV() {
+    if (!targetingData) return;
+
+    const relevanceLabels: Record<string, string> = {
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+      not_relevant: 'Not Relevant'
+    };
+
+    const rows: string[] = [];
+
+    rows.push(`"Target Attendee Profile for ${eventName} - ${sponsorName}"`);
+    rows.push(`"Last Updated: ${targetingData.updated_at ? new Date(targetingData.updated_at).toLocaleString() : 'N/A'}"`);
+    rows.push('');
+
+    rows.push('"Technologies"');
+    rows.push('"Technology","Relevance"');
+    targetingData.technologies.forEach(tech => {
+      rows.push(`"${tech.name}","${relevanceLabels[tech.relevance]}"`);
+    });
+    rows.push('');
+
+    if (targetingData.other_technologies) {
+      rows.push('"Other Technologies/Areas of Focus"');
+      rows.push(`"${targetingData.other_technologies.replace(/"/g, '""')}"`);
+      rows.push('');
+    }
+
+    rows.push('"Seniority Levels"');
+    rows.push('"Level","Relevance"');
+    targetingData.seniority_levels.forEach(level => {
+      rows.push(`"${level.name}","${relevanceLabels[level.relevance]}"`);
+    });
+    rows.push('');
+
+    rows.push('"Roles, Job Functions & Titles"');
+    rows.push('"Title","Relevance"');
+    targetingData.job_titles.forEach(job => {
+      rows.push(`"${job.name}","${relevanceLabels[job.relevance]}"`);
+    });
+    rows.push('');
+
+    if (targetingData.excluded_titles) {
+      rows.push('"Excluded Job Titles"');
+      rows.push(`"${targetingData.excluded_titles.replace(/"/g, '""')}"`);
+    }
+
+    const csv = rows.join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const sanitizedEventName = eventName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    const sanitizedSponsorName = sponsorName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    a.download = `${sanitizedEventName}-${sanitizedSponsorName}-targeting-profile.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   function formatDate(dateString: string | null) {
     if (!dateString) return 'TBD';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -610,6 +714,16 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                 }`}
               >
                 Event Config
+              </button>
+              <button
+                onClick={() => setActiveTab('logistics')}
+                className={`px-4 py-3 font-medium text-sm transition-colors border-b-2 ${
+                  activeTab === 'logistics'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Event Logistics
               </button>
               {isForum && (
                 <button
@@ -1006,6 +1120,112 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                     </div>
                   );
                 })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'logistics' && (
+          <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Target className="w-5 h-5 text-slate-400" />
+                <h2 className="text-lg font-bold text-slate-900">Target Attendee Profile</h2>
+                {targetingData && targetingData.updated_at && (
+                  <span className="text-xs text-slate-500">
+                    Last updated: {new Date(targetingData.updated_at).toLocaleDateString()}
+                  </span>
+                )}
+              </div>
+              {targetingData && (
+                <button
+                  onClick={exportTargetingToCSV}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  <Download className="w-4 h-4" />
+                  Export CSV
+                </button>
+              )}
+            </div>
+
+            {loadingTargeting ? (
+              <div className="text-center py-8 text-slate-500">Loading targeting data...</div>
+            ) : !targetingData ? (
+              <div className="text-center py-8 text-slate-400">
+                <Target className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                <p className="font-medium">No targeting profile yet</p>
+                <p className="text-sm mt-1">The sponsor has not filled out their target attendee profile for this event.</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-900 mb-3">Technologies</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {targetingData.technologies.filter(t => t.relevance !== 'not_relevant').map((tech) => (
+                      <div key={tech.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span className="text-sm text-slate-900">{tech.name}</span>
+                        <span className={`px-2 py-1 text-xs font-medium rounded ${
+                          tech.relevance === 'high' ? 'bg-green-100 text-green-700' :
+                          tech.relevance === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-orange-100 text-orange-700'
+                        }`}>
+                          {tech.relevance === 'high' ? 'High' : tech.relevance === 'medium' ? 'Medium' : 'Low'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  {targetingData.other_technologies && (
+                    <div className="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                      <p className="text-xs font-medium text-slate-700 mb-1">Other Technologies/Areas of Focus:</p>
+                      <p className="text-sm text-slate-900">{targetingData.other_technologies}</p>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-900 mb-3">Seniority Levels</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {targetingData.seniority_levels.filter(l => l.relevance !== 'not_relevant').map((level) => (
+                      <div key={level.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span className="text-sm text-slate-900">{level.name}</span>
+                        <span className={`px-2 py-1 text-xs font-medium rounded ${
+                          level.relevance === 'high' ? 'bg-green-100 text-green-700' :
+                          level.relevance === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-orange-100 text-orange-700'
+                        }`}>
+                          {level.relevance === 'high' ? 'High' : level.relevance === 'medium' ? 'Medium' : 'Low'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-900 mb-3">Roles, Job Functions & Titles</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {targetingData.job_titles.filter(j => j.relevance !== 'not_relevant').map((job) => (
+                      <div key={job.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span className="text-sm text-slate-900">{job.name}</span>
+                        <span className={`px-2 py-1 text-xs font-medium rounded ${
+                          job.relevance === 'high' ? 'bg-green-100 text-green-700' :
+                          job.relevance === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-orange-100 text-orange-700'
+                        }`}>
+                          {job.relevance === 'high' ? 'High' : job.relevance === 'medium' ? 'Medium' : 'Low'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {targetingData.excluded_titles && (
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 mb-3">Excluded Job Titles</h3>
+                    <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+                      <p className="text-sm text-slate-900">{targetingData.excluded_titles}</p>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
