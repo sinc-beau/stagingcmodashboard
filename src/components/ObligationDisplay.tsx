@@ -94,12 +94,14 @@ export function ObligationDisplay({ sponsorId }: ObligationDisplayProps) {
 
       if (event.source_database === 'forum_event') {
         const { count } = await forumAttendeeClient
-          .from('attendees', { count: 'exact', head: true })
+          .from('attendees')
+          .select('*', { count: 'exact', head: true })
           .eq('forum_id', event.source_event_id);
         total += count || 0;
       } else {
         const { count } = await nonForumAttendeeClient
-          .from('attendees', { count: 'exact', head: true })
+          .from('attendees')
+          .select('*', { count: 'exact', head: true })
           .eq('event_id', event.source_event_id)
           .eq('approval_status', 'approved');
         total += count || 0;
