@@ -17,7 +17,7 @@ const RINGCENTRAL_SPONSOR_ID = '93110e75-235b-4586-91f2-196deca40133';
 const HISTORICAL_EVENT_ID = '00000000-0000-0000-0000-000000000001';
 
 const forumData = {
-  "forum_name": "West",
+  "forum_name": "Central",
   "attendees": [
     {
       "first_name": "Ken",
@@ -502,21 +502,24 @@ async function importForumAttendees() {
   let errorCount = 0;
 
   // Get current max attendee ID number
-  const { data: maxData } = await supabase
+  const { data: allIds } = await supabase
     .from('sponsor_leads')
     .select('attendee_id')
     .eq('sponsor_id', RINGCENTRAL_SPONSOR_ID)
     .eq('is_historical', true)
-    .like('attendee_id', 'hist_rc_%')
-    .order('attendee_id', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .like('attendee_id', 'hist_rc_%');
 
   let startNumber = 526; // Start after the 525 virtual dinner/roundtable records
-  if (maxData?.attendee_id) {
-    const match = maxData.attendee_id.match(/hist_rc_(\d+)/);
-    if (match) {
-      startNumber = parseInt(match[1]) + 1;
+  if (allIds && allIds.length > 0) {
+    const numbers = allIds
+      .map(row => {
+        const match = row.attendee_id.match(/hist_rc_(\d+)/);
+        return match ? parseInt(match[1]) : 0;
+      })
+      .filter(num => num > 0);
+
+    if (numbers.length > 0) {
+      startNumber = Math.max(...numbers) + 1;
     }
   }
 
