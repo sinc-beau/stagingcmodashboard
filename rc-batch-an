@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_r4kwpc', 'non_forum_event', true,
+  'James Davenport', 'james.davenport@totalvisionllc.com', '(703) 581-4937', 'Total Vision LLC', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_32xubo', 'non_forum_event', true,
+  'John Inan', 'iinan@iuhealth.org', '(317) 954-4437', 'Indiana University Health', 'Manager - Digital Workspace',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_npe6qo', 'non_forum_event', true,
+  'Deron Helgren', 'deron.helgren@pacden.com', '(469) 499-3940', 'PDS Health', 'Director, IT Enterprise Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_2y7co', 'non_forum_event', true,
+  'Suchandra Ghose', 'sghose@bwh.harvard.edu', '(814) 490-8794', 'brigham and womens hospital', 'IS Project Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_e3bzot', 'non_forum_event', true,
+  'Edgar Serrano', 'edgar.serrano@stannes.org', '(323) 273-3201', 'St. Anne''s', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ewpe0we', 'non_forum_event', true,
+  'Dave Mutchnik', 'dave.mutchnik@davita.com', '(615) 341-6536', 'DaVita', 'Senior IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_n23u1f', 'non_forum_event', true,
+  'Hank Floyd', 'hfloyd@ccbctaunton.org', '(508) 672-4255', 'Community Counseling of Bristol County', 'CIO',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_urocvr', 'non_forum_event', true,
+  'Vikash Lall', 'vlall@aamc.org', '(607) 684-5241', 'Luminis Health', 'Senior Program Manager Enterprise Architecture',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_0dg07k', 'non_forum_event', true,
+  'Nate Fischer', 'natefischer@dowrummel.com', '(712) 541-7022', 'Dow Rummel Village', 'IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_t8xlt8', 'non_forum_event', true,
+  'Ed Davis', 'davise@dneph.com', '(972) 415-1396', 'DNA', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);

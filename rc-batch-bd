@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_nf9b2h', 'non_forum_event', true,
+  'Thang On', 'thang.on@ctbcbankusa.com', '424-277-4873', 'CTBC Bank USA', 'FVP Application Manager',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_68xff', 'non_forum_event', true,
+  'Christopher Tucker', 'chris.tucker@childguidance.org', '213-271-3556', 'The Child and Family Guidance Center', 'Sr Director of Information Technology',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_5i2138', 'non_forum_event', true,
+  'Bryon Antillon', 'bantillon@bakerrisk.com', '424-218-3800', 'BakerRisk Los Angeles', 'IT Director',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_rvz00i', 'non_forum_event', true,
+  'Tyler Waltz', 'twaltz@figfcu.org', '323-209-6177', 'Farmers Insurance Federal Credit Union', 'IT Manager, Client Services',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_da23t', 'non_forum_event', true,
+  'Denny Lin', 'dlin@figfcu.org', '323-209-6056', 'Farmers Insurance Federal Credit Union', 'IT Client Service Technician',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_7e2jps', 'non_forum_event', true,
+  'Mark Chan', 'mchan@howardbuilding.com', '714-478-5760', 'Howard Building Corporation', 'Director',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_os0wg', 'non_forum_event', true,
+  'Igor Krashenny', 'ikrashenny@gmail.com', '818-471-7709', 'Phase Four', 'Director of Information Technology',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_nd4ivz', 'non_forum_event', true,
+  'Doss Tychicus', 'mohandoss.tychicus@ahf.org', '323-243-3436', 'AIDS Healthcare', 'CIO',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_j6sp1', 'non_forum_event', true,
+  'Chris Blanco', 'chrisblanco@mosscompany.com', '626-676-0462', 'Moss & Company', 'VP of IT',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ygd0k', 'non_forum_event', true,
+  'Cutberto Morales', 'cmorales@mhala.org', '562-285-1330', 'MHALA', 'Vice President of Information Technology',
+  'Ring Central LA Dinner', 'Dinner', 'LA',
+  'Ocean Prime', '6/4/25', 'Cancelled'
+);

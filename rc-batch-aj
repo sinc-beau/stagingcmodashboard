@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_9xxkyf', 'non_forum_event', true,
+  'Andy Willingham', 'awillingham@munichre.com', '(404) 532-9182', 'Munich RE', 'ITSO',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_edrj4', 'non_forum_event', true,
+  'Ajay Wadhwa', 'awadhwa@scif.com', '(707) 724-2922', 'State Compensation Insurance', 'CISO',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_9huacs', 'non_forum_event', true,
+  'Tanvir Raihan', 'raihant@acm.org', '(347) 878-0007', 'Bank of China', 'VP',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_w3jp7m', 'non_forum_event', true,
+  'Donna Ross', 'donna.ross@radian.com', '(215) 231-1378', 'Radiant', 'CISO',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_jlsy8e', 'non_forum_event', true,
+  'Bhadresh Patel', 'bpatel26@humana.com', '(630) 750-9831', 'Humana', 'Technology & Service Enablement',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_4f0iqd', 'non_forum_event', true,
+  'Kelly Adam', 'kadams@ameritas.com', '513-490-1065', 'Ameritas', 'IT Business Analysis Director',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_1dl68', 'non_forum_event', true,
+  'Allison Alt', 'allison.alt@uhc.com', '(920) 217-4724', 'UnitedHealthCare', 'Implementation Manager',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_gbcpkb', 'non_forum_event', true,
+  'Raj Subramanian', 'raj.subramanian@rlicorp.com', '(404) 702-9321', 'RLI', 'IT Director',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_odyhw', 'non_forum_event', true,
+  'Nicole Starling', 'nicole.starling@prudential.com', '(917) 375-3170', 'Prudential', 'Vice President',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_lcz1xs', 'non_forum_event', true,
+  'Agustin Ramirez', 'agustin@bupalatinamerica.com', '(305) 283-6284', 'Bupa Global Latin America', 'Chief Technology Officer',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);

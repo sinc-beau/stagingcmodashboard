@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_vcsizs', 'non_forum_event', true,
+  'Alex Shevchenko', '', '', 'Royal Bank of Canada', 'Director',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_yexxbm', 'non_forum_event', true,
+  'Basil Bhatti', '', '', 'Manulife', 'AVP',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_n5g91', 'non_forum_event', true,
+  'Kirankumar Talawai', '', '', 'Compunnel Software Group Inc', 'Director of Cloud Services',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_hqhk5c', 'non_forum_event', true,
+  'Yasir Faiz', '', '', 'Deloitte', 'Director',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_dska4', 'non_forum_event', true,
+  'Tran Jeffrey', '', '', 'Manulife', 'Director of Escalations',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_simxte', 'non_forum_event', true,
+  'Ivreet Sethi', '', '', 'Manulife', 'Director of Continuous Improvement',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_xwv21m', 'non_forum_event', true,
+  'Gabriela Mercer', '', '', 'CTC', 'AVP Digital Analytics and Activation',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_u0dffb', 'non_forum_event', true,
+  'Varun Vashishat', '', '', 'Equitable Bank', 'Director, Technology Risk',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_0pkanb', 'non_forum_event', true,
+  'Prashant Jain', 'prashant.jain@mccain.ca', '647-204-5500', 'McCain Foods', 'VP, Infrastructure, Engineering & Operations and Enterprise Architecture',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_a10hxq', 'non_forum_event', true,
+  'Preman Narayanan', 'preman.narayanan@hearst.com', '704-348-8309', 'Hearst Television', 'Vice President of Advertising Operations & Information Services',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);

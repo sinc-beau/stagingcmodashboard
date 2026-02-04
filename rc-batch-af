@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_qechkr', 'non_forum_event', true,
+  'Ankur Kothari', 'ankur.kothari@live.com', '(224)848-0062', 'Northern Trust', 'VP',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_t85u8', 'non_forum_event', true,
+  'Ron Rodenberg', 'ron.rodenberg@ppfa.org', '214-385-4383', 'New York, NY', 'Senior Director, Application Architecture',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_re98m7', 'non_forum_event', true,
+  'Bavesh Advani', 'bgadvani@cenlar.com', '408-659-4648', 'Ewing, NJ', 'Head of Cybersecurity Incident Response',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_yep0tj', 'non_forum_event', true,
+  'Chakrapani Maturi', 'charkapani.maturi@aig.com', '(940) 465-9395', 'New York, NY', 'Vice President',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_689m8v', 'non_forum_event', true,
+  'Will Snead', 'william.snead@dallas.gov', '(214) 802-0748', 'Dallas, TX', 'Lead Architect, Cloud & Smart Cities Initiatives',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_kwi8ch', 'non_forum_event', true,
+  'Ashok Kakani', 'ashok.kakani@inspiraenterprise.com', '202-352-2351', 'India', 'CISO',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_c2rx19', 'non_forum_event', true,
+  'Eric Poon', 'epoon@shoppas.com', '817-301-8075', 'Fort Worth', 'Senior Vice President, Head of Technology and Digital Information',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_1exa', 'non_forum_event', true,
+  'Tony Wilkins', 'twilkins@cantexcc.com', '972-754-3095', 'Carrollton,TX', 'CIO & CISO',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_zy23jw', 'non_forum_event', true,
+  'Robert Renken', 'rrenken@sallybeauty.com', '(817) 706-7855', 'Denton, TX', 'Director of IT Audit, Risk, and Compliance',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_01foq', 'non_forum_event', true,
+  'Swapnil Sawant', 'ssawant@k12.com', '(407) 666-7231', 'Reston, VA', 'Director, Corporate Applications',
+  'RingCentral Dallas Dinner', 'Dinner', 'Dallas',
+  'Al Biernat''s North', '3/4/25', 'Attended'
+);

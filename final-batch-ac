@@ -1,0 +1,630 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_12jmoi', 'non_forum_event', true,
+  'Alexandr Zisser', 'alexandr.zisser@citi.com', '973-652-3458', 'Citibank', 'VP of Cloud and Security',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hr2be', 'non_forum_event', true,
+  'Mani Suri', 'msuri@follett.com', '45253545', 'Follett Higher Education', 'CIO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_nht0b', 'non_forum_event', true,
+  'Dan Rocco', 'dan.rocco@cenveo.com', '914-720-4182', 'Cenveo', 'CIO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_t0erjm', 'non_forum_event', true,
+  'Brandon Drumgoole', 'bdrumgoole@dadeschools.net', '336-383-0759', 'Miami-Dade County FL Public Schools', 'District Director of Systems and Programming',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hlpfsm', 'non_forum_event', true,
+  'Rubensky Calixte', 'rubensky@dhl.com', '954-816-9876', 'DHL', 'Deputy CISO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_fapzb', 'non_forum_event', true,
+  'Frank Shefner', 'fshefner@ncl.com', '305-582-8680', 'Norwegian Cruise Line Holdings', 'Director of Back Office Applications',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_mztg985', 'non_forum_event', true,
+  'Stacey Vassell', 'stacey.vassell@yageo.com', '703-626-6996', 'Yageo Group', 'PMO Director',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_8wahkfk', 'non_forum_event', true,
+  'Mandouh Csintalan', 'mcs@renre.com', '347-268-5612', 'RenaissanceRe', 'VP, Security GRC',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_k57hl', 'non_forum_event', true,
+  'David Benayoun', 'dab@renre.com', '954-401-9712', 'RenaissanceRe', 'AVP, IT Lead',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ytyd6e', 'non_forum_event', true,
+  'Greg Suarez', 'gregs@nova.edu', '954-868-1259', 'Nova Southeastern University', 'Sr. Director of Business & Operations',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_xuu0z', 'non_forum_event', true,
+  'Eliana Coronel', 'eliana.coronel@nova.edu', '954-214-9614', 'Nova Southeastern University', 'Sr. Dir Enterprise Systems, Infrastructure and Security Applications',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_s5h7pn', 'non_forum_event', true,
+  'Mauricio Morales', 'moralesm@unitedwaymiami.org', '305-609-1731', 'UnitedWay Miami', 'VP of IT & Business Solutions',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_cxnv92', 'non_forum_event', true,
+  'Abraham Serrano', 'abraham.serrano@allmedical.com', '954-239-2119', 'All Medical Personnel', 'DVP of IT',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_h218b', 'non_forum_event', true,
+  'Rodrigo Gonzalez', 'rodrigo.gonzalez@softtek.com', '203-513-0202', 'Softtek', 'CIO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_udt1jo', 'non_forum_event', true,
+  'Julia Sharkey', 'julia.sharkey@ey.com', '772-370-4274', 'Ernst and Young', 'Senior Manager',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_etks3i', 'non_forum_event', true,
+  'Raul Billini', 'rbillini@wfscorp.com', '786-503-1822', 'World Fuel Services', 'Sr Director Data Analytics & AI',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_pr3q1', 'non_forum_event', true,
+  'Juan Medina', 'juan.medina@ukg.com', '305-906-1698', 'UKG', 'IT Director',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_si4jk5', 'non_forum_event', true,
+  'Agustin Ramirez', 'agustin@bupalatinamerica.com', '305-283-6284', 'Bupa Insurance', 'Chief Technology Officer',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_pztqze', 'non_forum_event', true,
+  'Carlos Santos', 'Csantos@mapei.com', '407-335-2485', 'Mapei', 'IT Director',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_yvdb0p', 'non_forum_event', true,
+  'Gabriel Carneiro', 'gabriel.carneiro@von.ca', '(647) 888-5085', 'VON Canada', 'Sr. Director of Information Systems',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_jm2tnc', 'non_forum_event', true,
+  'Geoffrey Ren', 'geoffrey.ren@redcross.ca', '(438) 334-0228', 'Canadian Red Cross', 'CIO',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_p3wokd', 'non_forum_event', true,
+  'Tom Mockus', 'tom.mockus@mdihospital.org', '(207) 801-5045', 'MDI Hospital', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_nie8ct', 'non_forum_event', true,
+  'Gilbert Marlowe', 'gilbert.marlowe@davita.com', '(803) 240-6714', 'DaVita', 'Sr Data Analyst',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_7jn200o', 'non_forum_event', true,
+  'Curt Kwak', 'curt.kwak@cambiahealth.com', '(425) 281-4769', 'Cambia Health', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_m9t1so', 'non_forum_event', true,
+  'Emilia Mack', 'emilia.mack@doh.nm.gov', '(505) 490-5507', 'New Mexico Dept of Health', 'Deputy CISO',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_r4kwpc', 'non_forum_event', true,
+  'James Davenport', 'james.davenport@totalvisionllc.com', '(703) 581-4937', 'Total Vision LLC', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_32xubo', 'non_forum_event', true,
+  'John Inan', 'iinan@iuhealth.org', '(317) 954-4437', 'Indiana University Health', 'Manager - Digital Workspace',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_npe6qo', 'non_forum_event', true,
+  'Deron Helgren', 'deron.helgren@pacden.com', '(469) 499-3940', 'PDS Health', 'Director, IT Enterprise Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_2y7co', 'non_forum_event', true,
+  'Suchandra Ghose', 'sghose@bwh.harvard.edu', '(814) 490-8794', 'brigham and womens hospital', 'IS Project Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_e3bzot', 'non_forum_event', true,
+  'Edgar Serrano', 'edgar.serrano@stannes.org', '(323) 273-3201', 'St. Anne''s', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ewpe0we', 'non_forum_event', true,
+  'Dave Mutchnik', 'dave.mutchnik@davita.com', '(615) 341-6536', 'DaVita', 'Senior IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_n23u1f', 'non_forum_event', true,
+  'Hank Floyd', 'hfloyd@ccbctaunton.org', '(508) 672-4255', 'Community Counseling of Bristol County', 'CIO',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_urocvr', 'non_forum_event', true,
+  'Vikash Lall', 'vlall@aamc.org', '(607) 684-5241', 'Luminis Health', 'Senior Program Manager Enterprise Architecture',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_0dg07k', 'non_forum_event', true,
+  'Nate Fischer', 'natefischer@dowrummel.com', '(712) 541-7022', 'Dow Rummel Village', 'IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_t8xlt8', 'non_forum_event', true,
+  'Ed Davis', 'davise@dneph.com', '(972) 415-1396', 'DNA', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ybollq', 'non_forum_event', true,
+  'Caitlin Broek', 'caitlin.broek@prairielakes.com', '(605) 882-7989', 'Prairie Lakes Healthcare Sstem', 'Applications Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_11c3tx', 'non_forum_event', true,
+  'Ken Barnes', 'ken@pride-inc.org', '(858) 476-4068', 'Pride Inc', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_11h3ee', 'non_forum_event', true,
+  'Anthony Mostak', 'amostak@comcast.net', '(856) 237-3691', 'MDLand International', 'Sr. Director Cybersecurity and Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ea51z', 'non_forum_event', true,
+  'Mark Connell', 'mconnell@curanthealth.com', '(404) 421-9626', 'Curant Health', 'Sr Director of Technology',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_2mlyz', 'non_forum_event', true,
+  'Vanette Hill', 'vhill@bcbsm.com', '(734) 444-7713', 'BlueCross BlueShield of Michigan', 'IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_zlx1vn', 'non_forum_event', true,
+  'Rob Amundson', 'rob.amundson@childrensmn.org', '(612) 813-6800', 'Children''s Minnesota', 'ITS Infra Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_5c0gjr', 'non_forum_event', true,
+  'Tim Smith', 'tsmith@northcottage.com', '(304) 308-5171', 'North Cottage', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_5hrtu', 'non_forum_event', true,
+  'Harsh Anand', 'harsh.anand@providence.org', '(425) 531-8402', 'Providence Healthcare', 'Director of ERP Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_px5x0af', 'non_forum_event', true,
+  'Suresh Gadde', 'sgadde@vhchealth.org', '(703) 558-5537', 'VHC Health', 'Manager-network Engineering',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_iyjuw', 'non_forum_event', true,
+  'Antionette Smith', 'antoinette.smith@kelsey-seybold.com', '(713) 442-5457', 'Kelsey-Seybold', 'Senior Claims Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_reslmh', 'non_forum_event', true,
+  'Michael Archuleta', 'marchuleta@msrhc.org', '(719) 846-8029', 'Mt San Rafael', 'CIO',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_rvu6v', 'non_forum_event', true,
+  'Glenn Gregersen', 'glenn.gregersen@mankatoclinic.com', '(507) 491-5332', 'Mankato Clinic LTD', 'Director of IT',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ga6kr', 'non_forum_event', true,
+  'Keith Deininger', 'keith.a.deininger@truist.com', '404-465-6244', 'Truist Financial Corporation (TFC)', 'VP, Enterprise Technology, Third-Party Vendor Management',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_7a8s34', 'non_forum_event', true,
+  'Todd Kryszczak', 'todd.kryszczak@syf.com', '203-673-8132', 'Synchrony', 'VP, eCommerce and Integration',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_9y0ev', 'non_forum_event', true,
+  'Adam Weinstein', 'aweinstein@fhlbatl.com', '404-372-4236', 'FHLBank Atlanta', 'Director of Product Management',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_qpbpgc', 'non_forum_event', true,
+  'Robert Swiderski', 'roberts@lgeccu.org', '470-693-7397', 'LGE Community Credit Union', 'Director, Application Development and Data Management',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_mryly', 'non_forum_event', true,
+  'Bruno Scribe', 'bruno.scribe@pwc.com', '404-316-6108', 'PwC', 'Director',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status

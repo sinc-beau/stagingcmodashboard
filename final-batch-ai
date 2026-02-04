@@ -1,0 +1,630 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_vcsizs', 'non_forum_event', true,
+  'Alex Shevchenko', '', '', 'Royal Bank of Canada', 'Director',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_yexxbm', 'non_forum_event', true,
+  'Basil Bhatti', '', '', 'Manulife', 'AVP',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_n5g91', 'non_forum_event', true,
+  'Kirankumar Talawai', '', '', 'Compunnel Software Group Inc', 'Director of Cloud Services',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_hqhk5c', 'non_forum_event', true,
+  'Yasir Faiz', '', '', 'Deloitte', 'Director',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_dska4', 'non_forum_event', true,
+  'Tran Jeffrey', '', '', 'Manulife', 'Director of Escalations',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_simxte', 'non_forum_event', true,
+  'Ivreet Sethi', '', '', 'Manulife', 'Director of Continuous Improvement',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_xwv21m', 'non_forum_event', true,
+  'Gabriela Mercer', '', '', 'CTC', 'AVP Digital Analytics and Activation',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_u0dffb', 'non_forum_event', true,
+  'Varun Vashishat', '', '', 'Equitable Bank', 'Director, Technology Risk',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_0pkanb', 'non_forum_event', true,
+  'Prashant Jain', 'prashant.jain@mccain.ca', '647-204-5500', 'McCain Foods', 'VP, Infrastructure, Engineering & Operations and Enterprise Architecture',
+  'RingCentral Toronto Dinner', 'Dinner', 'Toronto',
+  'GEORGE', '9/18/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_a10hxq', 'non_forum_event', true,
+  'Preman Narayanan', 'preman.narayanan@hearst.com', '704-348-8309', 'Hearst Television', 'Vice President of Advertising Operations & Information Services',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_52371', 'non_forum_event', true,
+  'Dovona Cuthbertson', 'dovona.cuthbertson@mecklenburgcountync.gov', '(704) 249-5429', 'Mecklenburg County Government', 'IT Strategy and Planning Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_kxiao', 'non_forum_event', true,
+  'Keith Walters', 'kwalters@abc-nc.com', '980-275-1705', 'American Bank of the Carolinas', 'SVP, Director of IT',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_vf5mr', 'non_forum_event', true,
+  'Garima Karanpuria', 'garima.karanpuria@brighthousefinancial.com', '440-525-6372', 'Brighthouse Financial', 'Enterprise Data Architect',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_wl4ehm', 'non_forum_event', true,
+  'Fatema Hakimji', 'fhakimji1@gmail.com', '803-553-3746', 'Sealed Air', 'Project Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_hqrs4b', 'non_forum_event', true,
+  'Haja Burhan', 'rhaja1@gmail.com', '864-905-4810', 'Brighthouse Financial', 'Director',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_83g6l', 'non_forum_event', true,
+  'Lucien Goode', 'lgoode@communitycarenc.org', '804-691-3939', 'Community Care', 'Senior IT project Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_neu24s', 'non_forum_event', true,
+  'Bruce Schinelli', 'bruce.schinelli@ttx.com', '630-854-4148', 'TTX Company', 'VP IT & CIO',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_es8kj9', 'non_forum_event', true,
+  'Kamesh Baratam', 'kamesh.baratam@owenscorning.com', '704-779-3873', 'Owens Corning', 'Global IT Leader',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_t5ioi9', 'non_forum_event', true,
+  'Nikki Kemp', 'nikki.kemp@ros.com', '803-372-1466', 'Ross', 'East Coast IT Operations Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_odip09', 'non_forum_event', true,
+  'Juliano Avigliano', 'juliano.avigliano@barings.com', '704-942-1984', 'Barings', 'Global IT Services Director',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_e3i8jg', 'non_forum_event', true,
+  'Taylar Middleton', 'taylar.middleton@gmail.com', '919-523-8048', 'Commercial Information Officer', '',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_2kaozm', 'non_forum_event', true,
+  'Declan Cornelius', 'declan.cornelius@rentokil-initial.com', '704-488-1145', 'Rentokil Initial', 'Director, IT Strategy, Innovation and AI',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_v0mtqp', 'non_forum_event', true,
+  'Eric Rui', 'eric.rui@gmfinancial.com', '980-349-9319', 'GM Financial', 'VP, Global Enterprise Data Architecture',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_pc3co', 'non_forum_event', true,
+  'Katie Murphy', 'kmurphy@hornets.com', '704-996-5971', 'Hornets Sports and Entertainment', 'Director of End User Technology',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_rqpnko', 'non_forum_event', true,
+  'Sunny Joshi', '', '', 'Charter Communications Inc', 'Sr. Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_3wv9x', 'non_forum_event', true,
+  'Ronnie Bryant', 'rbryant@hornets.com', '704-622-8569', 'Charlotte Hornets', 'CIO',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_74cfyt', 'non_forum_event', true,
+  'Brian Sossamon', 'brian.sossamon@eaglecreekre.com', '704-604-2920', 'Eagle Creek Renewable Energy', 'Director of IT',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_48hdg', 'non_forum_event', true,
+  'Peter Rossi', 'prossi@ubmich.com', '(616) 333-6675', 'Union Bank', 'Director of IT',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_3u3mq', 'non_forum_event', true,
+  'Melanie Robinson', 'mrobinson@datcu.org', '(940) 735-9696', 'DATCU', 'VP Operations',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_xqsj1o', 'non_forum_event', true,
+  'Faith Hohman', 'fhohman@myfirst.bank', '(618) 375-0303', 'First Bank', 'Digital Team Lead & Process Improvement Analyst',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_41tjfb', 'non_forum_event', true,
+  'Ernst Goldman', 'ernst.goldman@citicorpholding.com', '(732) 433-6430', 'CitiGroup', 'SVP, Tech & Operations',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_5uq1ww', 'non_forum_event', true,
+  'Teko DEGANUS', 'tdeganus@bankofny.com', '(615) 226-9754', 'BNY Mellon', 'Vp network services',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_wsrh2k', 'non_forum_event', true,
+  'Cynthia Levine', 'cynthia.bialerlevine@citi.com', '(347) 301-3748', 'Citi Group', 'SVP',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_bvk117', 'non_forum_event', true,
+  'Ed Zhang', 'edward.zhang@syf.com', '(475) 232-4982', 'Synchrony', 'VP/Strategy & Transformation',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ard46d', 'non_forum_event', true,
+  'Amarpreet Nanda', 'amarpreet.nanda@morganstanley.com', '(212) 537-1560', 'Morgan Stanley', 'Global Head of Cybersecurity and Information Security Audits',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_zjtdv', 'non_forum_event', true,
+  'Guido Dell’Unto', 'guido_dellunto@cooperators.ca', '(518) 824-4400', 'Co-operators', 'Sr Mgr IT Control',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_s283o6', 'non_forum_event', true,
+  'Reza Makarehchi', 'reza.makarehchi@towerfcu.org', '(301) 928-8887', 'Tower Federal Credit Union', 'AVP Network and Collaboration Services',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_bzopz', 'non_forum_event', true,
+  'Matthew Williams', 'mwilliams@myfirst.bank', '(618) 380-9209', 'First Bank', 'CTO',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_8x6ms', 'non_forum_event', true,
+  'Paul Wisniewski', 'paul.wisniewski@gtefinancial.org', '(813) 363-1491', 'GTE Financial', 'VP Enterprise Infrastructure',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959716_2h5n3l', 'non_forum_event', true,
+  'Boris Nossovskoi', 'boris.nossovskoi@cibc.com', '(416) 784-6779', 'CIBC', 'Director, Cloud Engineering and Transformation',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959716_24szh8', 'non_forum_event', true,
+  'Dele Saliu', 'dele.saliu@aviva.com', '(647) 460-2176', 'RBC', 'Head of IT GRC',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959716_3isrmd', 'non_forum_event', true,
+  'Markus Shipley', 'markus.shopley@rsmus.com', '(470) 527-9372', 'RSM US', 'Director Data and Digital Services',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_m1d4b', 'non_forum_event', true,
+  'David Mullings', 'david.mullings@cibc.com', '(647) 456-5082', 'CIBC', 'Senior Manager , Network Engineering',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_2nj9k', 'non_forum_event', true,
+  'Amy Glen', 'amyglen@columbiabank.com', '(206) 551-1709', 'Columbia Bank', 'AVP, Project Management',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_uh1jnl', 'non_forum_event', true,
+  'Nathan Roudabush', 'nroudabush@ubmich.com', '(616) 893-2414', 'Union Bank', 'AVP, Vendor & Project Manager Officer',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_6tngtt', 'non_forum_event', true,
+  'Blake Sjoberg', 'bjsjoberg@wccu.coop', '(608) 732-0572', 'Westby Co-Op Credit Union', 'Chief Member Service Officer',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_1j99zg', 'non_forum_event', true,
+  'Kelly Buckingham', 'kbuckingham@firstnorthern.bank', '(307) 751-7440', 'FIRST NORTHERN BANK OF WYOMING', 'IT Anaylst',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_s47dtl', 'non_forum_event', true,
+  'Tom Hunt', 'thunt@traditionalbank.com', '(859) 498-0414', 'Traditional Bank, Inc', 'ITO',
+  'RingCentral FinServ vRT', 'vRT', 'Virtual',
+  'Virtual', '10/28/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_7w4ta7', 'non_forum_event', true,
+  'Glen Gomez', 'glen.gomezzuazo@etrade.com', '(512) 694-3924', 'E Trade', 'Senior Director IT Architecture',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_8w5tqa', 'non_forum_event', true,
+  'Gabe Kolesari', 'gkolesari@wittern.com', '262-366-6328', 'The Wittern Group, Inc.', 'Director of IT',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_0jhaul', 'non_forum_event', true,
+  'David Diegnau', 'david.diegnau@startribune.com', '(612) 875-9249', 'Star Tribune Media Company', 'SVP Operations & IT',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_kdykmn', 'non_forum_event', true,
+  'Al Stadler', 'alstadler@crowder.edu', '(417) 850-9807', 'Crowder College', 'CIO/CISO VP of IS',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status

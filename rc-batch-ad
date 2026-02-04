@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_hebz14', 'non_forum_event', true,
+  'Jane Mazur', 'jane.mazur@merkle.com', '(215) 317-6294', 'Merkle', 'BSA, Director',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_c272s2v', 'non_forum_event', true,
+  'Steve Hannah', 'shannah@polsinelli.com', '(816) 360-4190', 'Polsinelli LLC', 'Director of Information Security',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_jayupu', 'non_forum_event', true,
+  'Sanjeev Hasiza', 'sanjeev.hasiza@jci.com', '(312) 964-1256', 'Johnson Controls', 'Head of Software Development & Architecture',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_wptj4m', 'non_forum_event', true,
+  'Chris Echezabal', 'chris_echezabal@navyfederal.org', '(561) 629-3274', 'Navy Federal Credit Union', 'AVP, Analytics Data & Technology',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_yn2cqh', 'non_forum_event', true,
+  'Ken Viciana', 'kviciana@tsys.com', '(770) 616-3359', 'TSYS', 'VP',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_vs9qpff', 'non_forum_event', true,
+  'Daniel Burkard', 'security@outdoorsco.com', '(720) 515-9179', 'Premier Members Credit Union', 'VP of InfoSec',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_g4589b', 'non_forum_event', true,
+  'Borris Natkovitch', 'boris.natkovitch@bofa.com', '(917) 208-6811', 'Bank of America', 'Director of IT',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_mdk1un', 'non_forum_event', true,
+  'CK Taneja', 'ck.taneja@ntrs.com', '(646) 286-5968', 'Northern Trust', 'SVP Transformation',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_06fsmh', 'non_forum_event', true,
+  'Srikanth Gubba', 'sgubba@dtcc.com', '(551) 777-1877', 'DTCC', 'Associate Director',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_2ww1jm', 'non_forum_event', true,
+  'Susheel Bhat', 'susheelbhat@gmail.com', '(586) 362-7993', 'Fifth Third Bank', 'Sr. IT Manager',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);

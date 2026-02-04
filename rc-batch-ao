@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ybollq', 'non_forum_event', true,
+  'Caitlin Broek', 'caitlin.broek@prairielakes.com', '(605) 882-7989', 'Prairie Lakes Healthcare Sstem', 'Applications Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_11c3tx', 'non_forum_event', true,
+  'Ken Barnes', 'ken@pride-inc.org', '(858) 476-4068', 'Pride Inc', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_11h3ee', 'non_forum_event', true,
+  'Anthony Mostak', 'amostak@comcast.net', '(856) 237-3691', 'MDLand International', 'Sr. Director Cybersecurity and Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ea51z', 'non_forum_event', true,
+  'Mark Connell', 'mconnell@curanthealth.com', '(404) 421-9626', 'Curant Health', 'Sr Director of Technology',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_2mlyz', 'non_forum_event', true,
+  'Vanette Hill', 'vhill@bcbsm.com', '(734) 444-7713', 'BlueCross BlueShield of Michigan', 'IT Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_zlx1vn', 'non_forum_event', true,
+  'Rob Amundson', 'rob.amundson@childrensmn.org', '(612) 813-6800', 'Children''s Minnesota', 'ITS Infra Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_5c0gjr', 'non_forum_event', true,
+  'Tim Smith', 'tsmith@northcottage.com', '(304) 308-5171', 'North Cottage', 'IT Director',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_5hrtu', 'non_forum_event', true,
+  'Harsh Anand', 'harsh.anand@providence.org', '(425) 531-8402', 'Providence Healthcare', 'Director of ERP Operations',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_px5x0af', 'non_forum_event', true,
+  'Suresh Gadde', 'sgadde@vhchealth.org', '(703) 558-5537', 'VHC Health', 'Manager-network Engineering',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_iyjuw', 'non_forum_event', true,
+  'Antionette Smith', 'antoinette.smith@kelsey-seybold.com', '(713) 442-5457', 'Kelsey-Seybold', 'Senior Claims Manager',
+  'Healthcare vRT', 'vRT', 'Virtual',
+  'Virtual', '3/12/25', 'Cancelled'
+);

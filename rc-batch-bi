@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_tcerj', 'non_forum_event', true,
+  'Milind Pataskar', 'milind.pataskar@houstonpolice.org', '(210) 542-0116', 'Houston Police Department', 'IT Manager',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_8rxkhd', 'non_forum_event', true,
+  'Brian Mullenix', 'brian.mullenix@brushandfloss.com', '(984) 344-6888', 'Riccobene DSO', 'VP of IT',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_5fw7i', 'non_forum_event', true,
+  'Gregg Bookspan', 'gbookspan@lnh.net', '(307) 359-1200', 'L&H Industrial', 'IS Director',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_hyzt0c', 'non_forum_event', true,
+  'Jason Lindquist', 'jlindquist@nsm-seating.com', '(615) 716-2035', 'National Seating & Mobility', 'Sr Dir Op Ex',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_9a52j', 'non_forum_event', true,
+  'Marnee Klein', 'marnee.klein@suffolk.edu', '(610) 316-2449', 'Suffolk University', 'Director of Enteprise Applications',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_yx4wuo9', 'non_forum_event', true,
+  'Ahmer Zaidi', 'ahmer.zaidi@alithya.com', '(514) 285-5552', 'Alithya', 'Director IT',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ge28p', 'non_forum_event', true,
+  'Marlon Shears', 'marlon.shears@ideapublicschools.org', '(214) 718-8841', 'IDEA Public Schools', 'CIO',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ag5ub', 'non_forum_event', true,
+  'Fulgencio Garza', 'fulgencio.garza@cemex.com', '528183283377', 'Cemex', 'Global IT Services Director',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_id9hp7', 'non_forum_event', true,
+  'Quang Ton', 'qton@slb.com', '(832) 213-6184', 'SLB', 'Head of Data Science & AI Hubs',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_pw8awc', 'non_forum_event', true,
+  'Anwesh Joshi', 'anwesh.joshi@xceedance.com', '(309) 826-9760', 'Xceedance', 'Vice President, Technology',
+  'RingCentral National vRT', 'vRT', 'Virtual',
+  'Virtual', '7/9/25', 'Cancelled'
+);

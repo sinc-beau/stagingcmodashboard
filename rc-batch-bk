@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_sgqc5', 'non_forum_event', true,
+  'Faith Tang', 'faith.tang@mortenson.com', '(651) 202-5562', 'Mortenson Consturction', 'CIO',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_63jy8m', 'non_forum_event', true,
+  'Alex Jeong', 'ajeong@deloitte.ca', '438-368-5283', 'Deloitte', 'Director, Technology Strategy and Transformation',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_pxwqgx', 'non_forum_event', true,
+  'Brian Evers', 'brian.evers@gates.com', '(303) 744-5377', 'Gates Corporation', 'Director IT Americas',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_65jne', 'non_forum_event', true,
+  'Kabot Simon', 'kabot.simon@spglobal.com', '(512) 796-5531', 'S&P Global', 'Director, AI Engineering',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_7o9o5g', 'non_forum_event', true,
+  'Dan Rocco', 'dan.rocco@cenveo.com', '(914) 720-4182', 'Cenveo', 'CIO',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_xk8lf', 'non_forum_event', true,
+  'Sudhanshu Kulshreshtha', 'sudhanshu.kulshreshtha@charter.com', '(704) 773-2945', 'Charter Communications', 'IT Director',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_4duwdk', 'non_forum_event', true,
+  'GulshanShetty', 'gulshan.shetty@gyansys.com', '(317) 721 9886', 'Gyansys', 'Sr Director - Data & Analytics',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_2zw8cl', 'non_forum_event', true,
+  'Jasmine Cherian', 'jo31@ntrs.com', '(312) 371-1040', 'Northern Trust', 'SVP/AI Product Delivery Lead',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_imxcyr', 'non_forum_event', true,
+  'Ammar Yousef', 'ammar.yousef@canadalife.com', '(416) 805-8955', 'Canada Life', 'Director, IT Business Continuity',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_g2l14d', 'non_forum_event', true,
+  'Franklin Caspa', 'fcaspa@bakerripley.org', '(713) 669-5337', 'BakerRipley', 'Director - IT Sevices',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Attended'
+);

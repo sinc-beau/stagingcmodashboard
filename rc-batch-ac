@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_ivvjho', 'non_forum_event', true,
+  'Dan Hunziker', 'dhunziker@mistercarwash.com', '(503) 899-7110', 'Mister Car Wash', 'IT Manager',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_0wlnqf', 'non_forum_event', true,
+  'Kristen Ritter', 'kristen.ritter@merkle.com', '(443) 280-1815', 'Merkle Inc', 'Sr Manager BSA',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_85ycd8', 'non_forum_event', true,
+  'Dennis Wang', 'dennis.wang@ul.com', '(773) 350-4952', 'UL Solutions', 'Director Enterprise Integration & Content Mgmt Platforms',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_jrbk6n', 'non_forum_event', true,
+  'Arvind Sahu', 'asahu@crayola.com', '(484) 545-2172', 'Crayola Inc', 'CIO',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_itjjm', 'non_forum_event', true,
+  'Tom Landsness', 'tom.landsness@ja.org', '(719) 338-8464', 'Junior Achievement USA', 'VP of Infrastructure & Service Management',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_b8ttq8', 'non_forum_event', true,
+  'Jerrold Feigenbaum', 'jerrold.feigenbaum@terumobct.com', '(720) 431-3980', 'Terumo BCT', 'Sr. Manager Network and Telecom',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_e73ere', 'non_forum_event', true,
+  'David Beay', 'davidb@alto-shaam.com', '(262) 327-2174', 'Alto-Shaam', 'Call Center Manager',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_llwwqt', 'non_forum_event', true,
+  'Paul Licata', 'paul.licata@foundever.com', '(716) 606-9932', 'Foundever', 'IT Director',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_f3fkre', 'non_forum_event', true,
+  'Chris Fluegge', 'cfluegge@geminigroup.net', '(989) 453-2174', 'Gemini Group, Inc', 'CIO',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_2zxsh4', 'non_forum_event', true,
+  'Reema Anwar', 'reema.anwar@pattersoncompanies.com', '(612) 396-8303', 'Patterson Companies', 'Director, IT Sourcing',
+  'Discover the Future of AI in the Workplace: An Exclusive Virtual Roundtable on the State of AI in Communications', 'vRT', 'Virtual',
+  'Virtual', '1/22/25', 'Cancelled'
+);

@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_0a4xyg1', 'non_forum_event', true,
+  'Ganesh Nagarajan', 'gnagarajan5@worldbankgroup.org', '202-528-5590', 'World Bank Group', 'Senior Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_r3m21', 'non_forum_event', true,
+  'Mano Kalathil', 'mano.kalathil@gebbs.com', '646-708-6655', 'GeBBS Healthcare Solutions', 'CTO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_fwgfd', 'non_forum_event', true,
+  'Ganesan Muthiah', 'gmuthaia@acc.org', '301-524-6682', 'American College of Cardiology', 'Chief Technology Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_79fbn', 'non_forum_event', true,
+  'Sudhakar Namasivayam', 'sudhakar.namasivayam@medifastinc.com', '404-578-6154', 'Medifest', 'Sr Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_17b37u', 'non_forum_event', true,
+  'Brad Hughes', 'brad.hughes@natgeo.com', '703-927-9673', 'National Geographic', 'Director - Content Technology & Workflow Strategy',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_quk97', 'non_forum_event', true,
+  'Stephanie Gore', 'sgore@kpmg.com', '301-356-7931', 'KPMG', 'Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_3dbhye', 'non_forum_event', true,
+  'Moeen Darwiesh', 'Mdarwiesh@nas.edu', '202-437-9749', 'The National Academies of Sciences, Engineering, and Medicine', 'Director, Strategic Planning & PMO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_860vrj', 'non_forum_event', true,
+  'Doug Marcey', 'doug.marcey@coronishealth.com', '703-338-3276', 'Coronis Health', 'CTO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_2vj77gt', 'non_forum_event', true,
+  'Reza Makarehchi', 'reza.makarehchi@towerfcu.org', '301-928-8887', 'Tower Federal Credit Union', 'AVP Network & Collaboration Engineering',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_avw7l', 'non_forum_event', true,
+  'Xavier Soosai', 'xavier.soosai@nih.gov', '202-573-2639', 'National institutes of Health', 'CIO, CIT',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);

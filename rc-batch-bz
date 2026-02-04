@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_82ryvj', 'non_forum_event', true,
+  'Patrick Feng', 'patrickfeng@supermicro.com', '408-829-2413', 'Supermicro', 'IT Director, DC Infrastructure and Operations',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_vrh7pmv', 'non_forum_event', true,
+  'Pankaj Purwar', 'pankajpurwar@hotmail.com', '650-427-3314', 'Xperi', 'Vice President IT',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_3pfed', 'non_forum_event', true,
+  'Sruti Permalla', 's.reddy@paloaltonetworks.com', '516-382-7823', 'Palo Alto Networks', 'Director, IT Transformation',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_1mqx5', 'non_forum_event', true,
+  'Harish Pratapani', 'harish.pratapani@zendesk.com', '732-754-6856', 'Zendesk', 'VP of Engineering, AI, and Data Platform Engineering',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_bq2la7', 'non_forum_event', true,
+  'Nigel Lin', 'lin@autochlor.com', '650-880-7750', 'Auto-Chlor System', 'CTO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_qo49yq', 'non_forum_event', true,
+  'Marc Mackey', 'marc.mackey@nike.com', '650-642-0202', 'Nike', 'Director of Global Technology PMO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_12pu5d', 'non_forum_event', true,
+  'Tamal Biswas', 'tamal.biswas@calix.com', '520-971-3979', 'Calix', 'Vice President, Cloud Platform and Infrastructure',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_jen5hr', 'non_forum_event', true,
+  'Ashish Upadhyay', 'ashish.upadhyay@databricks.com', '510-329-7252', 'Databricks', 'Director of Field Engineering',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_kc0dcb', 'non_forum_event', true,
+  'Ben Lavasani', 'benlavasani@supermicro.com', '408-895-6582', 'Supermicro', 'Senior Information Security Engineer',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_tt85', 'non_forum_event', true,
+  'Jayant Thomas', 'jayant.thomas@cohesity.com', '408-07-4512', 'Cohesity', 'Director of AI Engineering and Data Science',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);

@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ywzred', 'non_forum_event', true,
+  'Polina Ware', 'pware@ppg.com', '774-462-7759', 'PPG', 'Global AI Director',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_1h6nb', 'non_forum_event', true,
+  'Daren Fairbanks', 'dfairbanks@usbr.gov', '(725) 780-8332', 'USBR', 'IT Director',
+  'Redefining CX with AI: Turning Insights into Action', 'vRT', 'Virtual',
+  'Virtual', '8/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_25x7tg', 'non_forum_event', true,
+  'Abhishek Kumar', 'abhishek.kumar@iconma.com', '(908) 227-5941', 'Iconma', 'Director, IT Solutions',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_sis8m5', 'non_forum_event', true,
+  'Ken Schriever', 'ken.schriever@introba.com', '(314) 616-1801', 'Introba', 'Director, Engineering Applications',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_pxsxg', 'non_forum_event', true,
+  'Pete Kamenszky', 'pkamenszky@helixesg.com', '(713) 398-8508', 'Helix Energy Solutions', 'IT Infrastrucutre Team Lead',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_lzsbc', 'non_forum_event', true,
+  'Mike Arkison', 'markison@glwas.com', '(313) 550-3877', 'Great Lakes Wine & Spirits', 'CIO',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_92a1c', 'non_forum_event', true,
+  'Joe Barfield', 'jbarfield@heritage-communities.com', '(402) 321-0729', 'Heritage Communities', 'CIO',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_n126wa', 'non_forum_event', true,
+  'Raymond Jackson', 'rjackson@cecfg.com', '(817) 966-1675', 'CEC', 'Director, IT',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_stsr9', 'non_forum_event', true,
+  'Vince Fattore', 'vince_fattore@yahoo.com', '(312) 7187318', 'RoadSafe Traffic Systems', 'CIO',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_9ymuz6', 'non_forum_event', true,
+  'Andrew Bartik', 'abartik@enthusiastautoholdings.com', '(216) 269-1666', 'Enthusiast Auto Holdings', 'IT Director',
+  'Crafting The Perfect Blend: BBQ Rubs & AI-Powered Customer Experiences', 'vRT', 'Virtual',
+  'Virtual', '8/21/25', 'Attended'
+);

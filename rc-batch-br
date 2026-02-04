@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_52371', 'non_forum_event', true,
+  'Dovona Cuthbertson', 'dovona.cuthbertson@mecklenburgcountync.gov', '(704) 249-5429', 'Mecklenburg County Government', 'IT Strategy and Planning Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_kxiao', 'non_forum_event', true,
+  'Keith Walters', 'kwalters@abc-nc.com', '980-275-1705', 'American Bank of the Carolinas', 'SVP, Director of IT',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_vf5mr', 'non_forum_event', true,
+  'Garima Karanpuria', 'garima.karanpuria@brighthousefinancial.com', '440-525-6372', 'Brighthouse Financial', 'Enterprise Data Architect',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_wl4ehm', 'non_forum_event', true,
+  'Fatema Hakimji', 'fhakimji1@gmail.com', '803-553-3746', 'Sealed Air', 'Project Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_hqrs4b', 'non_forum_event', true,
+  'Haja Burhan', 'rhaja1@gmail.com', '864-905-4810', 'Brighthouse Financial', 'Director',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_83g6l', 'non_forum_event', true,
+  'Lucien Goode', 'lgoode@communitycarenc.org', '804-691-3939', 'Community Care', 'Senior IT project Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_neu24s', 'non_forum_event', true,
+  'Bruce Schinelli', 'bruce.schinelli@ttx.com', '630-854-4148', 'TTX Company', 'VP IT & CIO',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_es8kj9', 'non_forum_event', true,
+  'Kamesh Baratam', 'kamesh.baratam@owenscorning.com', '704-779-3873', 'Owens Corning', 'Global IT Leader',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_t5ioi9', 'non_forum_event', true,
+  'Nikki Kemp', 'nikki.kemp@ros.com', '803-372-1466', 'Ross', 'East Coast IT Operations Manager',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_odip09', 'non_forum_event', true,
+  'Juliano Avigliano', 'juliano.avigliano@barings.com', '704-942-1984', 'Barings', 'Global IT Services Director',
+  'RingCentral Charlotte Dinner', 'Dinner', 'Charlotte',
+  'Fahrenheit', '9/23/25', 'Attended'
+);

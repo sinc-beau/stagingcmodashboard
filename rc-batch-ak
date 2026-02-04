@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_q1ztd', 'non_forum_event', true,
+  'Nagesh CHAWLA', 'nchawla@foresters.com', '(416) 467-2513', 'Foresters Financial', 'Vice President, Enterprise Technology and Cybersecurity',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_dinc1', 'non_forum_event', true,
+  'Colette Klier', 'colette.klier@sedgwick.com', '(515) 339-8321', 'Sedgwick', 'Senior Manager Cyber Risk Services',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_oldmba', 'non_forum_event', true,
+  'Blinda Weber', 'bweber@ameritas.com', '(402) 730-2963', 'Ameritas Life Insurance Corp.', 'Vice President Business Migration and Transformation',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_t9h0zo', 'non_forum_event', true,
+  'Renee Russell', 'renee_russell@uhc.com', '(612) 703-3408', 'UnitedHealthCare', 'Regional Manager',
+  'Shaping the Future of AI in Insurance: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '3/11/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_yh5knq', 'non_forum_event', true,
+  'Jason Ruddock', 'jason.ruddock@uvi.sandals.com', '954-529-6470', 'Unique Vacations', 'Director of Workforce Management',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_12jmoi', 'non_forum_event', true,
+  'Alexandr Zisser', 'alexandr.zisser@citi.com', '973-652-3458', 'Citibank', 'VP of Cloud and Security',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hr2be', 'non_forum_event', true,
+  'Mani Suri', 'msuri@follett.com', '45253545', 'Follett Higher Education', 'CIO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_nht0b', 'non_forum_event', true,
+  'Dan Rocco', 'dan.rocco@cenveo.com', '914-720-4182', 'Cenveo', 'CIO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_t0erjm', 'non_forum_event', true,
+  'Brandon Drumgoole', 'bdrumgoole@dadeschools.net', '336-383-0759', 'Miami-Dade County FL Public Schools', 'District Director of Systems and Programming',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hlpfsm', 'non_forum_event', true,
+  'Rubensky Calixte', 'rubensky@dhl.com', '954-816-9876', 'DHL', 'Deputy CISO',
+  'RingCentral Miami Dinner', 'Dinner', 'Miami',
+  'Council Oak', '3/12/2025', 'Attended'
+);

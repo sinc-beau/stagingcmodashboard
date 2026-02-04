@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_kgcy1', 'non_forum_event', true,
+  'Janak Shah', 'janak.shah@pjtpartners.com', '(201) 563-4701', 'PJT Partners', 'Senior Vice President of Enterprise Data & Strategic Analytics',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_ajqfqc', 'non_forum_event', true,
+  'Andrey Raransky', 'andrey.raransky@scotiabank.com', '(416) 568-9125', 'Scotiabank', 'Senior Manager, Global Security Services',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_bxkcwg', 'non_forum_event', true,
+  'Laura Kohl', 'laura.kohl@morningstar.com', '(630) 294-4502', 'Morningstar', 'CIO',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_73w8vf', 'non_forum_event', true,
+  'Jonathan Kennedy', 'jonathan.kennedy@getevolved.com', '(901) 260-1446', 'Evolve Bank and Trust', 'Telecommunications Engineer',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_ojssn', 'non_forum_event', true,
+  'Carlington Bucknor', 'cbucknor@communitychoicecu.com', '(248) 785-5070', 'Community Choice Credit Union', 'VP of Technology',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_y5prmm', 'non_forum_event', true,
+  'Quinn Copeland', 'quinn.copeland@parkcommunity.com', '(502) 815-6032', 'Park Federal Credit Union', 'VP of IT',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_wi86po', 'non_forum_event', true,
+  'Michael Yu', 'michael.yu@stonex.com', '(949) 412-5384', 'StoneX', 'VP of Technology Solutions - Wealth Management',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_by49tt', 'non_forum_event', true,
+  'Jim Nagata', 'jim.nagata@armanino.com', '(925) 790-2730', 'Armanino', 'Sr. Director',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_y1fct8', 'non_forum_event', true,
+  'Jeremy Pryor', 'jpryor@dupaco.com', '(918) 977-1690', 'Dupaco Community Credit Union', 'SVP, Enterprise Data & Strategic Analytics',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959713_bd3njk', 'non_forum_event', true,
+  'Raymond Everson', 'raymond.everson@voya.com', '(904) 791-2584', 'Voya Financial', 'Director, Information Technology',
+  'Shaping the Future of AI in Banking and Credit Unions: An Exclusive Virtual Roundtable on AI’s Impact in Financial Services', 'vRT', 'Virtual',
+  'Virtual', '2/26/25', 'Cancelled'
+);

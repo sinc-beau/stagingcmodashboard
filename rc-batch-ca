@@ -1,0 +1,60 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_n0g6gg', 'non_forum_event', true,
+  'Punit Doshi', 'pdoshi@qualys.com', '650-400-5198', 'Qualys', 'Director, IT PMO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_8qx85l', 'non_forum_event', true,
+  'Vijay Madduru', 'vmadduru@cfgo.com', '412-302-7804', 'Grocery Outlet', 'Director, Application Information Platform',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_yyqkam', 'non_forum_event', true,
+  'Jay Velagapudi', 'jvelagapudi@stanfordhealthcare.org', '408-464-3403', 'Stanford Health', 'Senior Manager',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_pktt9e', 'non_forum_event', true,
+  'Shamyo Chatterjee', 'shamyo.chatterjee@corsair.com', '408-483-3227', 'Corsair Gaming', 'CIO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_xzxzw', 'non_forum_event', true,
+  'Roshan Pimple', 'rpimple@exelixis.com', '415-769-7973', 'Exelixis', 'Head of Data Analytics & Architecture',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);

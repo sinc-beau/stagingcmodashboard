@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_vqabf', 'non_forum_event', true,
+  'Raj Gangavarapu', 'rgangavarapu@gsu.edu', '617-938-7643', 'Pathward', 'SVP',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_bntdxo', 'non_forum_event', true,
+  'Michael Onuoha', 'Michael.onuoha@citi.com', '404-707-5512', 'Citi', 'Head of Engineering and Architecture, Employee Products, Operations and Risk',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hagwok', 'non_forum_event', true,
+  'Kevin Berry', 'kevin.berry@nasco.com', '770-545-5076', 'Nasco', 'Dir Cloud & Infrastructure Engineering',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_7d5wtl', 'non_forum_event', true,
+  'Rusty Williams', 'rwilliams@vaco.com', '912-541-3060', 'Vaco', 'Global Head of Technology',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_yo5zu', 'non_forum_event', true,
+  'Nicole Chisholm', 'nicole.chisholm@equifax.com', '678-772-0589', 'Equifax', 'Senior Director, Technology Solutions Delivery',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_ecaj4', 'non_forum_event', true,
+  'Joseph Federer', 'joe.federer@amerisbank.com', '678-662-3555', 'Ameris Bank', 'EVP of IT Infrastructure and Systems',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_aule4', 'non_forum_event', true,
+  'Rey Santiago', 'rsantiago@varomoney.com', '352-877-1778', 'Varo', 'CISO',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_5twvm', 'non_forum_event', true,
+  'Prince Kumar', 'princem4u@gmail.com', '801-244-3437', 'Charles Schwab', 'Chief Enterprise Architect',
+  'RingCentral Atlanta Dinner', 'Dinner', 'Atlanta',
+  'Atlas', '3/13/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_hqqwr5', 'non_forum_event', true,
+  'Emily Cellar', 'emily.cellar@ifit.com', '(706) 464-1671', 'iFit', 'VP of IT',
+  'RingCentral Denver Dinner', 'Dinner', 'Denver',
+  'Sushi Den', '4/22/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_iq67n', 'non_forum_event', true,
+  'Kabot Simon', 'kabot.simon@spglobal.com', '512-796-5531', 'S&P Global', 'Director, AI Engineering IT – Application Development',
+  'RingCentral Denver Dinner', 'Dinner', 'Denver',
+  'Sushi Den', '4/22/25', 'Attended'
+);

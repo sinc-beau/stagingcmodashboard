@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_0d0h2k', 'non_forum_event', true,
+  'Majid Kazi', 'abdulmajidk@virtusa.com', '(571) 645-3337', 'Virtusa', 'Associate Director - Technology',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_vkcxk', 'non_forum_event', true,
+  'David Ho', 'david.ho@salesforce.com', '(415) 407-1753', 'Salesforce', 'Senior Director - AI, Cybersecurity, and Technology Assurance',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_dtpvj', 'non_forum_event', true,
+  'Tamal Biswas', 'tamal.biswas@calix.com', '(520) 971-3979', 'Calix', 'Vice President, Cloud Platform and Infrastructure',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_fzces', 'non_forum_event', true,
+  'Nish Majmudar', 'nmajmudar@mathematica-mpr.com', '(240) 899-6104', 'Mathematica', 'VP, CISO',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_qatwik', 'non_forum_event', true,
+  'John Rodriguez', 'john.rodriguez@fsresidential.com', '(702) 932-6711', 'FirstService Residential', 'IT Director',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_vptrk9', 'non_forum_event', true,
+  'Jyoti Patel', 'jpatel@eoc.suny.edu', '(646) 481-4488', 'The State University of New York', 'VP',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_6lr5ak', 'non_forum_event', true,
+  'Esteban Velez', 'esteban.velez@crescenthotels.com', '(703) 424-0742', 'Crescent Hotels & Resorts', 'Corporate Director of Technology Portfolio',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_6on527', 'non_forum_event', true,
+  'Siddharta Sharma', 'siddharta.sharma@gehealthcare.com', '(773) 341-0659', 'GE Healthcare', 'Associate Director, Global Markets',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_i6qo6u', 'non_forum_event', true,
+  'Troy Ligon', 'tligon@incomm.com', '(813) 716-9535', 'InComm', 'Director Enterprise Architecture',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959714_kxbijj', 'non_forum_event', true,
+  'Kemi Duro-Emanuel', 'kduro-emanuel@mayerbrown.com', '(312) 701-8606', 'Mayer Brown', 'Global IT Project Manager',
+  'AI That Works: How to Power Agents and Automate the Rest', 'vRT', 'Virtual',
+  'Virtual', '4/23/25', 'Attended'
+);

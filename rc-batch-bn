@@ -1,0 +1,120 @@
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_d6l9gv', 'non_forum_event', true,
+  'William Catts', 'william.catts@peraton.com', '605-381-7752', 'Peraton', 'Project Office Lead',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_ofs626', 'non_forum_event', true,
+  'Larry Westfall', 'larry.westfall@spherecommerce.com', '402-277-9165', 'Sphere Commerce', 'Senior IT Manager',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_uumi5f', 'non_forum_event', true,
+  'Emily Ternus', 'emily.ternus@milanlaser.com', '402-960-6276', 'Milan Laser Hair Removal', 'Vice President of IT',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_yrxd6', 'non_forum_event', true,
+  'Karn Pandya', 'karn.pandya@essvote.com', '773-387-3277', 'Election Systems & Software', 'Manager Devops',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_vpwl9', 'non_forum_event', true,
+  'Terrance Steinhart', 'terrance.steinhart@nebraskablue.com', '402-740-9477', 'Blue Cross Blue Shield', 'Cybersecurity Manager',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_gxib', 'non_forum_event', true,
+  'Sam Ashby', 'sam.ashby@nebraskablue.com', '402-541-3796', 'Blue Cross Blue Shield', 'IAM Engineer',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_0t6b1e', 'non_forum_event', true,
+  'Thor Johnson', 'thor.johnson@buildertrend.com', '402-709-4017', 'Buildertrend', 'Principal Cloud Platform Engineer',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_k8dy', 'non_forum_event', true,
+  'Shawn Carder', 'scarder@paypal.com', '402-659-6612', 'PayPal', 'Manager of System and Cloud Engineering',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_dh20qt', 'non_forum_event', true,
+  'Jerry Hamilton', 'jhamilton@savrx.com', '402-213-8752', 'Sav-Rx', 'VP of IT',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959715_o5ez7g', 'non_forum_event', true,
+  'Julian Caldewell', 'julian.caldwell@tsbg.com', '(712)828-1442', 'Ts Banking Group', 'CIO',
+  'RingCentral Omaha Dinner', 'Dinner', 'Omaha',
+  'J. Gilberts', '8/27/2025', 'Cancelled'
+);

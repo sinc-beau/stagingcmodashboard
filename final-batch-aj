@@ -1,0 +1,630 @@
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_i51jus', 'non_forum_event', true,
+  'Jim Schonemann', 'schonemannj@umkc.edu', '(816) 674-4763', 'University of Missour, Kansas City', 'Dir, Network Architecture',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_14r8v', 'non_forum_event', true,
+  'Michael Murrin', 'mmurrin@3cloudsolutions.com', '(716) 570-0069', '3Cloud', 'Director, Infrastructure',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_50xa9', 'non_forum_event', true,
+  'George Davis', 'george.davis@cityvet.com', '(214) 504-8383', 'CityVet', 'IT Infrastructure Manager',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_6cr20i', 'non_forum_event', true,
+  'Terry Fulwider', 'tfulwider@alatrade.com', '(615) 473-2378', 'AlaTrade Foods', 'IT Technician',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_0raoxu', 'non_forum_event', true,
+  'Jason Holcomb', 'jholcomb@alatrade.com', '(256) 506-2087', 'AlaTrade Foods', 'IT Manager',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_94c6d', 'non_forum_event', true,
+  'William Schwab', 'wschwab@belletire.com', '(734) 765-4487', 'Bele Tire', 'Director Customer Support',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_5hjgiq', 'non_forum_event', true,
+  'Brian Owens', 'brian.owens@engineeredfloors.com', '(706) 980-4194', 'Engineered Floors LLC', 'IT Infrastructure Manager',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_af8coi', 'non_forum_event', true,
+  'Tom Croskrey', 'tom_croskrey@pacific-steel.com', '(406) 799-7982', 'Pacific Steel & Recycling', 'IT Manager',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_s7vyr2', 'non_forum_event', true,
+  'William St Croix', 'wstcroix@vsgdover.com', '(812) 701-3257', 'Vehicle Service Group, a Dover company', 'Global IT Director',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_iqjew4', 'non_forum_event', true,
+  'Kate Miller-Chell', 'kmillerchell@spscommerce.com', '(612) 222-8642', 'SPS Commerce', 'Manager - Collaboration Solutions',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_7jsaml', 'non_forum_event', true,
+  'Jose Collazo', 'jcollazo@hcigroup.com', '(813) 830-1115', 'HCI Group Inc', 'Telecom Manager',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_4yavzk', 'non_forum_event', true,
+  'Jeff Huelskamp', 'jhuelskamp@dolese.com', '(405) 231-0743', 'Dolese Bros Co', 'IT Director',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_xljgjt', 'non_forum_event', true,
+  'Blaise Vanden-Heuvel', 'bvanden-heuvel@edsi.com', '(917) 691-5952', 'EDSI', 'Director of IT',
+  'AI-Powered Customer Experiences & The Art of BBQ Cooking', 'vRT', 'Virtual',
+  'Virtual', '11/6/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_61xj9u', 'non_forum_event', true,
+  'David Cooper', 'david.cooper@banfield.com', '571-228-3519', 'Banfield Pet Hospital', 'Technical Web Content Manager',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_ng0ju8', 'non_forum_event', true,
+  'Muhammad Siddiqui', 'kazi.siddiqui@sunriseseniorliving.com', '202-812-3337', 'Sunrise Senior Living', 'Sr Director, IT',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_a5hsv9', 'non_forum_event', true,
+  'Kishore Shanker Singh', 'kishore.singh@gmail.com', '202-509-1628', 'IFC', 'IT Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_0vo2pu', 'non_forum_event', true,
+  'Irvinder Singh', 'isingh5@worldbankgroup.org', '732-429-4261', 'World Bank Group', 'Chief Technology Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_evovw8', 'non_forum_event', true,
+  'Kevin Sherwood', 'kevinsherwood@sheehy.com', '443-824-7902', 'Sheehy Auto Stores', 'CTO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_0a4xyg1', 'non_forum_event', true,
+  'Ganesh Nagarajan', 'gnagarajan5@worldbankgroup.org', '202-528-5590', 'World Bank Group', 'Senior Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_r3m21', 'non_forum_event', true,
+  'Mano Kalathil', 'mano.kalathil@gebbs.com', '646-708-6655', 'GeBBS Healthcare Solutions', 'CTO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_fwgfd', 'non_forum_event', true,
+  'Ganesan Muthiah', 'gmuthaia@acc.org', '301-524-6682', 'American College of Cardiology', 'Chief Technology Officer',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_79fbn', 'non_forum_event', true,
+  'Sudhakar Namasivayam', 'sudhakar.namasivayam@medifastinc.com', '404-578-6154', 'Medifest', 'Sr Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_17b37u', 'non_forum_event', true,
+  'Brad Hughes', 'brad.hughes@natgeo.com', '703-927-9673', 'National Geographic', 'Director - Content Technology & Workflow Strategy',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_quk97', 'non_forum_event', true,
+  'Stephanie Gore', 'sgore@kpmg.com', '301-356-7931', 'KPMG', 'Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_3dbhye', 'non_forum_event', true,
+  'Moeen Darwiesh', 'Mdarwiesh@nas.edu', '202-437-9749', 'The National Academies of Sciences, Engineering, and Medicine', 'Director, Strategic Planning & PMO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_860vrj', 'non_forum_event', true,
+  'Doug Marcey', 'doug.marcey@coronishealth.com', '703-338-3276', 'Coronis Health', 'CTO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_2vj77gt', 'non_forum_event', true,
+  'Reza Makarehchi', 'reza.makarehchi@towerfcu.org', '301-928-8887', 'Tower Federal Credit Union', 'AVP Network & Collaboration Engineering',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_avw7l', 'non_forum_event', true,
+  'Xavier Soosai', 'xavier.soosai@nih.gov', '202-573-2639', 'National institutes of Health', 'CIO, CIT',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_fw5vu5', 'non_forum_event', true,
+  'Leonard Kim', 'lkim@nas.edu', '202-365-0810', 'NAS', 'CIO',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_28i688', 'non_forum_event', true,
+  'Derrick Lee', 'derrick.lee@sosi.us', '703-826-1507', 'SOSi', 'Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_4yi9', 'non_forum_event', true,
+  'Michael Habash', 'mhabash1@statestreet.com', '617-985-0784', 'State Street', 'Detection Engineering Leader',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_e1o4qb', 'non_forum_event', true,
+  'Ameeta Mistry', 'amistry@applefcu.org', '206-852-2540', 'Apple Federal Credit Union', 'Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_q3adsb', 'non_forum_event', true,
+  'Xin Tu', 'cindy21@gmail.com', '224-405-0415', 'Capital One', 'Director of IT and Data Audit',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_z8s9xb', 'non_forum_event', true,
+  'Adanna Onyewuchi', 'adanna.onyewuchi@protiviti.com', '202-733-0160', 'Proviti', 'Associate Director',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_islufa', 'non_forum_event', true,
+  'Jayasheel Shetty', 'jayasheel.shetty@nokia.com', '703-867-5094', 'NOKIA', 'Head of Solutions',
+  'Ring Central D.C. Dinner', 'Dinner', 'D.C.',
+  'J. Gilberts', '11/12/25', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_wo1za5', 'non_forum_event', true,
+  'Hardeep Singh', 'hardeep.singh@procore.com', '408-421-3153', 'Procore Technologies', 'Senior Director of IT',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_mj9wqr', 'non_forum_event', true,
+  'Thom Riley', 'thom.riley@savemart.com', '518-867-9490', 'The Save Mart Companies', 'Director of IT',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_dd58mc', 'non_forum_event', true,
+  'Erez Alfiya', 'ereza@marvell.com', '831-257-7826', 'Marvell', 'Applications Director',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_82ryvj', 'non_forum_event', true,
+  'Patrick Feng', 'patrickfeng@supermicro.com', '408-829-2413', 'Supermicro', 'IT Director, DC Infrastructure and Operations',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_vrh7pmv', 'non_forum_event', true,
+  'Pankaj Purwar', 'pankajpurwar@hotmail.com', '650-427-3314', 'Xperi', 'Vice President IT',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_3pfed', 'non_forum_event', true,
+  'Sruti Permalla', 's.reddy@paloaltonetworks.com', '516-382-7823', 'Palo Alto Networks', 'Director, IT Transformation',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_1mqx5', 'non_forum_event', true,
+  'Harish Pratapani', 'harish.pratapani@zendesk.com', '732-754-6856', 'Zendesk', 'VP of Engineering, AI, and Data Platform Engineering',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_bq2la7', 'non_forum_event', true,
+  'Nigel Lin', 'lin@autochlor.com', '650-880-7750', 'Auto-Chlor System', 'CTO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_qo49yq', 'non_forum_event', true,
+  'Marc Mackey', 'marc.mackey@nike.com', '650-642-0202', 'Nike', 'Director of Global Technology PMO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_12pu5d', 'non_forum_event', true,
+  'Tamal Biswas', 'tamal.biswas@calix.com', '520-971-3979', 'Calix', 'Vice President, Cloud Platform and Infrastructure',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Attended'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_jen5hr', 'non_forum_event', true,
+  'Ashish Upadhyay', 'ashish.upadhyay@databricks.com', '510-329-7252', 'Databricks', 'Director of Field Engineering',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_kc0dcb', 'non_forum_event', true,
+  'Ben Lavasani', 'benlavasani@supermicro.com', '408-895-6582', 'Supermicro', 'Senior Information Security Engineer',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_tt85', 'non_forum_event', true,
+  'Jayant Thomas', 'jayant.thomas@cohesity.com', '408-07-4512', 'Cohesity', 'Director of AI Engineering and Data Science',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Waitlisted'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_n0g6gg', 'non_forum_event', true,
+  'Punit Doshi', 'pdoshi@qualys.com', '650-400-5198', 'Qualys', 'Director, IT PMO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_8qx85l', 'non_forum_event', true,
+  'Vijay Madduru', 'vmadduru@cfgo.com', '412-302-7804', 'Grocery Outlet', 'Director, Application Information Platform',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_yyqkam', 'non_forum_event', true,
+  'Jay Velagapudi', 'jvelagapudi@stanfordhealthcare.org', '408-464-3403', 'Stanford Health', 'Senior Manager',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_pktt9e', 'non_forum_event', true,
+  'Shamyo Chatterjee', 'shamyo.chatterjee@corsair.com', '408-483-3227', 'Corsair Gaming', 'CIO',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
+
+INSERT INTO sponsor_leads (
+  sponsor_id, event_id, attendee_id, source_database, is_historical,
+  name, email, phone, company, title,
+  historical_event_name, historical_event_type, historical_event_city,
+  historical_event_venue, historical_event_date, historical_status
+) VALUES (
+  '93110e75-235b-4586-91f2-196deca40133', '00000000-0000-0000-0000-000000000001', 'historical_1770228959717_xzxzw', 'non_forum_event', true,
+  'Roshan Pimple', 'rpimple@exelixis.com', '415-769-7973', 'Exelixis', 'Head of Data Analytics & Architecture',
+  'RingCentral Palo Alto Dinner', 'Dinner', 'Palo Alto',
+  'Fleming''s', '11/13/2025', 'Cancelled'
+);
