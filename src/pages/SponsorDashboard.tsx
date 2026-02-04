@@ -7,9 +7,10 @@ import { SponsorAllLeads } from '../components/SponsorAllLeads';
 import { SponsorMyEvents } from '../components/SponsorMyEvents';
 import { SponsorMessages } from '../components/SponsorMessages';
 import { ObligationDisplay } from '../components/ObligationDisplay';
+import { SponsorHistoricalLeads } from '../components/SponsorHistoricalLeads';
 import { FileUpload } from '../components/FileUpload';
 import { EventTargeting } from '../components/EventTargeting';
-import { Calendar, Users, MessageSquare, Building2, LogOut, Loader2, ArrowLeft, FileText, CheckCircle2, MapPin, ChevronDown, ChevronRight, Circle, Download, ArrowUpDown, Eye, UserCog, Shield, TrendingUp } from 'lucide-react';
+import { Calendar, Users, MessageSquare, Building2, LogOut, Loader2, ArrowLeft, FileText, CheckCircle2, MapPin, ChevronDown, ChevronRight, Circle, Download, ArrowUpDown, Eye, UserCog, Shield, TrendingUp, History } from 'lucide-react';
 
 interface SponsorEvent {
   id: string;
@@ -50,7 +51,7 @@ interface SponsorInfo {
   sinc_rep: string | null;
 }
 
-type TabType = 'leads' | 'events' | 'messages' | 'obligations';
+type TabType = 'leads' | 'events' | 'messages' | 'obligations' | 'historical';
 
 export function SponsorDashboard() {
   return (
@@ -1024,6 +1025,17 @@ function SponsorDashboardContent() {
                 <FileText className="w-5 h-5" />
                 <span>Obligations</span>
               </button>
+              <button
+                onClick={() => setActiveTab('historical')}
+                className={`flex items-center gap-2 px-6 py-4 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === 'historical'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <History className="w-5 h-5" />
+                <span>Historical</span>
+              </button>
             </nav>
           </div>
 
@@ -1043,6 +1055,9 @@ function SponsorDashboardContent() {
             )}
             {activeTab === 'obligations' && sponsorUser?.sponsor_id && (
               <ObligationDisplay sponsorId={sponsorUser.sponsor_id} />
+            )}
+            {activeTab === 'historical' && sponsorUser?.sponsor_id && (
+              <SponsorHistoricalLeads sponsorId={sponsorUser.sponsor_id} />
             )}
           </div>
         </div>
