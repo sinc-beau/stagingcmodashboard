@@ -17,15 +17,15 @@ const RINGCENTRAL_SPONSOR_ID = '93110e75-235b-4586-91f2-196deca40133';
 const HISTORICAL_EVENT_ID = '00000000-0000-0000-0000-000000000001';
 
 const forumData = {
-  "forum_name": "East",
+  "forum_name": "West 1",
   "attendees": [
     {
-      "first_name": "Roy",
-      "last_name": "Wattanasin",
-      "company": "MIT",
-      "title": "Research Security Officer",
-      "email": "roywatt@mit.edu",
-      "cellphone": "(857) 320-7430"
+      "first_name": "Marc",
+      "last_name": "Mackey",
+      "company": "Nike",
+      "title": "Director Global Technology PMO",
+      "email": "marc.mackey@nike.com",
+      "cellphone": "(650) 454-4171"
     },
     {
       "first_name": "Ravi",
