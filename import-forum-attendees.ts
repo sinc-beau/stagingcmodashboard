@@ -17,7 +17,7 @@ const RINGCENTRAL_SPONSOR_ID = '93110e75-235b-4586-91f2-196deca40133';
 const HISTORICAL_EVENT_ID = '00000000-0000-0000-0000-000000000001';
 
 const forumData = {
-  "forum_name": "Central",
+  "forum_name": "East",
   "attendees": [
     {
       "first_name": "Ken",
