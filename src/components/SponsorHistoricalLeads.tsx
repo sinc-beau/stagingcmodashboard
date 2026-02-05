@@ -139,8 +139,8 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
       case 'no_show':
       case 'cancelled':
         return 'Cancelled';
-      case 'pending':
-        return 'Registered';
+      case 'waitlisted':
+        return 'Waitlisted';
       default:
         return status || 'Unknown';
     }
@@ -152,9 +152,8 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         return 'bg-green-100 text-green-700';
       case 'no_show':
       case 'cancelled':
+      case 'waitlisted':
         return 'bg-gray-100 text-gray-700';
-      case 'pending':
-        return 'bg-blue-100 text-blue-700';
       default:
         return 'bg-gray-100 text-gray-700';
     }
@@ -226,7 +225,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           ? nameA.localeCompare(nameB)
           : nameB.localeCompare(nameA);
       } else {
-        const statusOrder = { attended: 0, pending: 1, no_show: 2, cancelled: 2 };
+        const statusOrder = { attended: 0, waitlisted: 1, no_show: 2, cancelled: 2 };
         const statusA = statusOrder[a.attendance_status as keyof typeof statusOrder] ?? 3;
         const statusB = statusOrder[b.attendance_status as keyof typeof statusOrder] ?? 3;
         return sortOrder === 'asc'
@@ -248,6 +247,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
   const totalLeads = leads.length;
   const attendedCount = leads.filter(l => l.attendance_status === 'attended').length;
   const cancelledCount = leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
+  const waitlistedCount = leads.filter(l => l.attendance_status === 'waitlisted').length;
 
   if (loading) {
     return (
@@ -288,7 +288,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
           <p className="text-2xl font-bold text-gray-900">{eventGroups.length}</p>
@@ -299,11 +299,15 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </div>
         <div className="bg-green-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Attended</p>
-          <p className="text-2xl font-bold text-gray-900">{attendedCount}</p>
+          <p className="text-2xl font-bold text-green-700">{attendedCount}</p>
         </div>
-        <div className="bg-red-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Cancelled</p>
-          <p className="text-2xl font-bold text-gray-900">{cancelledCount}</p>
+          <p className="text-2xl font-bold text-gray-700">{cancelledCount}</p>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Waitlisted</p>
+          <p className="text-2xl font-bold text-gray-700">{waitlistedCount}</p>
         </div>
       </div>
 
@@ -314,6 +318,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           const sortedLeads = sortLeads(eventGroup.leads);
           const eventAttendedCount = eventGroup.leads.filter(l => l.attendance_status === 'attended').length;
           const eventCancelledCount = eventGroup.leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
+          const eventWaitlistedCount = eventGroup.leads.filter(l => l.attendance_status === 'waitlisted').length;
 
           return (
             <div key={eventKey} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
@@ -340,12 +345,15 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                           })}
                         </span>
                       )}
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-1 text-green-700">
                         <Users className="w-3.5 h-3.5" />
                         {eventAttendedCount} attended
                       </span>
                       <span className="flex items-center gap-1">
                         {eventCancelledCount} cancelled
+                      </span>
+                      <span className="flex items-center gap-1">
+                        {eventWaitlistedCount} waitlisted
                       </span>
                     </div>
                   </div>
