@@ -48,14 +48,31 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
   const loadHistoricalLeads = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('historical_attendees')
-        .select('*')
-        .eq('sponsor_id', sponsorId)
-        .order('event_date', { ascending: false });
+      let allLeads: HistoricalAttendee[] = [];
+      let from = 0;
+      const batchSize = 1000;
+      let hasMore = true;
 
-      if (error) throw error;
-      if (data) setLeads(data);
+      while (hasMore) {
+        const { data, error } = await supabase
+          .from('historical_attendees')
+          .select('*')
+          .eq('sponsor_id', sponsorId)
+          .order('event_date', { ascending: false })
+          .range(from, from + batchSize - 1);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          allLeads = [...allLeads, ...data];
+          from += batchSize;
+          hasMore = data.length === batchSize;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      setLeads(allLeads);
     } catch (error) {
       console.error('Error loading historical leads:', error);
     } finally {
