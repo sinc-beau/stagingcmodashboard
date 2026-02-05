@@ -37,6 +37,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'status'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [eventTypeFilter, setEventTypeFilter] = useState<string>('all');
 
   useEffect(() => {
     loadHistoricalLeads();
@@ -44,7 +45,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
 
   useEffect(() => {
     groupLeadsByEvent();
-  }, [leads, searchTerm]);
+  }, [leads, searchTerm, eventTypeFilter]);
 
   const loadHistoricalLeads = async () => {
     setLoading(true);
@@ -89,8 +90,23 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     return 0;
   };
 
+  const getEventTypeBadgeStyle = (eventType: string | null): string => {
+    if (!eventType) return 'bg-gray-100 text-gray-700';
+    const type = eventType.toLowerCase();
+    if (type === 'dinner') return 'bg-blue-100 text-blue-700';
+    if (type === 'vrt') return 'bg-green-100 text-green-700';
+    if (type === 'forum') return 'bg-purple-100 text-purple-700';
+    return 'bg-gray-100 text-gray-700';
+  };
+
+  const uniqueEventTypes = Array.from(new Set(leads.map(l => l.event_type).filter(Boolean))).sort();
+
   const groupLeadsByEvent = () => {
     const filtered = leads.filter(lead => {
+      if (eventTypeFilter !== 'all' && lead.event_type?.toLowerCase() !== eventTypeFilter.toLowerCase()) {
+        return false;
+      }
+
       if (!searchTerm) return true;
       const search = searchTerm.toLowerCase();
       return (
@@ -308,6 +324,33 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-gray-700">Filter by type:</span>
+        <button
+          onClick={() => setEventTypeFilter('all')}
+          className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+            eventTypeFilter === 'all'
+              ? 'bg-gray-900 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          All
+        </button>
+        {uniqueEventTypes.map(type => (
+          <button
+            key={type}
+            onClick={() => setEventTypeFilter(type || 'all')}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors capitalize ${
+              eventTypeFilter === type
+                ? 'bg-gray-900 text-white'
+                : `${getEventTypeBadgeStyle(type)} hover:opacity-80`
+            }`}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
+
       <div className="grid grid-cols-5 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
@@ -359,7 +402,14 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                     <ChevronRight className="w-5 h-5 text-gray-500" />
                   )}
                   <div className="text-left">
-                    <h3 className="font-semibold text-gray-900">{eventGroup.eventName}</h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-gray-900">{eventGroup.eventName}</h3>
+                      {eventGroup.eventType && (
+                        <span className={`px-2 py-0.5 text-xs font-medium rounded-full capitalize ${getEventTypeBadgeStyle(eventGroup.eventType)}`}>
+                          {eventGroup.eventType}
+                        </span>
+                      )}
+                    </div>
                     <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
                       {eventGroup.eventDate && (
                         <span className="flex items-center gap-1">
