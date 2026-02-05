@@ -161,7 +161,7 @@ function SponsorDashboardContent() {
             const isOngoing = !eventDetail?.event_date;
 
             if (minimum > 0 && count !== null && !isPreEvent && !isOngoing) {
-              return ((count - minimum) / minimum) * 100;
+              return (count / minimum) * 100;
             }
             return null;
           })
@@ -896,10 +896,10 @@ function SponsorDashboardContent() {
               <div>
                 <p className="text-sm font-medium text-gray-600">Avg Delivery</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
-                  {stats.avgDelivery > 0 && '+'}{stats.avgDelivery}%
+                  {stats.avgDelivery}%
                 </p>
               </div>
-              <TrendingUp className={`w-10 h-10 ${stats.avgDelivery >= 0 ? 'text-green-600' : 'text-red-600'} opacity-80`} />
+              <TrendingUp className={`w-10 h-10 ${stats.avgDelivery >= 100 ? 'text-green-600' : 'text-red-600'} opacity-80`} />
             </div>
           </div>
         </div>
