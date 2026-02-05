@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Plus, Edit2, Trash2, Copy, FileStack, Target, Loader2, AlertCircle, Clock, Link } from 'lucide-react';
+import { Plus, Edit2, Trash2, Copy, FileStack, Target, Loader2, AlertCircle, Clock, Link, X } from 'lucide-react';
 import { FileUpload } from './FileUpload';
+
+interface TargetingItem {
+  name: string;
+  relevance: 'high' | 'medium' | 'low' | 'not_relevant';
+}
 
 interface IntakeFormTemplate {
   id: string;
@@ -57,6 +62,14 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
   const [logoInputType, setLogoInputType] = useState<'file' | 'url'>('file');
   const [intakeFieldTemplates, setIntakeFieldTemplates] = useState<any[]>([]);
 
+  // Target profile editing state
+  const [editingTechnologies, setEditingTechnologies] = useState<TargetingItem[]>([]);
+  const [editingOtherTechnologies, setEditingOtherTechnologies] = useState('');
+  const [editingSeniorityLevels, setEditingSeniorityLevels] = useState<TargetingItem[]>([]);
+  const [editingJobTitles, setEditingJobTitles] = useState<TargetingItem[]>([]);
+  const [editingExcludedTitles, setEditingExcludedTitles] = useState('');
+  const [newJobTitle, setNewJobTitle] = useState('');
+
   const eventTypes = [
     { value: 'forum', label: 'Forum' },
     { value: 'dinner', label: 'Dinner' },
@@ -66,6 +79,70 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
     { value: 'veb', label: 'VEB' },
     { value: 'other', label: 'Other' }
   ];
+
+  const defaultTechnologies = [
+    'Cloud/Hybrid Cloud/Public Cloud',
+    'Security',
+    'DevOps',
+    'Robotic Process Automation',
+    'Enterprise Mobility',
+    'Contact Center',
+    'Collaboration Technologies',
+    'Storage',
+    'Artificial Intelligence',
+    'Blockchain',
+    'SaaS',
+    'PaaS',
+    'Data Visualization',
+    'Data Analytics/Big Data',
+    'IoT'
+  ];
+
+  const defaultSeniorityLevels = [
+    'Executive Management (CXO & Board)',
+    'VP Level',
+    'Director Level',
+    'Manager Level',
+    'Staff Level',
+    'Consultants'
+  ];
+
+  const defaultJobTitles = [
+    'CIO',
+    'CTO',
+    'CISO',
+    'Chief Data Officer',
+    'Chief Digital Officer',
+    'Chief Innovation Officer',
+    'SVP/EVP Information Technology',
+    'VP of IT Security',
+    'VP of Information Technology',
+    'VP of Information Services',
+    'VP of MIS',
+    'VP of Management Information System',
+    'VP of Management Information Service',
+    'VP of IT',
+    'VP of IS',
+    'Director of IT',
+    'Director of Security/IT Security',
+    'IT Manager',
+    'VP of Infrastructure',
+    'Director of Infrastructure'
+  ];
+
+  const relevanceColors = {
+    high: 'bg-green-100 text-green-700 border-green-300',
+    medium: 'bg-yellow-100 text-yellow-700 border-yellow-300',
+    low: 'bg-orange-100 text-orange-700 border-orange-300',
+    not_relevant: 'bg-gray-100 text-gray-700 border-gray-300'
+  };
+
+  const relevanceLabels = {
+    high: 'High',
+    medium: 'Medium',
+    low: 'Low',
+    not_relevant: 'Not Relevant'
+  };
 
   useEffect(() => {
     loadTemplates();
@@ -262,6 +339,26 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
     if (type === 'intake') {
       const intakeTemplate = template as IntakeFormTemplate;
       setEditingFormData(intakeTemplate.form_data || {});
+    } else {
+      // Initialize target profile fields
+      const targetTemplate = template as TargetProfileTemplate;
+      setEditingTechnologies(
+        targetTemplate.technologies?.length > 0
+          ? targetTemplate.technologies
+          : defaultTechnologies.map(name => ({ name, relevance: 'not_relevant' as const }))
+      );
+      setEditingOtherTechnologies(targetTemplate.other_technologies || '');
+      setEditingSeniorityLevels(
+        targetTemplate.seniority_levels?.length > 0
+          ? targetTemplate.seniority_levels
+          : defaultSeniorityLevels.map(name => ({ name, relevance: 'not_relevant' as const }))
+      );
+      setEditingJobTitles(
+        targetTemplate.job_titles?.length > 0
+          ? targetTemplate.job_titles
+          : defaultJobTitles.map(name => ({ name, relevance: 'not_relevant' as const }))
+      );
+      setEditingExcludedTitles(targetTemplate.excluded_titles || '');
     }
 
     setShowEditModal(true);
@@ -272,6 +369,25 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
       ...prev,
       [label]: value
     }));
+  };
+
+  const updateRelevance = (
+    items: TargetingItem[],
+    setter: (items: TargetingItem[]) => void,
+    name: string,
+    relevance: TargetingItem['relevance']
+  ) => {
+    setter(items.map(item => item.name === name ? { ...item, relevance } : item));
+  };
+
+  const addJobTitle = () => {
+    if (!newJobTitle.trim()) return;
+    setEditingJobTitles([...editingJobTitles, { name: newJobTitle.trim(), relevance: 'not_relevant' }]);
+    setNewJobTitle('');
+  };
+
+  const removeJobTitle = (name: string) => {
+    setEditingJobTitles(editingJobTitles.filter(item => item.name !== name));
   };
 
   const renderEditField = (label: string, description: string) => {
@@ -412,9 +528,17 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
         if (error) throw error;
       } else {
+        // Update target profile template with all fields
         const { error } = await supabase
           .from('target_profile_templates')
-          .update({ template_name: newTemplateName.trim() })
+          .update({
+            template_name: newTemplateName.trim(),
+            technologies: editingTechnologies,
+            other_technologies: editingOtherTechnologies,
+            seniority_levels: editingSeniorityLevels,
+            job_titles: editingJobTitles,
+            excluded_titles: editingExcludedTitles
+          })
           .eq('id', editingTemplate.id);
 
         if (error) throw error;
@@ -425,6 +549,12 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
       setEditingTemplate(null);
       setNewTemplateName('');
       setEditingFormData({});
+      // Clear target profile editing state
+      setEditingTechnologies([]);
+      setEditingOtherTechnologies('');
+      setEditingSeniorityLevels([]);
+      setEditingJobTitles([]);
+      setEditingExcludedTitles('');
       alert('Template updated successfully!');
     } catch (error) {
       console.error('Error updating template:', error);
@@ -777,6 +907,144 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                           </div>
                         ))}
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeSection === 'targeting' && (
+                  <div className="space-y-6">
+                    <div className="border-t border-gray-200 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Technologies</h4>
+                      <p className="text-xs text-gray-500 mb-4">Choose the relevance for each technology</p>
+                      <div className="space-y-2">
+                        {editingTechnologies.map((tech) => (
+                          <div key={tech.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span className="text-sm text-gray-900">{tech.name}</span>
+                            <div className="flex gap-1">
+                              {(Object.keys(relevanceLabels) as Array<keyof typeof relevanceLabels>).map((level) => (
+                                <button
+                                  key={level}
+                                  onClick={() => updateRelevance(editingTechnologies, setEditingTechnologies, tech.name, level)}
+                                  className={`px-3 py-1 text-xs font-medium rounded border transition-colors ${
+                                    tech.relevance === level
+                                      ? relevanceColors[level]
+                                      : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  {relevanceLabels[level]}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-900 mb-2">
+                          Other Areas of Focus
+                        </label>
+                        <textarea
+                          value={editingOtherTechnologies}
+                          onChange={(e) => setEditingOtherTechnologies(e.target.value)}
+                          rows={3}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="Enter any other technology areas..."
+                        />
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Seniority Levels</h4>
+                      <p className="text-xs text-gray-500 mb-4">Choose the relevance for each seniority level</p>
+                      <div className="space-y-2">
+                        {editingSeniorityLevels.map((level) => (
+                          <div key={level.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span className="text-sm text-gray-900">{level.name}</span>
+                            <div className="flex gap-1">
+                              {(Object.keys(relevanceLabels) as Array<keyof typeof relevanceLabels>).map((rel) => (
+                                <button
+                                  key={rel}
+                                  onClick={() => updateRelevance(editingSeniorityLevels, setEditingSeniorityLevels, level.name, rel)}
+                                  className={`px-3 py-1 text-xs font-medium rounded border transition-colors ${
+                                    level.relevance === rel
+                                      ? relevanceColors[rel]
+                                      : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  {relevanceLabels[rel]}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Roles, Job Functions & Titles</h4>
+                      <p className="text-xs text-gray-500 mb-4">Choose the relevance for each role or job title</p>
+                      <div className="space-y-2">
+                        {editingJobTitles.map((job) => (
+                          <div key={job.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span className="text-sm text-gray-900 flex-1">{job.name}</span>
+                            <div className="flex gap-1 items-center">
+                              <div className="flex gap-1">
+                                {(Object.keys(relevanceLabels) as Array<keyof typeof relevanceLabels>).map((rel) => (
+                                  <button
+                                    key={rel}
+                                    onClick={() => updateRelevance(editingJobTitles, setEditingJobTitles, job.name, rel)}
+                                    className={`px-3 py-1 text-xs font-medium rounded border transition-colors ${
+                                      job.relevance === rel
+                                        ? relevanceColors[rel]
+                                        : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                                    }`}
+                                  >
+                                    {relevanceLabels[rel]}
+                                  </button>
+                                ))}
+                              </div>
+                              {!defaultJobTitles.includes(job.name) && (
+                                <button
+                                  onClick={() => removeJobTitle(job.name)}
+                                  className="ml-2 p-1 text-gray-400 hover:text-red-600 transition-colors"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4 flex gap-2">
+                        <input
+                          type="text"
+                          value={newJobTitle}
+                          onChange={(e) => setNewJobTitle(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && addJobTitle()}
+                          placeholder="Add custom job title..."
+                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <button
+                          onClick={addJobTitle}
+                          className="flex items-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                        >
+                          <Plus className="w-4 h-4" />
+                          Add
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Excluded Job Titles</h4>
+                      <p className="text-xs text-gray-500 mb-2">
+                        Enter job titles you DO NOT want to see in your results (comma-separated)
+                      </p>
+                      <textarea
+                        value={editingExcludedTitles}
+                        onChange={(e) => setEditingExcludedTitles(e.target.value)}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="e.g., Consultant, Student, Intern"
+                      />
                     </div>
                   </div>
                 )}
