@@ -42,6 +42,10 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [templateToDelete, setTemplateToDelete] = useState<{ id: string; name: string; type: TemplateSection } | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newTemplateName, setNewTemplateName] = useState('');
+  const [newTemplateEventType, setNewTemplateEventType] = useState('forum');
+  const [creating, setCreating] = useState(false);
 
   const eventTypes = [
     { value: 'forum', label: 'Forum' },
@@ -160,6 +164,56 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
     }
   };
 
+  const handleCreateTemplate = async () => {
+    if (!newTemplateName.trim()) {
+      alert('Please enter a template name');
+      return;
+    }
+
+    setCreating(true);
+    try {
+      if (activeSection === 'intake') {
+        const { error } = await supabase
+          .from('intake_form_templates')
+          .insert({
+            sponsor_id: sponsorId,
+            template_name: newTemplateName.trim(),
+            event_type: newTemplateEventType,
+            form_data: {},
+            created_by_email: userEmail
+          });
+
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('target_profile_templates')
+          .insert({
+            sponsor_id: sponsorId,
+            template_name: newTemplateName.trim(),
+            event_type: newTemplateEventType,
+            technologies: [],
+            other_technologies: '',
+            seniority_levels: [],
+            job_titles: [],
+            excluded_titles: '',
+            created_by_email: userEmail
+          });
+
+        if (error) throw error;
+      }
+
+      await loadTemplates();
+      setShowCreateModal(false);
+      setNewTemplateName('');
+      setNewTemplateEventType('forum');
+    } catch (error) {
+      console.error('Error creating template:', error);
+      alert('Failed to create template');
+    } finally {
+      setCreating(false);
+    }
+  };
+
   const getFilteredIntakeTemplates = () => {
     if (eventTypeFilter === 'all') return intakeTemplates;
     return intakeTemplates.filter(t => t.event_type === eventTypeFilter);
@@ -252,7 +306,7 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
           </select>
         </div>
         <button
-          onClick={() => alert('Template creation coming soon! For now, fill out an event intake form or target profile, then come back here to save it as a template.')}
+          onClick={() => setShowCreateModal(true)}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
         >
           <Plus className="w-4 h-4" />
@@ -426,6 +480,77 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                 className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {deleting ? 'Deleting...' : 'Delete Template'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900">Create New Template</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Create a blank {activeSection === 'intake' ? 'intake form' : 'target profile'} template to reuse across events
+              </p>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Template Name
+                </label>
+                <input
+                  type="text"
+                  value={newTemplateName}
+                  onChange={(e) => setNewTemplateName(e.target.value)}
+                  placeholder={`e.g., ${activeSection === 'intake' ? 'Standard Forum Intake' : 'Executive Target Profile'}`}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  autoFocus
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Event Type
+                </label>
+                <select
+                  value={newTemplateEventType}
+                  onChange={(e) => setNewTemplateEventType(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {eventTypes.map(type => (
+                    <option key={type.value} value={type.value}>{type.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="bg-blue-50 rounded-lg p-3">
+                <p className="text-xs text-blue-800">
+                  After creating, you can edit the template to add details, or load it when filling out event forms.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex items-center justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowCreateModal(false);
+                  setNewTemplateName('');
+                  setNewTemplateEventType('forum');
+                }}
+                disabled={creating}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateTemplate}
+                disabled={creating || !newTemplateName.trim()}
+                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {creating ? 'Creating...' : 'Create Template'}
               </button>
             </div>
           </div>

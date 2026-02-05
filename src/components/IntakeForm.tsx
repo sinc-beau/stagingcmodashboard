@@ -45,6 +45,9 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
   const [previousEvents, setPreviousEvents] = useState<PreviousEvent[]>([]);
   const [showLoadOptions, setShowLoadOptions] = useState(false);
   const [loadingPrevious, setLoadingPrevious] = useState(false);
+  const [showSaveAsTemplate, setShowSaveAsTemplate] = useState(false);
+  const [templateName, setTemplateName] = useState('');
+  const [savingTemplate, setSavingTemplate] = useState(false);
 
   useEffect(() => {
     loadIntakeData();
@@ -388,6 +391,49 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
     setHasUnsavedChanges(false);
   };
 
+  const handleSaveAsTemplate = async () => {
+    if (!templateName.trim()) {
+      alert('Please enter a template name');
+      return;
+    }
+
+    setSavingTemplate(true);
+    try {
+      const formData: Record<string, any> = {};
+
+      Object.entries(items).forEach(([label, item]) => {
+        if (item.notes && item.notes.trim()) {
+          formData[label] = item.notes;
+        }
+      });
+
+      if (solutionProviderTopic && solutionProviderTopic.trim()) {
+        formData['solution_provider_topic'] = solutionProviderTopic;
+      }
+
+      const { error } = await supabase
+        .from('intake_form_templates')
+        .insert({
+          sponsor_id: sponsorId,
+          template_name: templateName.trim(),
+          event_type: eventType,
+          form_data: formData,
+          created_by_email: userEmail
+        });
+
+      if (error) throw error;
+
+      setShowSaveAsTemplate(false);
+      setTemplateName('');
+      alert('Template saved successfully!');
+    } catch (error) {
+      console.error('Error saving template:', error);
+      alert('Failed to save template');
+    } finally {
+      setSavingTemplate(false);
+    }
+  };
+
   const updateItemNotes = (label: string, notes: string) => {
     setItems(prev => ({
       ...prev,
@@ -491,6 +537,24 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         </div>
       )}
 
+      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <h4 className="text-sm font-medium text-green-900 mb-1">Save as Template</h4>
+            <p className="text-xs text-green-700">
+              Save this intake form as a reusable template for future events
+            </p>
+          </div>
+          <button
+            onClick={() => setShowSaveAsTemplate(true)}
+            className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+          >
+            <FileStack className="w-4 h-4" />
+            Save Template
+          </button>
+        </div>
+      </div>
+
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-900 mb-2">
@@ -593,6 +657,61 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
                 className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {saving ? 'Saving...' : 'Confirm Save'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSaveAsTemplate && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900">Save as Template</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Create a reusable template from this intake form
+              </p>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Template Name
+                </label>
+                <input
+                  type="text"
+                  value={templateName}
+                  onChange={(e) => setTemplateName(e.target.value)}
+                  placeholder="e.g., Standard Forum Intake"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  autoFocus
+                />
+              </div>
+
+              <div className="bg-green-50 rounded-lg p-3">
+                <p className="text-xs text-green-800">
+                  This will save all your current responses as a template for <strong>{eventType.toUpperCase()}</strong> events. You can load this template when filling out future event intake forms.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex items-center justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowSaveAsTemplate(false);
+                  setTemplateName('');
+                }}
+                disabled={savingTemplate}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveAsTemplate}
+                disabled={savingTemplate || !templateName.trim()}
+                className="px-4 py-2 text-sm font-medium bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {savingTemplate ? 'Saving...' : 'Save Template'}
               </button>
             </div>
           </div>
