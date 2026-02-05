@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Plus, Edit2, Trash2, Copy, FileStack, Target, Loader2, AlertCircle, Clock } from 'lucide-react';
+import { Plus, Edit2, Trash2, Copy, FileStack, Target, Loader2, AlertCircle, Clock, Link } from 'lucide-react';
+import { FileUpload } from './FileUpload';
 
 interface IntakeFormTemplate {
   id: string;
@@ -52,6 +53,9 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
   const [creating, setCreating] = useState(false);
   const [editingTemplate, setEditingTemplate] = useState<IntakeFormTemplate | TargetProfileTemplate | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [editingFormData, setEditingFormData] = useState<Record<string, any>>({});
+  const [logoInputType, setLogoInputType] = useState<'file' | 'url'>('file');
+  const [intakeFieldTemplates, setIntakeFieldTemplates] = useState<any[]>([]);
 
   const eventTypes = [
     { value: 'forum', label: 'Forum' },
@@ -65,7 +69,24 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
   useEffect(() => {
     loadTemplates();
+    loadIntakeFieldTemplates();
   }, [sponsorId]);
+
+  const loadIntakeFieldTemplates = async () => {
+    try {
+      const { data } = await supabase
+        .from('intake_item_templates')
+        .select('item_label, item_description, display_order')
+        .eq('event_type', 'all')
+        .order('display_order');
+
+      if (data) {
+        setIntakeFieldTemplates(data);
+      }
+    } catch (error) {
+      console.error('Error loading intake field templates:', error);
+    }
+  };
 
   const loadTemplates = async () => {
     setLoading(true);
@@ -236,7 +257,140 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
   const handleEditClick = (template: IntakeFormTemplate | TargetProfileTemplate, type: TemplateSection) => {
     setEditingTemplate(template);
     setActiveSection(type);
+    setNewTemplateName(template.template_name);
+
+    if (type === 'intake') {
+      const intakeTemplate = template as IntakeFormTemplate;
+      setEditingFormData(intakeTemplate.form_data || {});
+    }
+
     setShowEditModal(true);
+  };
+
+  const updateEditingField = (label: string, value: any) => {
+    setEditingFormData(prev => ({
+      ...prev,
+      [label]: value
+    }));
+  };
+
+  const renderEditField = (label: string, description: string) => {
+    const value = editingFormData[label] || '';
+
+    if (label === 'Company Logo') {
+      return (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 mb-2">
+            <button
+              type="button"
+              onClick={() => setLogoInputType('file')}
+              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                logoInputType === 'file'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Upload File
+            </button>
+            <button
+              type="button"
+              onClick={() => setLogoInputType('url')}
+              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                logoInputType === 'url'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Enter URL
+            </button>
+          </div>
+          {logoInputType === 'file' ? (
+            <FileUpload
+              label=""
+              description="PNG or JPG, max 5MB"
+              accept="image/png,image/jpeg"
+              maxSizeMB={5}
+              maxFiles={1}
+              value={value}
+              onChange={(newValue) => updateEditingField(label, newValue)}
+            />
+          ) : (
+            <div className="flex items-center gap-2">
+              <Link className="w-4 h-4 text-gray-400" />
+              <input
+                type="url"
+                value={value}
+                onChange={(e) => updateEditingField(label, e.target.value)}
+                placeholder="https://example.com/logo.png"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (label === 'Wishlist CSV') {
+      return (
+        <FileUpload
+          label=""
+          description="CSV file containing your wishlist of attendees"
+          accept=".csv,text/csv"
+          maxSizeMB={10}
+          maxFiles={1}
+          value={value}
+          onChange={(newValue) => updateEditingField(label, newValue)}
+        />
+      );
+    }
+
+    if (label === 'Digital Assets for Landing Page') {
+      let parsedValue: string | string[] = '';
+      try {
+        if (value) {
+          const parsed = JSON.parse(value);
+          parsedValue = Array.isArray(parsed) ? parsed : value;
+        }
+      } catch {
+        parsedValue = value;
+      }
+
+      return (
+        <FileUpload
+          label=""
+          description="Upload up to 2 PDF files (max 10MB each)"
+          accept=".pdf,application/pdf"
+          maxSizeMB={10}
+          maxFiles={2}
+          value={parsedValue}
+          onChange={(newValue) => updateEditingField(label, Array.isArray(newValue) ? JSON.stringify(newValue) : newValue)}
+        />
+      );
+    }
+
+    if (label === 'Speaker Headshot') {
+      return (
+        <FileUpload
+          label=""
+          description="JPG or PNG, max 5MB"
+          accept="image/png,image/jpeg"
+          maxSizeMB={5}
+          maxFiles={1}
+          value={value}
+          onChange={(newValue) => updateEditingField(label, newValue)}
+        />
+      );
+    }
+
+    return (
+      <textarea
+        value={value}
+        onChange={(e) => updateEditingField(label, e.target.value)}
+        rows={3}
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+        placeholder="Enter information..."
+      />
+    );
   };
 
   const handleUpdateTemplate = async () => {
@@ -247,18 +401,31 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
     setCreating(true);
     try {
-      const table = activeSection === 'intake' ? 'intake_form_templates' : 'target_profile_templates';
-      const { error } = await supabase
-        .from(table)
-        .update({ template_name: newTemplateName.trim() })
-        .eq('id', editingTemplate.id);
+      if (activeSection === 'intake') {
+        const { error } = await supabase
+          .from('intake_form_templates')
+          .update({
+            template_name: newTemplateName.trim(),
+            form_data: editingFormData
+          })
+          .eq('id', editingTemplate.id);
 
-      if (error) throw error;
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('target_profile_templates')
+          .update({ template_name: newTemplateName.trim() })
+          .eq('id', editingTemplate.id);
+
+        if (error) throw error;
+      }
 
       await loadTemplates();
       setShowEditModal(false);
       setEditingTemplate(null);
       setNewTemplateName('');
+      setEditingFormData({});
+      alert('Template updated successfully!');
     } catch (error) {
       console.error('Error updating template:', error);
       alert('Failed to update template');
@@ -304,7 +471,7 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
         </div>
       </div>
 
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-200 flex items-center justify-between">
         <nav className="flex gap-1">
           <button
             onClick={() => setActiveSection('intake')}
@@ -329,12 +496,9 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
             Target Profile Templates ({targetTemplates.length})
           </button>
         </nav>
-      </div>
-
-      <div className="flex items-center justify-end bg-gray-50 rounded-lg p-4">
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium mr-2"
         >
           <Plus className="w-4 h-4" />
           Create New Template
@@ -568,37 +732,54 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
       {showEditModal && editingTemplate && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl my-8">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl my-8 max-h-[90vh] flex flex-col">
             <div className="p-6 border-b border-gray-200">
               <h3 className="text-lg font-bold text-gray-900">
                 Edit {activeSection === 'intake' ? 'Intake Form' : 'Target Profile'} Template
               </h3>
               <p className="text-sm text-gray-600 mt-1">
-                Update template details. Changes are saved to the template and will apply to future events that use it.
+                Update the template name and fields below. Changes will be saved and applied to future events.
               </p>
             </div>
 
-            <div className="p-6">
-              <p className="text-sm text-gray-700 mb-4">
-                To edit the full template content (all intake fields or targeting criteria), please:
-              </p>
-              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 mb-6">
-                <li>Go to an event's Intake Form or Target Attendee Profile page</li>
-                <li>Click "Load from Template" and select "<strong>{editingTemplate.template_name}</strong>"</li>
-                <li>Fill out all the fields as you want them in the template</li>
-                <li>Click "Save as Template" and use the same name to update the template</li>
-              </ol>
-
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-sm text-blue-900 font-medium mb-2">Template Info:</p>
-                <div className="space-y-1 text-xs text-blue-800">
-                  <div><span className="font-medium">Name:</span> {editingTemplate.template_name}</div>
-                  {editingTemplate.company_name && (
-                    <div><span className="font-medium">Company:</span> {editingTemplate.company_name}</div>
-                  )}
-                  <div><span className="font-medium">Last Updated:</span> {new Date(editingTemplate.updated_at).toLocaleString()}</div>
-                  <div><span className="font-medium">Created By:</span> {editingTemplate.created_by_email}</div>
+            <div className="p-6 overflow-y-auto flex-1">
+              <div className="space-y-4 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Template Name
+                  </label>
+                  <input
+                    type="text"
+                    value={newTemplateName}
+                    onChange={(e) => setNewTemplateName(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
                 </div>
+
+                {activeSection === 'intake' && (
+                  <div className="space-y-4">
+                    <div className="border-t border-gray-200 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Template Fields</h4>
+                      <div className="space-y-4">
+                        {intakeFieldTemplates.map(field => (
+                          <div key={field.item_label} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                            <div className="mb-2">
+                              <label className="block text-sm font-medium text-gray-900 mb-1">
+                                {field.item_label}
+                              </label>
+                              {field.item_description && (
+                                <p className="text-xs text-gray-500 mb-2">
+                                  {field.item_description}
+                                </p>
+                              )}
+                            </div>
+                            {renderEditField(field.item_label, field.item_description)}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -608,10 +789,19 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                   setShowEditModal(false);
                   setEditingTemplate(null);
                   setNewTemplateName('');
+                  setEditingFormData({});
                 }}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                disabled={creating}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
               >
-                Close
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateTemplate}
+                disabled={creating || !newTemplateName.trim()}
+                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {creating ? 'Saving...' : 'Save Template'}
               </button>
             </div>
           </div>

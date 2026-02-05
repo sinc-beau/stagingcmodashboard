@@ -636,7 +636,7 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {saveSuccess && (
             <span className="text-xs text-green-600 flex items-center gap-1">
               <Check className="w-4 h-4" />
@@ -649,6 +649,20 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
               Unsaved changes
             </span>
           )}
+          {availableTemplates.length > 0 && (
+            <button
+              onClick={() => setShowTemplateOptions(!showTemplateOptions)}
+              className="px-3 py-1.5 text-xs font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+            >
+              Load from Template
+            </button>
+          )}
+          <button
+            onClick={() => setShowSaveAsTemplate(true)}
+            className="px-3 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Save as Template
+          </button>
         </div>
       </div>
 
@@ -696,49 +710,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         </div>
       )}
 
-      {availableTemplates.length > 0 && (
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <h4 className="text-sm font-medium text-purple-900 mb-1">Load from Template</h4>
-              <p className="text-xs text-purple-700">
-                Load a saved template to quickly fill out this form
-              </p>
-            </div>
-            <button
-              onClick={() => setShowTemplateOptions(!showTemplateOptions)}
-              className="px-3 py-1.5 text-xs font-medium bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors"
-            >
-              {showTemplateOptions ? 'Hide' : 'Show Templates'}
-            </button>
-          </div>
-
-          {showTemplateOptions && (
-            <div className="mt-3 space-y-2 max-h-48 overflow-y-auto">
-              {availableTemplates.map(template => (
-                <button
-                  key={template.id}
-                  onClick={() => loadFromTemplate(template.id)}
-                  disabled={loadingTemplate}
-                  className="w-full flex items-center justify-between p-2 bg-white border border-purple-200 rounded hover:bg-purple-50 transition-colors text-left disabled:opacity-50"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">{template.template_name}</p>
-                    <p className="text-xs text-gray-500">
-                      Last updated: {new Date(template.updated_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                  {loadingTemplate ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
-                  ) : (
-                    <Download className="w-4 h-4 text-purple-600" />
-                  )}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
       {saveError && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
@@ -749,24 +720,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
           </div>
         </div>
       )}
-
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <h4 className="text-sm font-medium text-green-900 mb-1">Save as Template</h4>
-            <p className="text-xs text-green-700">
-              Save this intake form as a reusable template for future events
-            </p>
-          </div>
-          <button
-            onClick={() => setShowSaveAsTemplate(true)}
-            className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
-          >
-            <FileStack className="w-4 h-4" />
-            Save Template
-          </button>
-        </div>
-      </div>
 
       <div className="space-y-4">
         {templates.map(label => (
@@ -861,6 +814,56 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
                 className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {saving ? 'Saving...' : 'Confirm Save'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showTemplateOptions && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900">Load from Template</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Choose a saved template to fill out this form
+              </p>
+            </div>
+
+            <div className="p-6">
+              <div className="space-y-2 max-h-96 overflow-y-auto">
+                {availableTemplates.map(template => (
+                  <button
+                    key={template.id}
+                    onClick={() => {
+                      loadFromTemplate(template.id);
+                      setShowTemplateOptions(false);
+                    }}
+                    disabled={loadingTemplate}
+                    className="w-full flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors text-left disabled:opacity-50"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">{template.template_name}</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Last updated: {new Date(template.updated_at).toLocaleDateString()}
+                      </p>
+                    </div>
+                    {loadingTemplate ? (
+                      <Loader2 className="w-4 h-4 animate-spin text-blue-600 ml-3 flex-shrink-0" />
+                    ) : (
+                      <Download className="w-4 h-4 text-blue-600 ml-3 flex-shrink-0" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex items-center justify-end">
+              <button
+                onClick={() => setShowTemplateOptions(false)}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                Cancel
               </button>
             </div>
           </div>
