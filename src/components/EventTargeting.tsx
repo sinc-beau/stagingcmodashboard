@@ -223,17 +223,37 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
     try {
       const { data } = await supabase
         .from('event_targeting_data')
-        .select('event_id, event_name, updated_at')
+        .select('*')
         .eq('sponsor_id', sponsorId)
         .neq('event_id', eventId)
         .not('technologies', 'is', null)
         .order('updated_at', { ascending: false })
-        .limit(10);
+        .limit(20);
 
       if (data) {
-        setPreviousEvents(data.filter(event => {
-          return event.event_id && event.event_name && event.updated_at;
-        }));
+        const fullyCompletedEvents = data.filter(event => {
+          if (!event.event_id || !event.event_name || !event.updated_at) return false;
+
+          const hasMeaningfulTechnologies = event.technologies?.some((tech: TargetingItem) =>
+            tech.relevance !== 'not_relevant'
+          );
+
+          const hasMeaningfulSeniority = event.seniority_levels?.some((level: TargetingItem) =>
+            level.relevance !== 'not_relevant'
+          );
+
+          const hasMeaningfulJobTitles = event.job_titles?.some((job: TargetingItem) =>
+            job.relevance !== 'not_relevant'
+          );
+
+          return hasMeaningfulTechnologies && hasMeaningfulSeniority && hasMeaningfulJobTitles;
+        });
+
+        setPreviousEvents(fullyCompletedEvents.slice(0, 10).map(event => ({
+          event_id: event.event_id,
+          event_name: event.event_name,
+          updated_at: event.updated_at
+        })));
       }
     } catch (error) {
       console.error('Error loading previous events:', error);
@@ -665,24 +685,35 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
-        {hasUnsavedChanges && (
-          <button
-            onClick={handleDiscardChanges}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            Discard Changes
-          </button>
-        )}
-        <button
-          onClick={handleSaveClick}
-          disabled={!hasUnsavedChanges || saving}
-          className="flex items-center gap-2 px-6 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Save className="w-4 h-4" />
-          {saving ? 'Saving...' : 'Save Changes'}
-        </button>
-      </div>
+      {hasUnsavedChanges && (
+        <div className="fixed bottom-6 right-6 z-40">
+          <div className="bg-white rounded-lg shadow-2xl border border-gray-300 p-4 flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-orange-600" />
+              <span className="text-sm font-medium text-gray-900">
+                You have unsaved changes
+              </span>
+            </div>
+            <div className="h-6 w-px bg-gray-300"></div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDiscardChanges}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Discard
+              </button>
+              <button
+                onClick={handleSaveClick}
+                disabled={saving}
+                className="flex items-center gap-2 px-6 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Save className="w-4 h-4" />
+                {saving ? 'Saving...' : 'Save Changes'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showSaveConfirm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
