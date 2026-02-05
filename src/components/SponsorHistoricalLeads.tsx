@@ -11,7 +11,10 @@ interface HistoricalAttendee {
   title: string | null;
   attendance_status: string;
   event_name: string;
+  event_type: string | null;
   event_date: string | null;
+  source_database: string | null;
+  notes: string | null;
   created_at: string;
 }
 
@@ -109,14 +112,6 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     setExpandedEvents(newExpanded);
   };
 
-  const expandAll = () => {
-    setExpandedEvents(new Set(eventGroups.map(g => g.eventName)));
-  };
-
-  const collapseAll = () => {
-    setExpandedEvents(new Set());
-  };
-
   const getStatusLabel = (status: string): string => {
     switch (status) {
       case 'attended':
@@ -137,7 +132,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         return 'bg-green-100 text-green-700';
       case 'no_show':
       case 'cancelled':
-        return 'bg-red-100 text-red-700';
+        return 'bg-gray-100 text-gray-700';
       case 'pending':
         return 'bg-blue-100 text-blue-700';
       default:
@@ -149,7 +144,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     if (leads.length === 0) return;
 
     const csvContent = [
-      ['Event Name', 'Event Date', 'Name', 'Email', 'Phone', 'Company', 'Title', 'Status'].join(','),
+      ['Event Name', 'Event Date', 'Name', 'Email', 'Phone', 'Company', 'Title', 'Event Type', 'Source', 'Notes', 'Status'].join(','),
       ...leads.map(lead => [
         lead.event_name || '',
         lead.event_date || '',
@@ -158,6 +153,9 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         lead.phone || '',
         lead.company || '',
         lead.title || '',
+        lead.event_type || '',
+        lead.source_database || '',
+        lead.notes || '',
         getStatusLabel(lead.attendance_status)
       ].map(field => `"${field}"`).join(','))
     ].join('\n');
@@ -175,13 +173,16 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     if (eventGroup.leads.length === 0) return;
 
     const csvContent = [
-      ['Name', 'Email', 'Phone', 'Company', 'Title', 'Status'].join(','),
+      ['Name', 'Email', 'Phone', 'Company', 'Title', 'Event Type', 'Source', 'Notes', 'Status'].join(','),
       ...eventGroup.leads.map(lead => [
         lead.name || '',
         lead.email || '',
         lead.phone || '',
         lead.company || '',
         lead.title || '',
+        lead.event_type || '',
+        lead.source_database || '',
+        lead.notes || '',
         getStatusLabel(lead.attendance_status)
       ].map(field => `"${field}"`).join(','))
     ].join('\n');
@@ -258,27 +259,13 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={expandAll}
-            className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            Expand All
-          </button>
-          <button
-            onClick={collapseAll}
-            className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            Collapse All
-          </button>
-          <button
-            onClick={exportAllLeads}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-          >
-            <Download className="w-4 h-4" />
-            Export All
-          </button>
-        </div>
+        <button
+          onClick={exportAllLeads}
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+        >
+          <Download className="w-4 h-4" />
+          Export All
+        </button>
       </div>
 
       <div className="grid grid-cols-4 gap-4">
@@ -336,7 +323,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                         <Users className="w-3.5 h-3.5" />
                         {eventAttendedCount} attended
                       </span>
-                      <span className="flex items-center gap-1 text-red-600">
+                      <span className="flex items-center gap-1">
                         {eventCancelledCount} cancelled
                       </span>
                     </div>
@@ -381,6 +368,15 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                           Title
                         </th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Event Type
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Source
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Notes
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           <button
                             onClick={() => toggleSort('status')}
                             className="flex items-center gap-2 hover:text-gray-700 transition-colors"
@@ -408,6 +404,17 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <div className="text-gray-600 text-sm">{lead.title || '-'}</div>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <div className="text-gray-600 text-sm capitalize">{lead.event_type || '-'}</div>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <div className="text-gray-600 text-sm capitalize">{lead.source_database || '-'}</div>
+                          </td>
+                          <td className="px-4 py-3">
+                            <div className="text-gray-600 text-sm max-w-xs truncate" title={lead.notes || undefined}>
+                              {lead.notes || '-'}
+                            </div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusStyle(lead.attendance_status)}`}>
