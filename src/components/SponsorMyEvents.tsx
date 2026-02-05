@@ -205,7 +205,8 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredEvents.map((event) => {
-                const hasMinimum = event.minimum_attendees && event.minimum_attendees > 0;
+                const isForum = event.event_type === 'forum';
+                const hasMinimum = !isForum && event.minimum_attendees && event.minimum_attendees > 0;
                 const hasAttendees = event.attendee_count !== undefined && event.attendee_count > 0;
                 const showDelivery = hasMinimum;
                 const isPreEvent = event.event_date && new Date(event.event_date) > new Date();
