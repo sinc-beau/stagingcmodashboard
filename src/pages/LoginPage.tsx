@@ -223,10 +223,9 @@ export function LoginPage() {
         <div className="text-center mb-8">
           <div className="mb-6">
             <img
-              src="https://sincusa.com/wp-content/uploads/2025/04/Component-1.svg"
+              src="/sinc.svg"
               alt="SINC"
               className="h-16 mx-auto"
-              crossOrigin="anonymous"
             />
           </div>
           <h1 className="text-3xl font-heading font-bold text-sinc-gray-dark mb-2">Welcome Back</h1>
