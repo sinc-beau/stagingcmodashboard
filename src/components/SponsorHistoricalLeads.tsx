@@ -340,11 +340,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Total Events</p>
-          <p className="text-2xl font-bold text-gray-900">{allEventGroups.length}</p>
-        </div>
+      <div className="grid grid-cols-4 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Avg Dinner Attendees</p>
           <p className="text-2xl font-bold text-gray-900">{avgDinnerAttendees.toFixed(1)}</p>
@@ -364,6 +360,13 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           <p className="text-sm text-gray-600 mb-1">Overall Delivery %</p>
           <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
           <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events (non-forum)</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-indigo-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Total Events</p>
+          <p className="text-2xl font-bold text-indigo-700">{allEventGroups.length}</p>
         </div>
         <div className="bg-indigo-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Leads Generated</p>
