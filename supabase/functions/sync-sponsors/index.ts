@@ -30,6 +30,9 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    const body = req.method === 'POST' ? await req.json().catch(() => ({})) : {};
+    const preview = body.preview === true;
+
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -116,6 +119,9 @@ Deno.serve(async (req: Request) => {
       });
     }
 
+    const newSponsors: any[] = [];
+    const updatedSponsors: any[] = [];
+
     for (const [key, sponsor] of sponsorsToSync) {
       const existing = existingSponsorMap.get(key);
 
@@ -127,29 +133,51 @@ Deno.serve(async (req: Request) => {
         if (sponsor.url && !existing.url) updates.url = sponsor.url;
 
         if (Object.keys(updates).length > 0) {
-          await supabase
-            .from('sponsors')
-            .update(updates)
-            .eq('id', existing.id);
+          updatedSponsors.push({
+            name: sponsor.name,
+            updates: Object.keys(updates)
+          });
+
+          if (!preview) {
+            await supabase
+              .from('sponsors')
+              .update(updates)
+              .eq('id', existing.id);
+          }
         }
       } else {
-        await supabase
-          .from('sponsors')
-          .insert({
-            name: sponsor.name,
-            url: sponsor.url,
-            domain: sponsor.domain,
-            logo_url: sponsor.logo_url,
-            about: sponsor.about,
-            sinc_rep: sponsor.sinc_rep,
-          });
+        newSponsors.push({
+          name: sponsor.name,
+          url: sponsor.url,
+          logo_url: sponsor.logo_url,
+          sinc_rep: sponsor.sinc_rep
+        });
+
+        if (!preview) {
+          await supabase
+            .from('sponsors')
+            .insert({
+              name: sponsor.name,
+              url: sponsor.url,
+              domain: sponsor.domain,
+              logo_url: sponsor.logo_url,
+              about: sponsor.about,
+              sinc_rep: sponsor.sinc_rep,
+            });
+        }
       }
     }
 
-    console.log('Sponsor sync complete:', { synced: sponsorsToSync.size });
+    console.log('Sponsor sync complete:', { synced: sponsorsToSync.size, preview });
 
     return new Response(
-      JSON.stringify({ success: true, synced: sponsorsToSync.size }),
+      JSON.stringify({
+        success: true,
+        preview,
+        synced: sponsorsToSync.size,
+        newSponsors,
+        updatedSponsors
+      }),
       {
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

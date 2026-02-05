@@ -73,6 +73,9 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    const body = req.method === 'POST' ? await req.json().catch(() => ({})) : {};
+    const preview = body.preview === true;
+
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -227,6 +230,9 @@ Deno.serve(async (req: Request) => {
     }
 
     const eventIdMap = new Map<string, string>();
+    const newEvents: any[] = [];
+    const updatedEvents: any[] = [];
+    const newSponsorEvents: any[] = [];
 
     for (const [eventKey, eventData] of eventsMap) {
       const lookupKey = `${eventData.source_database}-${eventData.source_event_id}`;
@@ -235,86 +241,129 @@ Deno.serve(async (req: Request) => {
       let eventId: string;
 
       if (existingId) {
-        const { error: updateError } = await supabase
-          .from('events')
-          .update({
-            event_name: eventData.event_name,
-            event_type: eventData.event_type,
-            event_date: eventData.event_date,
-            event_location: eventData.event_location,
-            event_venue: eventData.event_venue,
-            event_brand: eventData.event_brand,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', existingId);
+        updatedEvents.push({
+          event_name: eventData.event_name,
+          event_type: eventData.event_type,
+          event_date: eventData.event_date,
+          event_location: eventData.event_location,
+          sponsors_count: eventData.sponsors.length
+        });
 
-        if (updateError) {
-          console.error('Error updating event:', updateError);
-          continue;
+        if (!preview) {
+          const { error: updateError } = await supabase
+            .from('events')
+            .update({
+              event_name: eventData.event_name,
+              event_type: eventData.event_type,
+              event_date: eventData.event_date,
+              event_location: eventData.event_location,
+              event_venue: eventData.event_venue,
+              event_brand: eventData.event_brand,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', existingId);
+
+          if (updateError) {
+            console.error('Error updating event:', updateError);
+            continue;
+          }
         }
         eventId = existingId;
       } else {
-        const { data: newEvent, error: insertError } = await supabase
-          .from('events')
-          .insert({
-            event_name: eventData.event_name,
-            event_type: eventData.event_type,
-            event_date: eventData.event_date,
-            event_location: eventData.event_location,
-            event_venue: eventData.event_venue,
-            event_brand: eventData.event_brand,
-            source_event_id: eventData.source_event_id,
-            source_database: eventData.source_database,
-            minimum_attendees: eventData.minimum_attendees
-          })
-          .select('id')
-          .single();
+        newEvents.push({
+          event_name: eventData.event_name,
+          event_type: eventData.event_type,
+          event_date: eventData.event_date,
+          event_location: eventData.event_location,
+          sponsors_count: eventData.sponsors.length
+        });
 
-        if (insertError || !newEvent) {
-          console.error('Error inserting event:', insertError, eventData);
-          continue;
+        if (!preview) {
+          const { data: newEvent, error: insertError } = await supabase
+            .from('events')
+            .insert({
+              event_name: eventData.event_name,
+              event_type: eventData.event_type,
+              event_date: eventData.event_date,
+              event_location: eventData.event_location,
+              event_venue: eventData.event_venue,
+              event_brand: eventData.event_brand,
+              source_event_id: eventData.source_event_id,
+              source_database: eventData.source_database,
+              minimum_attendees: eventData.minimum_attendees
+            })
+            .select('id')
+            .single();
+
+          if (insertError || !newEvent) {
+            console.error('Error inserting event:', insertError, eventData);
+            continue;
+          }
+          eventId = newEvent.id;
+        } else {
+          eventId = existingId || 'preview-id';
         }
-        eventId = newEvent.id;
       }
 
       eventIdMap.set(eventKey, eventId);
 
-      const { data: existingSponsorEvents, error: queryError } = await supabase
-        .from('sponsor_events')
-        .select('sponsor_id')
-        .eq('event_id', eventId);
+      if (!preview) {
+        const { data: existingSponsorEvents, error: queryError } = await supabase
+          .from('sponsor_events')
+          .select('sponsor_id')
+          .eq('event_id', eventId);
 
-      if (queryError) {
-        console.error('Error querying sponsor_events:', queryError);
-        continue;
-      }
+        if (queryError) {
+          console.error('Error querying sponsor_events:', queryError);
+          continue;
+        }
 
-      const existingSponsorIds = new Set(
-        existingSponsorEvents?.map(se => se.sponsor_id) || []
-      );
+        const existingSponsorIds = new Set(
+          existingSponsorEvents?.map(se => se.sponsor_id) || []
+        );
 
-      for (const sponsorId of eventData.sponsors) {
-        if (!existingSponsorIds.has(sponsorId)) {
-          const { error: insertError } = await supabase
-            .from('sponsor_events')
-            .insert({
-              sponsor_id: sponsorId,
-              event_id: eventId,
-              is_published: true
-            });
+        for (const sponsorId of eventData.sponsors) {
+          if (!existingSponsorIds.has(sponsorId)) {
+            const { error: insertError } = await supabase
+              .from('sponsor_events')
+              .insert({
+                sponsor_id: sponsorId,
+                event_id: eventId,
+                is_published: true
+              });
 
-          if (insertError) {
-            console.error('Error inserting sponsor_event:', insertError, { sponsorId, eventId });
-          } else {
-            console.log('Successfully created sponsor_event:', { sponsorId, eventId, event_name: eventData.event_name });
+            if (insertError) {
+              console.error('Error inserting sponsor_event:', insertError, { sponsorId, eventId });
+            } else {
+              console.log('Successfully created sponsor_event:', { sponsorId, eventId, event_name: eventData.event_name });
+            }
           }
         }
+      } else {
+        const sponsorNames = await Promise.all(
+          eventData.sponsors.map(async (sponsorId) => {
+            const sponsor = localSponsors.find(s => s.id === sponsorId);
+            return sponsor?.name || 'Unknown';
+          })
+        );
+
+        newSponsorEvents.push({
+          event_name: eventData.event_name,
+          sponsors: sponsorNames
+        });
       }
     }
 
-    console.log('Sponsor events sync complete');
+    console.log('Sponsor events sync complete:', { preview });
     return new Response(
-      JSON.stringify({ success: true, events: eventsMap.size }),
+      JSON.stringify({
+        success: true,
+        preview,
+        events: eventsMap.size,
+        newEvents,
+        updatedEvents,
+        newSponsorEvents
+      }),
       {
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

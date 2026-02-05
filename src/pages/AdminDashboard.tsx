@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { UserManagement } from '../components/UserManagement';
+import { SyncPreviewModal } from '../components/SyncPreviewModal';
 import {
   Building2,
   Users,
@@ -59,6 +60,9 @@ function AdminDashboardContent() {
   const [syncing, setSyncing] = useState(false);
   const [showViewMenu, setShowViewMenu] = useState(false);
   const [showUserManagement, setShowUserManagement] = useState(false);
+  const [showSyncPreview, setShowSyncPreview] = useState(false);
+  const [syncPreviewData, setSyncPreviewData] = useState<any>(null);
+  const [loadingPreview, setLoadingPreview] = useState(false);
 
   useEffect(() => {
     loadDashboardData();
@@ -163,7 +167,9 @@ function AdminDashboardContent() {
   };
 
   const handleSync = async () => {
-    setSyncing(true);
+    setLoadingPreview(true);
+    setShowSyncPreview(true);
+
     try {
       const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
       const headers = {
@@ -171,13 +177,70 @@ function AdminDashboardContent() {
         'Content-Type': 'application/json',
       };
 
-      await fetch(`${apiUrl}/sync-sponsors`, { method: 'POST', headers });
-      await fetch(`${apiUrl}/sync-events`, { method: 'POST', headers });
+      const [sponsorsResponse, eventsResponse] = await Promise.all([
+        fetch(`${apiUrl}/sync-sponsors`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ preview: true })
+        }),
+        fetch(`${apiUrl}/sync-events`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ preview: true })
+        })
+      ]);
+
+      const [sponsorsData, eventsData] = await Promise.all([
+        sponsorsResponse.json(),
+        eventsResponse.json()
+      ]);
+
+      setSyncPreviewData({
+        sponsors: {
+          newSponsors: sponsorsData.newSponsors || [],
+          updatedSponsors: sponsorsData.updatedSponsors || []
+        },
+        events: {
+          newEvents: eventsData.newEvents || [],
+          updatedEvents: eventsData.updatedEvents || [],
+          newSponsorEvents: eventsData.newSponsorEvents || []
+        }
+      });
+    } catch (error) {
+      console.error('Preview error:', error);
+    } finally {
+      setLoadingPreview(false);
+    }
+  };
+
+  const handleConfirmSync = async () => {
+    setShowSyncPreview(false);
+    setSyncing(true);
+
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
+      const headers = {
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+      };
+
+      await fetch(`${apiUrl}/sync-sponsors`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ preview: false })
+      });
+      await fetch(`${apiUrl}/sync-events`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ preview: false })
+      });
+
       await loadDashboardData();
     } catch (error) {
       console.error('Sync error:', error);
     } finally {
       setSyncing(false);
+      setSyncPreviewData(null);
     }
   };
 
@@ -404,6 +467,18 @@ function AdminDashboardContent() {
 
       {showUserManagement && (
         <UserManagement onClose={() => setShowUserManagement(false)} />
+      )}
+
+      {showSyncPreview && (
+        <SyncPreviewModal
+          data={syncPreviewData}
+          loading={loadingPreview}
+          onClose={() => {
+            setShowSyncPreview(false);
+            setSyncPreviewData(null);
+          }}
+          onConfirm={handleConfirmSync}
+        />
       )}
     </div>
   );
