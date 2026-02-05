@@ -21,6 +21,7 @@ interface HistoricalAttendee {
 interface EventGroup {
   eventName: string;
   eventDate: string | null;
+  eventType: string | null;
   leads: HistoricalAttendee[];
 }
 
@@ -80,6 +81,14 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     }
   };
 
+  const getMinimumAttendees = (eventType: string | null): number => {
+    if (!eventType) return 0;
+    const type = eventType.toLowerCase();
+    if (type === 'dinner') return 8;
+    if (type === 'vrt') return 6;
+    return 0;
+  };
+
   const groupLeadsByEvent = () => {
     const filtered = leads.filter(lead => {
       if (!searchTerm) return true;
@@ -106,6 +115,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         acc.push({
           eventName: lead.event_name || 'Unknown Event',
           eventDate: lead.event_date,
+          eventType: lead.event_type,
           leads: [lead]
         });
       }
@@ -249,6 +259,16 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
   const cancelledCount = leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
   const waitlistedCount = leads.filter(l => l.attendance_status === 'waitlisted').length;
 
+  const eventsWithMinimums = eventGroups.filter(eg => getMinimumAttendees(eg.eventType) > 0);
+  const totalMinimumRequired = eventsWithMinimums.reduce((sum, eg) => sum + getMinimumAttendees(eg.eventType), 0);
+  const totalAttended = eventsWithMinimums.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0);
+  const overallDeliveryRate = totalMinimumRequired > 0 ? (totalAttended / totalMinimumRequired) * 100 : 0;
+
+  const dinnerEvents = eventGroups.filter(eg => eg.eventType?.toLowerCase() === 'dinner');
+  const vrtEvents = eventGroups.filter(eg => eg.eventType?.toLowerCase() === 'vrt');
+  const avgDinnerAttendees = dinnerEvents.length > 0 ? dinnerEvents.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0) / dinnerEvents.length : 0;
+  const avgVrtAttendees = vrtEvents.length > 0 ? vrtEvents.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0) / vrtEvents.length : 0;
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -294,20 +314,24 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           <p className="text-2xl font-bold text-gray-900">{eventGroups.length}</p>
         </div>
         <div className="bg-blue-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Total Leads</p>
-          <p className="text-2xl font-bold text-gray-900">{totalLeads}</p>
+          <p className="text-sm text-gray-600 mb-1">Avg Dinner Attendees</p>
+          <p className="text-2xl font-bold text-gray-900">{avgDinnerAttendees.toFixed(1)}</p>
+          <p className="text-xs text-gray-500 mt-1">{dinnerEvents.length} events</p>
+        </div>
+        <div className="bg-blue-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Avg VRT Attendees</p>
+          <p className="text-2xl font-bold text-gray-900">{avgVrtAttendees.toFixed(1)}</p>
+          <p className="text-xs text-gray-500 mt-1">{vrtEvents.length} events</p>
         </div>
         <div className="bg-green-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Attended</p>
-          <p className="text-2xl font-bold text-green-700">{attendedCount}</p>
+          <p className="text-sm text-gray-600 mb-1">Total Delivery</p>
+          <p className="text-2xl font-bold text-green-700">{totalAttended} / {totalMinimumRequired}</p>
+          <p className="text-xs text-gray-500 mt-1">attended / minimum</p>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Cancelled</p>
-          <p className="text-2xl font-bold text-gray-700">{cancelledCount}</p>
-        </div>
-        <div className="bg-gray-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Waitlisted</p>
-          <p className="text-2xl font-bold text-gray-700">{waitlistedCount}</p>
+        <div className="bg-green-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Overall Delivery %</p>
+          <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
+          <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events</p>
         </div>
       </div>
 
@@ -319,6 +343,8 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           const eventAttendedCount = eventGroup.leads.filter(l => l.attendance_status === 'attended').length;
           const eventCancelledCount = eventGroup.leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
           const eventWaitlistedCount = eventGroup.leads.filter(l => l.attendance_status === 'waitlisted').length;
+          const minimumRequired = getMinimumAttendees(eventGroup.eventType);
+          const deliveryRate = minimumRequired > 0 ? (eventAttendedCount / minimumRequired) * 100 : 0;
 
           return (
             <div key={eventKey} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
@@ -345,16 +371,27 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                           })}
                         </span>
                       )}
-                      <span className="flex items-center gap-1 text-green-700">
+                      <span className="flex items-center gap-1 text-green-700 font-medium">
                         <Users className="w-3.5 h-3.5" />
                         {eventAttendedCount} attended
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-1 text-gray-500">
                         {eventCancelledCount} cancelled
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-1 text-gray-500">
                         {eventWaitlistedCount} waitlisted
                       </span>
+                      {minimumRequired > 0 && (
+                        <>
+                          <span className="text-gray-400">|</span>
+                          <span className="flex items-center gap-1">
+                            Min: {minimumRequired}
+                          </span>
+                          <span className={`flex items-center gap-1 font-medium ${deliveryRate >= 100 ? 'text-green-700' : 'text-orange-600'}`}>
+                            {deliveryRate.toFixed(0)}% delivery
+                          </span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
