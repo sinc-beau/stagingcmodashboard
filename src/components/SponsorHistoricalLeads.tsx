@@ -340,7 +340,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-7 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
           <p className="text-2xl font-bold text-gray-900">{allEventGroups.length}</p>
@@ -358,12 +358,20 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         <div className="bg-green-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Delivery</p>
           <p className="text-2xl font-bold text-green-700">{totalAttended} / {totalMinimumRequired}</p>
-          <p className="text-xs text-gray-500 mt-1">attended / minimum</p>
+          <p className="text-xs text-gray-500 mt-1">attended / minimum (non-forum)</p>
         </div>
         <div className="bg-green-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Overall Delivery %</p>
           <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
-          <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events</p>
+          <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events (non-forum)</p>
+        </div>
+        <div className="bg-indigo-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Total Leads Generated</p>
+          <p className="text-2xl font-bold text-indigo-700">{leads.length}</p>
+        </div>
+        <div className="bg-indigo-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Total Attendees</p>
+          <p className="text-2xl font-bold text-indigo-700">{leads.filter(l => l.attendance_status === 'attended').length}</p>
         </div>
       </div>
 
