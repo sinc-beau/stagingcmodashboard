@@ -78,14 +78,17 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     });
 
     const grouped = filtered.reduce((acc, lead) => {
-      const eventName = lead.event_name || 'Unknown Event';
-      const existing = acc.find(g => g.eventName === eventName);
+      const eventKey = `${lead.event_name || 'Unknown Event'}_${lead.event_date || 'no-date'}`;
+      const existing = acc.find(g =>
+        g.eventName === (lead.event_name || 'Unknown Event') &&
+        g.eventDate === lead.event_date
+      );
 
       if (existing) {
         existing.leads.push(lead);
       } else {
         acc.push({
-          eventName,
+          eventName: lead.event_name || 'Unknown Event',
           eventDate: lead.event_date,
           leads: [lead]
         });
@@ -103,12 +106,12 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     setEventGroups(grouped);
   };
 
-  const toggleEvent = (eventName: string) => {
+  const toggleEvent = (eventKey: string) => {
     const newExpanded = new Set(expandedEvents);
-    if (newExpanded.has(eventName)) {
-      newExpanded.delete(eventName);
+    if (newExpanded.has(eventKey)) {
+      newExpanded.delete(eventKey);
     } else {
-      newExpanded.add(eventName);
+      newExpanded.add(eventKey);
     }
     setExpandedEvents(newExpanded);
   };
@@ -290,15 +293,16 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
 
       <div className="space-y-3">
         {eventGroups.map((eventGroup) => {
-          const isExpanded = expandedEvents.has(eventGroup.eventName);
+          const eventKey = `${eventGroup.eventName}_${eventGroup.eventDate || 'no-date'}`;
+          const isExpanded = expandedEvents.has(eventKey);
           const sortedLeads = sortLeads(eventGroup.leads);
           const eventAttendedCount = eventGroup.leads.filter(l => l.attendance_status === 'attended').length;
           const eventCancelledCount = eventGroup.leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
 
           return (
-            <div key={eventGroup.eventName} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
+            <div key={eventKey} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
               <button
-                onClick={() => toggleEvent(eventGroup.eventName)}
+                onClick={() => toggleEvent(eventKey)}
                 className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
               >
                 <div className="flex items-center gap-3">
