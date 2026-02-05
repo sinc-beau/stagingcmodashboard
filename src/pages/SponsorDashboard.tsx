@@ -775,10 +775,6 @@ function SponsorDashboardContent() {
               ) : (
                 <Building2 className="w-8 h-8 text-blue-600" />
               )}
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">{sponsor?.name || 'Sponsor Portal'}</h1>
-                <p className="text-xs text-gray-500">{sponsorUser?.email}</p>
-              </div>
             </div>
             <div className="flex items-center gap-3">
               <button
@@ -1017,29 +1013,6 @@ function SponsorDashboardContent() {
           </div>
         </div>
 
-        {sponsor && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Company Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Company Name</p>
-                <p className="font-medium text-gray-900">{sponsor.name}</p>
-              </div>
-              {sponsor.sinc_rep && (
-                <div>
-                  <p className="text-sm text-gray-500 mb-1">SINC Representative</p>
-                  <p className="font-medium text-gray-900">{sponsor.sinc_rep}</p>
-                </div>
-              )}
-              {sponsor.about && (
-                <div className="md:col-span-2">
-                  <p className="text-sm text-gray-500 mb-1">About</p>
-                  <p className="text-gray-700">{sponsor.about}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
