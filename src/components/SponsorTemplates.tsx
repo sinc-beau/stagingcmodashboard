@@ -10,6 +10,9 @@ interface IntakeFormTemplate {
   created_at: string;
   updated_at: string;
   created_by_email: string;
+  company_name?: string;
+  company_url?: string;
+  company_about?: string;
 }
 
 interface TargetProfileTemplate {
@@ -24,6 +27,9 @@ interface TargetProfileTemplate {
   created_at: string;
   updated_at: string;
   created_by_email: string;
+  company_name?: string;
+  company_url?: string;
+  company_about?: string;
 }
 
 interface SponsorTemplatesProps {
@@ -38,14 +44,14 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
   const [intakeTemplates, setIntakeTemplates] = useState<IntakeFormTemplate[]>([]);
   const [targetTemplates, setTargetTemplates] = useState<TargetProfileTemplate[]>([]);
   const [loading, setLoading] = useState(true);
-  const [eventTypeFilter, setEventTypeFilter] = useState<string>('all');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [templateToDelete, setTemplateToDelete] = useState<{ id: string; name: string; type: TemplateSection } | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newTemplateName, setNewTemplateName] = useState('');
-  const [newTemplateEventType, setNewTemplateEventType] = useState('forum');
   const [creating, setCreating] = useState(false);
+  const [editingTemplate, setEditingTemplate] = useState<IntakeFormTemplate | TargetProfileTemplate | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const eventTypes = [
     { value: 'forum', label: 'Forum' },
@@ -172,15 +178,28 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
     setCreating(true);
     try {
+      const { data: sponsorData } = await supabase
+        .from('sponsors')
+        .select('name, url, about')
+        .eq('id', sponsorId)
+        .maybeSingle();
+
+      const companyInfo = {
+        company_name: sponsorData?.name || '',
+        company_url: sponsorData?.url || '',
+        company_about: sponsorData?.about || ''
+      };
+
       if (activeSection === 'intake') {
         const { error } = await supabase
           .from('intake_form_templates')
           .insert({
             sponsor_id: sponsorId,
             template_name: newTemplateName.trim(),
-            event_type: newTemplateEventType,
+            event_type: 'all',
             form_data: {},
-            created_by_email: userEmail
+            created_by_email: userEmail,
+            ...companyInfo
           });
 
         if (error) throw error;
@@ -190,13 +209,14 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
           .insert({
             sponsor_id: sponsorId,
             template_name: newTemplateName.trim(),
-            event_type: newTemplateEventType,
+            event_type: 'all',
             technologies: [],
             other_technologies: '',
             seniority_levels: [],
             job_titles: [],
             excluded_titles: '',
-            created_by_email: userEmail
+            created_by_email: userEmail,
+            ...companyInfo
           });
 
         if (error) throw error;
@@ -205,7 +225,6 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
       await loadTemplates();
       setShowCreateModal(false);
       setNewTemplateName('');
-      setNewTemplateEventType('forum');
     } catch (error) {
       console.error('Error creating template:', error);
       alert('Failed to create template');
@@ -214,14 +233,38 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
     }
   };
 
-  const getFilteredIntakeTemplates = () => {
-    if (eventTypeFilter === 'all') return intakeTemplates;
-    return intakeTemplates.filter(t => t.event_type === eventTypeFilter);
+  const handleEditClick = (template: IntakeFormTemplate | TargetProfileTemplate, type: TemplateSection) => {
+    setEditingTemplate(template);
+    setActiveSection(type);
+    setShowEditModal(true);
   };
 
-  const getFilteredTargetTemplates = () => {
-    if (eventTypeFilter === 'all') return targetTemplates;
-    return targetTemplates.filter(t => t.event_type === eventTypeFilter);
+  const handleUpdateTemplate = async () => {
+    if (!editingTemplate || !newTemplateName.trim()) {
+      alert('Please enter a template name');
+      return;
+    }
+
+    setCreating(true);
+    try {
+      const table = activeSection === 'intake' ? 'intake_form_templates' : 'target_profile_templates';
+      const { error } = await supabase
+        .from(table)
+        .update({ template_name: newTemplateName.trim() })
+        .eq('id', editingTemplate.id);
+
+      if (error) throw error;
+
+      await loadTemplates();
+      setShowEditModal(false);
+      setEditingTemplate(null);
+      setNewTemplateName('');
+    } catch (error) {
+      console.error('Error updating template:', error);
+      alert('Failed to update template');
+    } finally {
+      setCreating(false);
+    }
   };
 
   const getEventTypeLabel = (eventType: string) => {
@@ -249,9 +292,6 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
       </div>
     );
   }
-
-  const filteredIntakeTemplates = getFilteredIntakeTemplates();
-  const filteredTargetTemplates = getFilteredTargetTemplates();
 
   return (
     <div className="space-y-6">
@@ -291,20 +331,7 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
         </nav>
       </div>
 
-      <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-700">Filter by Event Type:</span>
-          <select
-            value={eventTypeFilter}
-            onChange={(e) => setEventTypeFilter(e.target.value)}
-            className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="all">All Event Types</option>
-            {eventTypes.map(type => (
-              <option key={type.value} value={type.value}>{type.label}</option>
-            ))}
-          </select>
-        </div>
+      <div className="flex items-center justify-end bg-gray-50 rounded-lg p-4">
         <button
           onClick={() => setShowCreateModal(true)}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
@@ -316,19 +343,17 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
       {activeSection === 'intake' && (
         <div>
-          {filteredIntakeTemplates.length === 0 ? (
+          {intakeTemplates.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
               <FileStack className="w-12 h-12 text-gray-300 mx-auto mb-3" />
               <p className="text-gray-900 font-medium mb-1">No intake form templates found</p>
               <p className="text-sm text-gray-500">
-                {eventTypeFilter === 'all'
-                  ? 'Create your first template to get started'
-                  : `No templates for ${getEventTypeLabel(eventTypeFilter)} events`}
+                Create your first template to get started
               </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredIntakeTemplates.map(template => (
+              {intakeTemplates.map(template => (
                 <div
                   key={template.id}
                   className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow"
@@ -336,9 +361,6 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 mb-2">{template.template_name}</h3>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getEventTypeBadgeColor(template.event_type)}`}>
-                        {getEventTypeLabel(template.event_type)}
-                      </span>
                     </div>
                   </div>
 
@@ -352,6 +374,10 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
                   <div className="flex items-center gap-2 pt-3 border-t border-gray-200">
                     <button
+                      onClick={() => {
+                        setNewTemplateName(template.template_name);
+                        handleEditClick(template, 'intake');
+                      }}
                       className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition-colors"
                     >
                       <Edit2 className="w-3 h-3" />
@@ -380,19 +406,17 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
       {activeSection === 'targeting' && (
         <div>
-          {filteredTargetTemplates.length === 0 ? (
+          {targetTemplates.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
               <Target className="w-12 h-12 text-gray-300 mx-auto mb-3" />
               <p className="text-gray-900 font-medium mb-1">No target profile templates found</p>
               <p className="text-sm text-gray-500">
-                {eventTypeFilter === 'all'
-                  ? 'Create your first template to get started'
-                  : `No templates for ${getEventTypeLabel(eventTypeFilter)} events`}
+                Create your first template to get started
               </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredTargetTemplates.map(template => (
+              {targetTemplates.map(template => (
                 <div
                   key={template.id}
                   className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow"
@@ -400,9 +424,6 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 mb-2">{template.template_name}</h3>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getEventTypeBadgeColor(template.event_type)}`}>
-                        {getEventTypeLabel(template.event_type)}
-                      </span>
                     </div>
                   </div>
 
@@ -416,6 +437,10 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
 
                   <div className="flex items-center gap-2 pt-3 border-t border-gray-200">
                     <button
+                      onClick={() => {
+                        setNewTemplateName(template.template_name);
+                        handleEditClick(template, 'targeting');
+                      }}
                       className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 rounded hover:bg-blue-100 transition-colors"
                     >
                       <Edit2 className="w-3 h-3" />
@@ -511,24 +536,9 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Event Type
-                </label>
-                <select
-                  value={newTemplateEventType}
-                  onChange={(e) => setNewTemplateEventType(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  {eventTypes.map(type => (
-                    <option key={type.value} value={type.value}>{type.label}</option>
-                  ))}
-                </select>
-              </div>
-
               <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-xs text-blue-800">
-                  After creating, you can edit the template to add details, or load it when filling out event forms.
+                  Templates work across all event types. After creating, you can load it when filling out event forms.
                 </p>
               </div>
             </div>
@@ -538,7 +548,6 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                 onClick={() => {
                   setShowCreateModal(false);
                   setNewTemplateName('');
-                  setNewTemplateEventType('forum');
                 }}
                 disabled={creating}
                 className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
@@ -551,6 +560,56 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                 className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {creating ? 'Creating...' : 'Create Template'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEditModal && editingTemplate && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900">Edit Template</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Update the template name
+              </p>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Template Name
+                </label>
+                <input
+                  type="text"
+                  value={newTemplateName}
+                  onChange={(e) => setNewTemplateName(e.target.value)}
+                  placeholder="Enter template name"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  autoFocus
+                />
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex items-center justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowEditModal(false);
+                  setEditingTemplate(null);
+                  setNewTemplateName('');
+                }}
+                disabled={creating}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateTemplate}
+                disabled={creating || !newTemplateName.trim()}
+                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {creating ? 'Updating...' : 'Update Template'}
               </button>
             </div>
           </div>

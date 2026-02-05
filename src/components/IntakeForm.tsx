@@ -18,7 +18,6 @@ interface IntakeFormProps {
 
 interface SavedIntakeData {
   items: Record<string, IntakeItem>;
-  solution_provider_topic: string;
   updated_at: string | null;
 }
 
@@ -31,7 +30,6 @@ interface PreviousEvent {
 export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail }: IntakeFormProps) {
   const [items, setItems] = useState<Record<string, IntakeItem>>({});
   const [templates, setTemplates] = useState<string[]>([]);
-  const [solutionProviderTopic, setSolutionProviderTopic] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -61,18 +59,16 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
   useEffect(() => {
     if (!loading && lastSavedData) {
       const currentData = {
-        items,
-        solution_provider_topic: solutionProviderTopic
+        items
       };
 
       const hasChanges = JSON.stringify(currentData) !== JSON.stringify({
-        items: lastSavedData.items,
-        solution_provider_topic: lastSavedData.solution_provider_topic
+        items: lastSavedData.items
       });
 
       setHasUnsavedChanges(hasChanges);
     }
-  }, [items, solutionProviderTopic, lastSavedData, loading]);
+  }, [items, lastSavedData, loading]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -105,13 +101,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         .eq('event_id', eventId)
         .eq('sponsor_id', sponsorId);
 
-      const { data: sponsorEventData } = await supabase
-        .from('sponsor_events')
-        .select('solution_provider_topic')
-        .eq('sponsor_id', sponsorId)
-        .eq('event_id', eventId)
-        .maybeSingle();
-
       const itemsMap: Record<string, IntakeItem> = {};
 
       if (templateData) {
@@ -125,14 +114,10 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         });
       }
 
-      const solution_topic = sponsorEventData?.solution_provider_topic || '';
-
       setItems(itemsMap);
-      setSolutionProviderTopic(solution_topic);
 
       const savedData = {
         items: itemsMap,
-        solution_provider_topic: solution_topic,
         updated_at: existingItems?.[0]?.updated_at || null
       };
 
@@ -235,13 +220,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         .eq('sponsor_id', sponsorId)
         .eq('event_id', previousEventId);
 
-      const { data: previousSponsorEvent } = await supabase
-        .from('sponsor_events')
-        .select('solution_provider_topic')
-        .eq('sponsor_id', sponsorId)
-        .eq('event_id', previousEventId)
-        .maybeSingle();
-
       if (previousItems) {
         const newItems = { ...items };
         previousItems.forEach(prevItem => {
@@ -253,10 +231,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
           }
         });
         setItems(newItems);
-      }
-
-      if (previousSponsorEvent?.solution_provider_topic) {
-        setSolutionProviderTopic(previousSponsorEvent.solution_provider_topic);
       }
 
       setShowLoadOptions(false);
@@ -280,13 +254,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         changes[label] = { from: saved.notes || '', to: current.notes || '' };
       }
     });
-
-    if (solutionProviderTopic !== lastSavedData.solution_provider_topic) {
-      changes.solution_provider_topic = {
-        from: lastSavedData.solution_provider_topic || '',
-        to: solutionProviderTopic || ''
-      };
-    }
 
     return changes;
   };
@@ -339,16 +306,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
 
       if (itemsError) throw itemsError;
 
-      const { error: sponsorEventError } = await supabase
-        .from('sponsor_events')
-        .update({
-          solution_provider_topic: solutionProviderTopic || null
-        })
-        .eq('sponsor_id', sponsorId)
-        .eq('event_id', eventId);
-
-      if (sponsorEventError) throw sponsorEventError;
-
       const { error: logError } = await supabase
         .from('intake_form_change_log')
         .insert({
@@ -364,7 +321,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
 
       const newSavedData = {
         items,
-        solution_provider_topic: solutionProviderTopic,
         updated_at: new Date().toISOString()
       };
 
@@ -387,7 +343,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
     if (!lastSavedData) return;
 
     setItems(lastSavedData.items);
-    setSolutionProviderTopic(lastSavedData.solution_provider_topic);
     setHasUnsavedChanges(false);
   };
 
@@ -399,6 +354,12 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
 
     setSavingTemplate(true);
     try {
+      const { data: sponsorData } = await supabase
+        .from('sponsors')
+        .select('name, url, about')
+        .eq('id', sponsorId)
+        .maybeSingle();
+
       const formData: Record<string, any> = {};
 
       Object.entries(items).forEach(([label, item]) => {
@@ -407,18 +368,17 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
         }
       });
 
-      if (solutionProviderTopic && solutionProviderTopic.trim()) {
-        formData['solution_provider_topic'] = solutionProviderTopic;
-      }
-
       const { error } = await supabase
         .from('intake_form_templates')
         .insert({
           sponsor_id: sponsorId,
           template_name: templateName.trim(),
-          event_type: eventType,
+          event_type: 'all',
           form_data: formData,
-          created_by_email: userEmail
+          created_by_email: userEmail,
+          company_name: sponsorData?.name || '',
+          company_url: sponsorData?.url || '',
+          company_about: sponsorData?.about || ''
         });
 
       if (error) throw error;
@@ -556,19 +516,6 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
       </div>
 
       <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-2">
-            Solution Provider Topic / Presentation Title
-          </label>
-          <textarea
-            value={solutionProviderTopic}
-            onChange={(e) => setSolutionProviderTopic(e.target.value)}
-            rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-            placeholder="Enter the topic or title..."
-          />
-        </div>
-
         {templates.map(label => (
           <div key={label} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
             <div className="mb-2">
@@ -620,6 +567,9 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
             <div className="p-6 border-b border-gray-200">
               <h3 className="text-lg font-bold text-gray-900">Confirm Save</h3>
+              <p className="text-sm text-orange-600 font-medium mt-1">
+                You have unsaved changes
+              </p>
               <p className="text-sm text-gray-600 mt-1">
                 Your changes will be saved and logged for audit purposes
               </p>

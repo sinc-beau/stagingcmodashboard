@@ -448,26 +448,27 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
 
     setSavingTemplate(true);
     try {
-      const eventTypeResult = await supabase
-        .from('sponsor_events')
-        .select('events(event_type)')
-        .eq('id', eventId)
+      const { data: sponsorData } = await supabase
+        .from('sponsors')
+        .select('name, url, about')
+        .eq('id', sponsorId)
         .maybeSingle();
-
-      const eventType = eventTypeResult?.data?.events?.event_type || 'forum';
 
       const { error } = await supabase
         .from('target_profile_templates')
         .insert({
           sponsor_id: sponsorId,
           template_name: templateName.trim(),
-          event_type: eventType,
+          event_type: 'all',
           technologies: technologies,
           other_technologies: otherTechnologies,
           seniority_levels: seniorityLevels,
           job_titles: jobTitles,
           excluded_titles: excludedTitles,
-          created_by_email: userEmail
+          created_by_email: userEmail,
+          company_name: sponsorData?.name || '',
+          company_url: sponsorData?.url || '',
+          company_about: sponsorData?.about || ''
         });
 
       if (error) throw error;
