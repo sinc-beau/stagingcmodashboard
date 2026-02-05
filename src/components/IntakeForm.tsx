@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Save, Clock, Check, AlertCircle, Loader2, Download, FileStack } from 'lucide-react';
+import { Save, Clock, Check, AlertCircle, Loader2, Download, FileStack, Link } from 'lucide-react';
+import { FileUpload } from './FileUpload';
 
 interface IntakeItem {
   item_label: string;
@@ -49,6 +50,7 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
   const [availableTemplates, setAvailableTemplates] = useState<any[]>([]);
   const [showTemplateOptions, setShowTemplateOptions] = useState(false);
   const [loadingTemplate, setLoadingTemplate] = useState(false);
+  const [logoInputType, setLogoInputType] = useState<'file' | 'url'>('file');
 
   useEffect(() => {
     loadIntakeData();
@@ -92,7 +94,7 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
       const { data: templateData } = await supabase
         .from('intake_item_templates')
         .select('item_label, item_description, display_order')
-        .eq('event_type', eventType)
+        .eq('event_type', 'all')
         .order('display_order');
 
       if (templateData) {
@@ -479,6 +481,138 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
     }));
   };
 
+  const isFileUploadField = (label: string): boolean => {
+    return label === 'Wishlist CSV' ||
+           label === 'Digital Assets for Landing Page' ||
+           label === 'Speaker Headshot' ||
+           (label === 'Company Logo' && logoInputType === 'file');
+  };
+
+  const renderField = (label: string) => {
+    const item = items[label];
+    if (!item) return null;
+
+    // Company Logo - choice between file and URL
+    if (label === 'Company Logo') {
+      return (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 mb-2">
+            <button
+              type="button"
+              onClick={() => setLogoInputType('file')}
+              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                logoInputType === 'file'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Upload File
+            </button>
+            <button
+              type="button"
+              onClick={() => setLogoInputType('url')}
+              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                logoInputType === 'url'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Enter URL
+            </button>
+          </div>
+          {logoInputType === 'file' ? (
+            <FileUpload
+              label=""
+              description="PNG or JPG, max 5MB"
+              accept="image/png,image/jpeg"
+              maxSizeMB={5}
+              maxFiles={1}
+              value={item.notes || ''}
+              onChange={(value) => updateItemNotes(label, value as string)}
+            />
+          ) : (
+            <div className="flex items-center gap-2">
+              <Link className="w-4 h-4 text-gray-400" />
+              <input
+                type="url"
+                value={item.notes || ''}
+                onChange={(e) => updateItemNotes(label, e.target.value)}
+                placeholder="https://example.com/logo.png"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // Wishlist CSV - file upload
+    if (label === 'Wishlist CSV') {
+      return (
+        <FileUpload
+          label=""
+          description="CSV file containing your wishlist of attendees"
+          accept=".csv,text/csv"
+          maxSizeMB={10}
+          maxFiles={1}
+          value={item.notes || ''}
+          onChange={(value) => updateItemNotes(label, value as string)}
+        />
+      );
+    }
+
+    // Digital Assets - multiple PDF uploads
+    if (label === 'Digital Assets for Landing Page') {
+      let parsedValue: string | string[] = '';
+      try {
+        if (item.notes) {
+          const parsed = JSON.parse(item.notes);
+          parsedValue = Array.isArray(parsed) ? parsed : item.notes;
+        }
+      } catch {
+        parsedValue = item.notes || '';
+      }
+
+      return (
+        <FileUpload
+          label=""
+          description="Upload up to 2 PDF files (max 10MB each)"
+          accept=".pdf,application/pdf"
+          maxSizeMB={10}
+          maxFiles={2}
+          value={parsedValue}
+          onChange={(value) => updateItemNotes(label, Array.isArray(value) ? JSON.stringify(value) : value)}
+        />
+      );
+    }
+
+    // Speaker Headshot - file upload
+    if (label === 'Speaker Headshot') {
+      return (
+        <FileUpload
+          label=""
+          description="JPG or PNG, max 5MB"
+          accept="image/png,image/jpeg"
+          maxSizeMB={5}
+          maxFiles={1}
+          value={item.notes || ''}
+          onChange={(value) => updateItemNotes(label, value as string)}
+        />
+      );
+    }
+
+    // Default textarea for all other fields
+    return (
+      <textarea
+        value={item.notes || ''}
+        onChange={(e) => updateItemNotes(label, e.target.value)}
+        rows={3}
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+        placeholder="Enter notes..."
+      />
+    );
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
@@ -647,21 +781,22 @@ export function IntakeForm({ sponsorId, eventId, eventName, eventType, userEmail
                 </p>
               )}
             </div>
-            <textarea
-              value={items[label]?.notes || ''}
-              onChange={(e) => updateItemNotes(label, e.target.value)}
-              rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Enter notes..."
-            />
+            {renderField(label)}
           </div>
         ))}
       </div>
 
       {hasUnsavedChanges && (
         <div className="fixed bottom-6 right-6 z-40">
-          <div className="bg-white rounded-lg shadow-2xl border border-gray-200 p-4">
-            <div className="flex items-center gap-3">
+          <div className="bg-white rounded-lg shadow-2xl border border-gray-300 p-4 flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-orange-600" />
+              <span className="text-sm font-medium text-gray-900">
+                You have unsaved changes
+              </span>
+            </div>
+            <div className="h-6 w-px bg-gray-300"></div>
+            <div className="flex items-center gap-2">
               <button
                 onClick={handleDiscardChanges}
                 className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
