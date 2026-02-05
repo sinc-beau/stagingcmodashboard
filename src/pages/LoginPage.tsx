@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
-import { Mail, CheckCircle, AlertCircle, LogIn, Lock } from 'lucide-react';
+import { Mail, CheckCircle, AlertCircle, Lock } from 'lucide-react';
 
 export function LoginPage() {
   const { signIn } = useAuth();
@@ -221,11 +221,15 @@ export function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-sinc-gray-light px-4">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-sinc-blue-light rounded-full flex items-center justify-center mx-auto mb-4">
-            <LogIn className="w-10 h-10 text-sinc-blue" />
+          <div className="mb-6">
+            <img
+              src="https://sincusa.com/wp-content/uploads/2025/04/Component-1.svg"
+              alt="SINC"
+              className="h-16 mx-auto"
+              crossOrigin="anonymous"
+            />
           </div>
           <h1 className="text-3xl font-heading font-bold text-sinc-gray-dark mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to access your sponsor portal</p>
         </div>
 
         <div className="flex gap-2 mb-6">
