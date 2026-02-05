@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { ChevronDown, ChevronRight, Download, Users, Calendar, ArrowUpDown } from 'lucide-react';
 
-interface HistoricalLead {
+interface HistoricalAttendee {
   id: string;
   name: string;
   email: string;
@@ -10,15 +10,15 @@ interface HistoricalLead {
   company: string | null;
   title: string | null;
   attendance_status: string;
-  historical_event_name: string;
-  historical_event_date: string | null;
+  event_name: string;
+  event_date: string | null;
   created_at: string;
 }
 
 interface EventGroup {
   eventName: string;
   eventDate: string | null;
-  leads: HistoricalLead[];
+  leads: HistoricalAttendee[];
 }
 
 interface SponsorHistoricalLeadsProps {
@@ -26,7 +26,7 @@ interface SponsorHistoricalLeadsProps {
 }
 
 export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProps) {
-  const [leads, setLeads] = useState<HistoricalLead[]>([]);
+  const [leads, setLeads] = useState<HistoricalAttendee[]>([]);
   const [eventGroups, setEventGroups] = useState<EventGroup[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedEvents, setExpandedEvents] = useState<Set<string>>(new Set());
@@ -46,11 +46,10 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     setLoading(true);
     try {
       const { data, error } = await supabase
-        .from('sponsor_leads')
+        .from('historical_attendees')
         .select('*')
         .eq('sponsor_id', sponsorId)
-        .eq('is_historical', true)
-        .order('historical_event_date', { ascending: false });
+        .order('event_date', { ascending: false });
 
       if (error) throw error;
       if (data) setLeads(data);
@@ -70,12 +69,12 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         lead.email?.toLowerCase().includes(search) ||
         lead.company?.toLowerCase().includes(search) ||
         lead.title?.toLowerCase().includes(search) ||
-        lead.historical_event_name?.toLowerCase().includes(search)
+        lead.event_name?.toLowerCase().includes(search)
       );
     });
 
     const grouped = filtered.reduce((acc, lead) => {
-      const eventName = lead.historical_event_name || 'Unknown Event';
+      const eventName = lead.event_name || 'Unknown Event';
       const existing = acc.find(g => g.eventName === eventName);
 
       if (existing) {
@@ -83,7 +82,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
       } else {
         acc.push({
           eventName,
-          eventDate: lead.historical_event_date,
+          eventDate: lead.event_date,
           leads: [lead]
         });
       }
@@ -152,8 +151,8 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     const csvContent = [
       ['Event Name', 'Event Date', 'Name', 'Email', 'Phone', 'Company', 'Title', 'Status'].join(','),
       ...leads.map(lead => [
-        lead.historical_event_name || '',
-        lead.historical_event_date || '',
+        lead.event_name || '',
+        lead.event_date || '',
         lead.name || '',
         lead.email || '',
         lead.phone || '',
@@ -197,7 +196,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     window.URL.revokeObjectURL(url);
   };
 
-  const sortLeads = (leadsToSort: HistoricalLead[]) => {
+  const sortLeads = (leadsToSort: HistoricalAttendee[]) => {
     return [...leadsToSort].sort((a, b) => {
       if (sortBy === 'name') {
         const nameA = (a.name || '').toLowerCase();
