@@ -227,6 +227,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
 
   const totalLeads = leads.length;
   const attendedCount = leads.filter(l => l.attendance_status === 'attended').length;
+  const cancelledCount = leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
 
   if (loading) {
     return (
@@ -281,7 +282,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
           <p className="text-2xl font-bold text-gray-900">{eventGroups.length}</p>
@@ -294,12 +295,18 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           <p className="text-sm text-gray-600 mb-1">Attended</p>
           <p className="text-2xl font-bold text-gray-900">{attendedCount}</p>
         </div>
+        <div className="bg-red-50 rounded-lg p-4">
+          <p className="text-sm text-gray-600 mb-1">Cancelled</p>
+          <p className="text-2xl font-bold text-gray-900">{cancelledCount}</p>
+        </div>
       </div>
 
       <div className="space-y-3">
         {eventGroups.map((eventGroup) => {
           const isExpanded = expandedEvents.has(eventGroup.eventName);
           const sortedLeads = sortLeads(eventGroup.leads);
+          const eventAttendedCount = eventGroup.leads.filter(l => l.attendance_status === 'attended').length;
+          const eventCancelledCount = eventGroup.leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
 
           return (
             <div key={eventGroup.eventName} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
@@ -328,7 +335,10 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
                       )}
                       <span className="flex items-center gap-1">
                         <Users className="w-3.5 h-3.5" />
-                        {eventGroup.leads.length} {eventGroup.leads.length === 1 ? 'lead' : 'leads'}
+                        {eventAttendedCount} attended
+                      </span>
+                      <span className="flex items-center gap-1 text-red-600">
+                        {eventCancelledCount} cancelled
                       </span>
                     </div>
                   </div>
