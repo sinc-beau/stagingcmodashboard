@@ -721,6 +721,7 @@ function SponsorDashboardContent() {
                 sponsorId={sponsorUser.sponsor_id}
                 eventId={selectedEvent.id}
                 eventName={selectedEvent.event_name}
+                userEmail={sponsorUser.email}
               />
             </div>
           )}

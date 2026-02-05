@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target, Clock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../contexts/AuthContext';
+import { TargetingChangeLog } from './TargetingChangeLog';
 
 interface Attendee {
   id: string;
@@ -62,6 +64,7 @@ interface EventDetailProps {
 type Tab = 'attendees' | 'config' | 'logistics';
 
 export default function EventDetail({ eventId, eventName, eventType, sponsorId, sponsorName, sourceEventId, sourceDatabase, onBack }: EventDetailProps) {
+  const { sponsorUser } = useAuth();
   const [event, setEvent] = useState<any>(null);
   const [attendees, setAttendees] = useState<Attendee[]>([]);
   const [intakeItems, setIntakeItems] = useState<IntakeItem[]>([]);
@@ -84,6 +87,9 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [attendeeToUnsync, setAttendeeToUnsync] = useState<string | null>(null);
   const [syncingIndividual, setSyncingIndividual] = useState<Set<string>>(new Set());
   const isLoadingIntakeItems = useRef(false);
+  const [showChangeLog, setShowChangeLog] = useState(false);
+
+  const isAdminOrAccountManager = sponsorUser?.role === 'admin' || sponsorUser?.role === 'account_manager';
 
   useEffect(() => {
     loadEventData();
@@ -1333,6 +1339,28 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
                     <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                       <p className="text-sm text-slate-900">{targetingData.excluded_titles}</p>
                     </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {isAdminOrAccountManager && (
+              <div className="mt-8 pt-8 border-t border-slate-200">
+                <button
+                  onClick={() => setShowChangeLog(!showChangeLog)}
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm font-medium mb-4"
+                >
+                  <Clock className="w-4 h-4" />
+                  {showChangeLog ? 'Hide' : 'View'} Change History
+                </button>
+
+                {showChangeLog && (
+                  <div className="bg-slate-50 rounded-lg border border-slate-200 p-6">
+                    <TargetingChangeLog
+                      sponsorId={sponsorId}
+                      eventId={eventId}
+                      eventName={eventName}
+                    />
                   </div>
                 )}
               </div>
