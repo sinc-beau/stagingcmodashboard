@@ -1,0 +1,32 @@
+{
+  "total_events": 3,
+  "total_attendees_all_events": 261,
+  "total_attended_all_events": 208,
+  "total_cancelled_all_events": 53,
+  "events": [
+    {
+      "forum_name": "SINC 2025 Canada IT & Security Leaders Forum",
+      "event_date": "2025-02-15",
+      "total_attendees": 72,
+      "attended_count": 60,
+      "cancelled_count": 12,
+      "attendees": []
+    },
+    {
+      "forum_name": "SINC 2025 CISO National Forum",
+      "event_date": "2025-03-10",
+      "total_attendees": 82,
+      "attended_count": 69,
+      "cancelled_count": 13,
+      "attendees": []
+    },
+    {
+      "forum_name": "SINC 2025 CISO 2 National Forum",
+      "event_date": "2025-03-17",
+      "total_attendees": 107,
+      "attended_count": 79,
+      "cancelled_count": 28,
+      "attendees": []
+    }
+  ]
+}
