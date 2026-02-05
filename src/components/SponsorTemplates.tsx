@@ -252,6 +252,7 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
           </select>
         </div>
         <button
+          onClick={() => alert('Template creation coming soon! For now, fill out an event intake form or target profile, then come back here to save it as a template.')}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
         >
           <Plus className="w-4 h-4" />

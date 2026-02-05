@@ -11,6 +11,7 @@ import { SponsorHistoricalLeads } from '../components/SponsorHistoricalLeads';
 import { FileUpload } from '../components/FileUpload';
 import { EventTargeting } from '../components/EventTargeting';
 import { SponsorTemplates } from '../components/SponsorTemplates';
+import { IntakeForm } from '../components/IntakeForm';
 import { Calendar, Users, MessageSquare, Building2, LogOut, Loader2, ArrowLeft, FileText, CheckCircle2, MapPin, ChevronDown, ChevronRight, Circle, Download, ArrowUpDown, Eye, UserCog, Shield, TrendingUp, History, FileStack } from 'lucide-react';
 
 interface SponsorEvent {
@@ -639,80 +640,15 @@ function SponsorDashboardContent() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-          {eventTab === 'intake' && intakeItems.length > 0 && (
+          {eventTab === 'intake' && sponsorUser?.sponsor_id && selectedEvent && (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="space-y-6">
-                {intakeItems.map((item) => {
-                        const itemType = item.item_type || 'text';
-
-                        return (
-                          <div key={item.id} className="space-y-2">
-                            <div className="flex items-start justify-between mb-2">
-                              <div className="flex-1">
-                                <span className="text-sm font-medium text-gray-900">
-                                  {item.item_label}
-                                </span>
-                                {item.item_description && (
-                                  <p className="text-xs text-gray-500 mt-1">{item.item_description}</p>
-                                )}
-                              </div>
-                              <button
-                                onClick={() => toggleIntakeItem(item.id, !item.is_completed)}
-                                className={`ml-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                                  item.is_completed
-                                    ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                              >
-                                {item.is_completed ? (
-                                  <>
-                                    <CheckCircle2 className="w-3.5 h-3.5" />
-                                    Complete
-                                  </>
-                                ) : (
-                                  <>
-                                    <Circle className="w-3.5 h-3.5" />
-                                    Mark Complete
-                                  </>
-                                )}
-                              </button>
-                            </div>
-
-                            {itemType === 'file' && (
-                              <FileUpload
-                                label=""
-                                accept={item.file_accept || '*/*'}
-                                maxSizeMB={item.max_file_size_mb || 10}
-                                maxFiles={1}
-                                value={item.file_url || ''}
-                                onChange={(value) => updateIntakeItemFile(item.id, value as string)}
-                              />
-                            )}
-
-                            {itemType === 'multi_file' && (
-                              <FileUpload
-                                label=""
-                                accept={item.file_accept || '*/*'}
-                                maxSizeMB={item.max_file_size_mb || 10}
-                                maxFiles={item.max_files || 2}
-                                value={item.file_urls || []}
-                                onChange={(value) => updateIntakeItemFiles(item.id, value as string[])}
-                              />
-                            )}
-
-                            {itemType === 'text' && (
-                              <textarea
-                                value={item.notes || getDefaultValue(item.item_label)}
-                                onChange={(e) => updateIntakeItemNotes(item.id, e.target.value)}
-                                placeholder={`Enter ${item.item_label.toLowerCase()}...`}
-                                rows={3}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              />
-                            )}
-                          </div>
-                        );
-                      })}
-              </div>
+              <IntakeForm
+                sponsorId={sponsorUser.sponsor_id}
+                eventId={selectedEvent.id}
+                eventName={selectedEvent.event_name}
+                eventType={selectedEvent.event_type}
+                userEmail={sponsorUser.email}
+              />
             </div>
           )}
 
