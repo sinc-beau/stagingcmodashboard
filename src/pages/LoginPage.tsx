@@ -346,21 +346,21 @@ export function LoginPage() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-gray-200">
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex items-center justify-center gap-4 px-4">
             <img
               src="/cdaiologo.png"
               alt="CDAIO"
-              className="h-8 opacity-60 hover:opacity-100 transition-opacity"
+              className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
             />
             <img
               src="/itx_white_logo.png"
               alt="ITX"
-              className="h-8 opacity-60 hover:opacity-100 transition-opacity"
+              className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
             />
             <img
               src="/sentinel_white_logo.png"
               alt="Sentinel"
-              className="h-8 opacity-60 hover:opacity-100 transition-opacity"
+              className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
             />
           </div>
         </div>
