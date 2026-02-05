@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
-import { ArrowLeft, Calendar, MapPin, User, RefreshCw, CheckCircle, XCircle, AlertCircle, Filter, ChevronDown, ChevronUp, ChevronRight, Users, Check, Download, Target, Clock } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, Calendar, MapPin, User, RefreshCw, AlertCircle, Filter, Users, Check, Download, Target, Clock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { TargetingChangeLog } from './TargetingChangeLog';
+import { IntakeForm } from './IntakeForm';
 
 interface Attendee {
   id: string;
@@ -19,15 +20,6 @@ interface Attendee {
   no_show_reason?: string | null;
 }
 
-interface IntakeItem {
-  id: string;
-  item_label: string;
-  item_description: string | null;
-  is_completed: boolean;
-  completed_at: string | null;
-  notes: string | null;
-  display_order: number;
-}
 
 interface LocalEvent {
   id: string;
@@ -67,7 +59,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const { sponsorUser } = useAuth();
   const [event, setEvent] = useState<any>(null);
   const [attendees, setAttendees] = useState<Attendee[]>([]);
-  const [intakeItems, setIntakeItems] = useState<IntakeItem[]>([]);
   const [localEvent, setLocalEvent] = useState<LocalEvent | null>(null);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
@@ -78,7 +69,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [activeTab, setActiveTab] = useState<Tab>('attendees');
   const [showSyncModal, setShowSyncModal] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
-  const [intakeExpanded, setIntakeExpanded] = useState(false);
   const [syncedAttendeeIds, setSyncedAttendeeIds] = useState<Set<string>>(new Set());
   const [targetingData, setTargetingData] = useState<TargetingData | null>(null);
   const [loadingTargeting, setLoadingTargeting] = useState(false);
@@ -86,7 +76,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
   const [showUnsyncConfirm, setShowUnsyncConfirm] = useState(false);
   const [attendeeToUnsync, setAttendeeToUnsync] = useState<string | null>(null);
   const [syncingIndividual, setSyncingIndividual] = useState<Set<string>>(new Set());
-  const isLoadingIntakeItems = useRef(false);
   const [showChangeLog, setShowChangeLog] = useState(false);
 
   const isAdminOrAccountManager = sponsorUser?.role === 'admin' || sponsorUser?.role === 'account_manager';
@@ -121,7 +110,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     setEvent(eventData);
 
     await loadAttendees();
-    await loadIntakeItems();
     await loadOrCreateLocalEvent();
     await loadSyncedAttendees();
     await loadTargetingData();
@@ -227,60 +215,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     } catch (error) {
       console.error('Error loading attendees:', error);
       setAttendees([]);
-    }
-  }
-
-  async function loadIntakeItems() {
-    if (isLoadingIntakeItems.current) {
-      return;
-    }
-
-    isLoadingIntakeItems.current = true;
-
-    try {
-      const { data: existingItems } = await supabase
-        .from('event_intake_items')
-        .select('*')
-        .eq('event_id', eventId)
-        .eq('sponsor_id', sponsorId)
-        .order('display_order');
-
-      if (existingItems && existingItems.length > 0) {
-        setIntakeItems(existingItems);
-        return;
-      }
-
-      const { data: templates } = await supabase
-        .from('intake_item_templates')
-        .select('*')
-        .eq('event_type', eventType)
-        .order('display_order');
-
-      if (templates && templates.length > 0) {
-        const newItems = templates.map(template => ({
-          sponsor_id: sponsorId,
-          event_id: eventId,
-          event_name: eventName,
-          event_type: eventType,
-          item_label: template.item_label,
-          item_description: template.item_description,
-          is_completed: false,
-          completed_at: null,
-          notes: null,
-          display_order: template.display_order
-        }));
-
-        const { data: insertedItems } = await supabase
-          .from('event_intake_items')
-          .insert(newItems)
-          .select('*');
-
-        if (insertedItems) {
-          setIntakeItems(insertedItems);
-        }
-      }
-    } finally {
-      isLoadingIntakeItems.current = false;
     }
   }
 
@@ -784,10 +718,6 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
     );
   }
 
-  const completedCount = intakeItems.filter(item => item.is_completed).length;
-  const totalCount = intakeItems.length;
-  const progressPercent = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
-
   const isForum = eventType === 'forum';
   const uniqueStatuses = getUniqueStatuses();
   const filteredSortedAttendees = getFilteredAndSortedAttendees();
@@ -1162,80 +1092,14 @@ export default function EventDetail({ eventId, eventName, eventType, sponsorId, 
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
-              <button
-                onClick={() => setIntakeExpanded(!intakeExpanded)}
-                className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  {intakeExpanded ? (
-                    <ChevronDown className="w-5 h-5 text-slate-400" />
-                  ) : (
-                    <ChevronRight className="w-5 h-5 text-slate-400" />
-                  )}
-                  <h2 className="text-lg font-bold text-slate-900">Event Intake Form</h2>
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    progressPercent === 100
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {completedCount} of {totalCount} complete
-                  </span>
-                </div>
-              </button>
-
-              {intakeExpanded && (
-                <div className="border-t border-slate-200">
-                  <div className="px-6 py-3 bg-slate-50">
-                    <div className="w-full bg-slate-200 rounded-full h-1.5">
-                      <div
-                        className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
-                        style={{ width: `${progressPercent}%` }}
-                      />
-                    </div>
-                  </div>
-                  {intakeItems.length === 0 ? (
-                    <div className="text-sm text-slate-400 py-8 text-center">
-                      No intake items
-                    </div>
-                  ) : (
-                    <div className="divide-y divide-slate-200">
-                      {intakeItems.map((item) => (
-                        <div key={item.id} className="px-6 py-3 hover:bg-slate-50 transition-colors">
-                          <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 mt-0.5">
-                              {item.is_completed ? (
-                                <CheckCircle className="w-4 h-4 text-green-600" />
-                              ) : (
-                                <XCircle className="w-4 h-4 text-gray-300" />
-                              )}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-start justify-between gap-3">
-                                <div className="flex-1">
-                                  <div className={`text-sm font-medium ${item.is_completed ? 'text-slate-600 line-through' : 'text-slate-900'}`}>
-                                    {item.item_label}
-                                  </div>
-                                  {item.item_description && (
-                                    <div className="text-xs text-slate-500 mt-0.5">
-                                      {item.item_description}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                              {item.notes && (
-                                <div className="text-xs text-slate-700 mt-1.5 pl-3 border-l-2 border-slate-300">
-                                  {item.notes}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+              <IntakeForm
+                sponsorId={sponsorId}
+                eventId={eventId}
+                eventName={eventName}
+                eventType={eventType}
+                userEmail={sponsorUser?.email || ''}
+              />
             </div>
           </div>
         )}
