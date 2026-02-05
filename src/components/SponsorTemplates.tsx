@@ -567,28 +567,38 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
       )}
 
       {showEditModal && editingTemplate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl my-8">
             <div className="p-6 border-b border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900">Edit Template</h3>
+              <h3 className="text-lg font-bold text-gray-900">
+                Edit {activeSection === 'intake' ? 'Intake Form' : 'Target Profile'} Template
+              </h3>
               <p className="text-sm text-gray-600 mt-1">
-                Update the template name
+                Update template details. Changes are saved to the template and will apply to future events that use it.
               </p>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Template Name
-                </label>
-                <input
-                  type="text"
-                  value={newTemplateName}
-                  onChange={(e) => setNewTemplateName(e.target.value)}
-                  placeholder="Enter template name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  autoFocus
-                />
+            <div className="p-6">
+              <p className="text-sm text-gray-700 mb-4">
+                To edit the full template content (all intake fields or targeting criteria), please:
+              </p>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700 mb-6">
+                <li>Go to an event's Intake Form or Target Attendee Profile page</li>
+                <li>Click "Load from Template" and select "<strong>{editingTemplate.template_name}</strong>"</li>
+                <li>Fill out all the fields as you want them in the template</li>
+                <li>Click "Save as Template" and use the same name to update the template</li>
+              </ol>
+
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-sm text-blue-900 font-medium mb-2">Template Info:</p>
+                <div className="space-y-1 text-xs text-blue-800">
+                  <div><span className="font-medium">Name:</span> {editingTemplate.template_name}</div>
+                  {editingTemplate.company_name && (
+                    <div><span className="font-medium">Company:</span> {editingTemplate.company_name}</div>
+                  )}
+                  <div><span className="font-medium">Last Updated:</span> {new Date(editingTemplate.updated_at).toLocaleString()}</div>
+                  <div><span className="font-medium">Created By:</span> {editingTemplate.created_by_email}</div>
+                </div>
               </div>
             </div>
 
@@ -599,17 +609,9 @@ export function SponsorTemplates({ sponsorId, userEmail }: SponsorTemplatesProps
                   setEditingTemplate(null);
                   setNewTemplateName('');
                 }}
-                disabled={creating}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                Cancel
-              </button>
-              <button
-                onClick={handleUpdateTemplate}
-                disabled={creating || !newTemplateName.trim()}
-                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {creating ? 'Updating...' : 'Update Template'}
+                Close
               </button>
             </div>
           </div>

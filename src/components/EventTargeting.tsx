@@ -116,10 +116,14 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
   const [showSaveAsTemplate, setShowSaveAsTemplate] = useState(false);
   const [templateName, setTemplateName] = useState('');
   const [savingTemplate, setSavingTemplate] = useState(false);
+  const [availableTemplates, setAvailableTemplates] = useState<any[]>([]);
+  const [showTemplateOptions, setShowTemplateOptions] = useState(false);
+  const [loadingTemplate, setLoadingTemplate] = useState(false);
 
   useEffect(() => {
     loadTargetingData();
     loadPreviousEvents();
+    loadAvailableTemplates();
   }, [sponsorId, eventId]);
 
   useEffect(() => {
@@ -285,6 +289,44 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
       console.error('Error loading previous event data:', error);
     } finally {
       setLoadingPrevious(false);
+    }
+  };
+
+  const loadAvailableTemplates = async () => {
+    try {
+      const { data: templateData } = await supabase
+        .from('target_profile_templates')
+        .select('*')
+        .eq('sponsor_id', sponsorId)
+        .order('updated_at', { ascending: false });
+
+      setAvailableTemplates(templateData || []);
+    } catch (error) {
+      console.error('Error loading templates:', error);
+    }
+  };
+
+  const loadFromTemplate = async (templateId: string) => {
+    setLoadingTemplate(true);
+    try {
+      const { data: template } = await supabase
+        .from('target_profile_templates')
+        .select('*')
+        .eq('id', templateId)
+        .maybeSingle();
+
+      if (template) {
+        setTechnologies(template.technologies || []);
+        setOtherTechnologies(template.other_technologies || '');
+        setSeniorityLevels(template.seniority_levels || []);
+        setJobTitles(template.job_titles || []);
+        setExcludedTitles(template.excluded_titles || '');
+        setShowTemplateOptions(false);
+      }
+    } catch (error) {
+      console.error('Error loading template:', error);
+    } finally {
+      setLoadingTemplate(false);
     }
   };
 
@@ -454,28 +496,59 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
         .eq('id', sponsorId)
         .maybeSingle();
 
-      const { error } = await supabase
+      // Check if template with this name already exists
+      const { data: existingTemplate } = await supabase
         .from('target_profile_templates')
-        .insert({
-          sponsor_id: sponsorId,
-          template_name: templateName.trim(),
-          event_type: 'all',
-          technologies: technologies,
-          other_technologies: otherTechnologies,
-          seniority_levels: seniorityLevels,
-          job_titles: jobTitles,
-          excluded_titles: excludedTitles,
-          created_by_email: userEmail,
-          company_name: sponsorData?.name || '',
-          company_url: sponsorData?.url || '',
-          company_about: sponsorData?.about || ''
-        });
+        .select('id')
+        .eq('sponsor_id', sponsorId)
+        .eq('template_name', templateName.trim())
+        .maybeSingle();
 
-      if (error) throw error;
+      if (existingTemplate) {
+        // Update existing template
+        const { error } = await supabase
+          .from('target_profile_templates')
+          .update({
+            technologies: technologies,
+            other_technologies: otherTechnologies,
+            seniority_levels: seniorityLevels,
+            job_titles: jobTitles,
+            excluded_titles: excludedTitles,
+            company_name: sponsorData?.name || '',
+            company_url: sponsorData?.url || '',
+            company_about: sponsorData?.about || '',
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', existingTemplate.id);
+
+        if (error) throw error;
+        alert('Target profile template updated successfully!');
+      } else {
+        // Create new template
+        const { error } = await supabase
+          .from('target_profile_templates')
+          .insert({
+            sponsor_id: sponsorId,
+            template_name: templateName.trim(),
+            event_type: 'all',
+            technologies: technologies,
+            other_technologies: otherTechnologies,
+            seniority_levels: seniorityLevels,
+            job_titles: jobTitles,
+            excluded_titles: excludedTitles,
+            created_by_email: userEmail,
+            company_name: sponsorData?.name || '',
+            company_url: sponsorData?.url || '',
+            company_about: sponsorData?.about || ''
+          });
+
+        if (error) throw error;
+        alert('Target profile template saved successfully!');
+      }
 
       setShowSaveAsTemplate(false);
       setTemplateName('');
-      alert('Target profile template saved successfully!');
+      loadAvailableTemplates();
     } catch (error) {
       console.error('Error saving template:', error);
       alert('Failed to save template');
@@ -578,6 +651,50 @@ export function EventTargeting({ sponsorId, eventId, eventName, userEmail }: Eve
                     <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
                   ) : (
                     <Download className="w-4 h-4 text-blue-600" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {availableTemplates.length > 0 && (
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <h4 className="text-sm font-medium text-purple-900 mb-1">Load from Template</h4>
+              <p className="text-xs text-purple-700">
+                Load a saved targeting template to quickly configure this event
+              </p>
+            </div>
+            <button
+              onClick={() => setShowTemplateOptions(!showTemplateOptions)}
+              className="px-3 py-1.5 text-xs font-medium bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors"
+            >
+              {showTemplateOptions ? 'Hide' : 'Show Templates'}
+            </button>
+          </div>
+
+          {showTemplateOptions && (
+            <div className="mt-3 space-y-2 max-h-48 overflow-y-auto">
+              {availableTemplates.map(template => (
+                <button
+                  key={template.id}
+                  onClick={() => loadFromTemplate(template.id)}
+                  disabled={loadingTemplate}
+                  className="w-full flex items-center justify-between p-2 bg-white border border-purple-200 rounded hover:bg-purple-50 transition-colors text-left disabled:opacity-50"
+                >
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{template.template_name}</p>
+                    <p className="text-xs text-gray-500">
+                      Last updated: {new Date(template.updated_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                  {loadingTemplate ? (
+                    <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
+                  ) : (
+                    <Download className="w-4 h-4 text-purple-600" />
                   )}
                 </button>
               ))}
