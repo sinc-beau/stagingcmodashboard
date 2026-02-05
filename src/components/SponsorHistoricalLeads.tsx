@@ -270,18 +270,34 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
     }
   };
 
-  const totalLeads = leads.length;
-  const attendedCount = leads.filter(l => l.attendance_status === 'attended').length;
-  const cancelledCount = leads.filter(l => l.attendance_status === 'no_show' || l.attendance_status === 'cancelled').length;
-  const waitlistedCount = leads.filter(l => l.attendance_status === 'waitlisted').length;
+  const allEventGroups = leads.reduce((acc, lead) => {
+    const eventKey = `${lead.event_name || 'Unknown Event'}_${lead.event_date || 'no-date'}`;
+    const existing = acc.find(g =>
+      g.eventName === (lead.event_name || 'Unknown Event') &&
+      g.eventDate === lead.event_date
+    );
 
-  const eventsWithMinimums = eventGroups.filter(eg => getMinimumAttendees(eg.eventType) > 0);
+    if (existing) {
+      existing.leads.push(lead);
+    } else {
+      acc.push({
+        eventName: lead.event_name || 'Unknown Event',
+        eventDate: lead.event_date,
+        eventType: lead.event_type,
+        leads: [lead]
+      });
+    }
+
+    return acc;
+  }, [] as EventGroup[]);
+
+  const eventsWithMinimums = allEventGroups.filter(eg => getMinimumAttendees(eg.eventType) > 0);
   const totalMinimumRequired = eventsWithMinimums.reduce((sum, eg) => sum + getMinimumAttendees(eg.eventType), 0);
   const totalAttended = eventsWithMinimums.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0);
   const overallDeliveryRate = totalMinimumRequired > 0 ? (totalAttended / totalMinimumRequired) * 100 : 0;
 
-  const dinnerEvents = eventGroups.filter(eg => eg.eventType?.toLowerCase() === 'dinner');
-  const vrtEvents = eventGroups.filter(eg => eg.eventType?.toLowerCase() === 'vrt');
+  const dinnerEvents = allEventGroups.filter(eg => eg.eventType?.toLowerCase() === 'dinner');
+  const vrtEvents = allEventGroups.filter(eg => eg.eventType?.toLowerCase() === 'vrt');
   const avgDinnerAttendees = dinnerEvents.length > 0 ? dinnerEvents.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0) / dinnerEvents.length : 0;
   const avgVrtAttendees = vrtEvents.length > 0 ? vrtEvents.reduce((sum, eg) => sum + eg.leads.filter(l => l.attendance_status === 'attended').length, 0) / vrtEvents.length : 0;
 
@@ -327,7 +343,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
       <div className="grid grid-cols-5 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
-          <p className="text-2xl font-bold text-gray-900">{eventGroups.length}</p>
+          <p className="text-2xl font-bold text-gray-900">{allEventGroups.length}</p>
         </div>
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Avg Dinner Attendees</p>
