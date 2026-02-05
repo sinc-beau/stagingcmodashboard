@@ -324,33 +324,6 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-gray-700">Filter by type:</span>
-        <button
-          onClick={() => setEventTypeFilter('all')}
-          className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-            eventTypeFilter === 'all'
-              ? 'bg-gray-900 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          }`}
-        >
-          All
-        </button>
-        {uniqueEventTypes.map(type => (
-          <button
-            key={type}
-            onClick={() => setEventTypeFilter(type || 'all')}
-            className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors capitalize ${
-              eventTypeFilter === type
-                ? 'bg-gray-900 text-white'
-                : `${getEventTypeBadgeStyle(type)} hover:opacity-80`
-            }`}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
-
       <div className="grid grid-cols-5 gap-4">
         <div className="bg-blue-50 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Total Events</p>
@@ -376,6 +349,33 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
           <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
           <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events</p>
         </div>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-gray-700">Filter by type:</span>
+        <button
+          onClick={() => setEventTypeFilter('all')}
+          className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+            eventTypeFilter === 'all'
+              ? 'bg-gray-900 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          All
+        </button>
+        {uniqueEventTypes.map(type => (
+          <button
+            key={type}
+            onClick={() => setEventTypeFilter(type || 'all')}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors capitalize ${
+              eventTypeFilter === type
+                ? 'bg-gray-900 text-white'
+                : `${getEventTypeBadgeStyle(type)} hover:opacity-80`
+            }`}
+          >
+            {type}
+          </button>
+        ))}
       </div>
 
       <div className="space-y-3">
