@@ -340,28 +340,30 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Avg Dinner Attendees</p>
-          <p className="text-2xl font-bold text-gray-900">{avgDinnerAttendees.toFixed(1)}</p>
-          <p className="text-xs text-gray-500 mt-1">{dinnerEvents.length} events</p>
+      {(dinnerEvents.length > 0 || vrtEvents.length > 0) && (
+        <div className="grid grid-cols-4 gap-4">
+          <div className="bg-blue-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-1">Avg Dinner Attendees</p>
+            <p className="text-2xl font-bold text-gray-900">{avgDinnerAttendees.toFixed(1)}</p>
+            <p className="text-xs text-gray-500 mt-1">{dinnerEvents.length} events</p>
+          </div>
+          <div className="bg-blue-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-1">Avg VRT Attendees</p>
+            <p className="text-2xl font-bold text-gray-900">{avgVrtAttendees.toFixed(1)}</p>
+            <p className="text-xs text-gray-500 mt-1">{vrtEvents.length} events</p>
+          </div>
+          <div className="bg-green-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-1">Total Delivery</p>
+            <p className="text-2xl font-bold text-green-700">{totalAttended} / {totalMinimumRequired}</p>
+            <p className="text-xs text-gray-500 mt-1">attended / minimum (non-forum)</p>
+          </div>
+          <div className="bg-green-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-1">Overall Delivery %</p>
+            <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
+            <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events (non-forum)</p>
+          </div>
         </div>
-        <div className="bg-blue-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Avg VRT Attendees</p>
-          <p className="text-2xl font-bold text-gray-900">{avgVrtAttendees.toFixed(1)}</p>
-          <p className="text-xs text-gray-500 mt-1">{vrtEvents.length} events</p>
-        </div>
-        <div className="bg-green-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Total Delivery</p>
-          <p className="text-2xl font-bold text-green-700">{totalAttended} / {totalMinimumRequired}</p>
-          <p className="text-xs text-gray-500 mt-1">attended / minimum (non-forum)</p>
-        </div>
-        <div className="bg-green-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 mb-1">Overall Delivery %</p>
-          <p className="text-2xl font-bold text-green-700">{overallDeliveryRate.toFixed(0)}%</p>
-          <p className="text-xs text-gray-500 mt-1">{eventsWithMinimums.length} events (non-forum)</p>
-        </div>
-      </div>
+      )}
 
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-indigo-50 rounded-lg p-4">
