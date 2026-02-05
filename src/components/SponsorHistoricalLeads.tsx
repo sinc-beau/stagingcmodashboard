@@ -52,8 +52,7 @@ export function SponsorHistoricalLeads({ sponsorId }: SponsorHistoricalLeadsProp
         .from('historical_attendees')
         .select('*')
         .eq('sponsor_id', sponsorId)
-        .order('event_date', { ascending: false })
-        .limit(10000);
+        .order('event_date', { ascending: false });
 
       if (error) throw error;
       if (data) setLeads(data);
