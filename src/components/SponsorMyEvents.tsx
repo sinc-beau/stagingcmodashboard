@@ -222,10 +222,10 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
                   deliveryStatus = 'pre-event';
                 } else if (hasMinimum && event.minimum_attendees && event.attendee_count !== undefined) {
                   deliveryDiff = event.attendee_count - event.minimum_attendees;
-                  deliveryPercent = Math.round((deliveryDiff / event.minimum_attendees) * 100);
-                  if (deliveryDiff > 0) {
+                  deliveryPercent = Math.round((event.attendee_count / event.minimum_attendees) * 100);
+                  if (deliveryPercent > 100) {
                     deliveryStatus = 'over';
-                  } else if (deliveryDiff < 0) {
+                  } else if (deliveryPercent < 100) {
                     deliveryStatus = 'under';
                   } else {
                     deliveryStatus = 'met';
@@ -299,9 +299,9 @@ export function SponsorMyEvents({ sponsorId, sponsorName, onViewEvent }: Sponsor
                           {deliveryStatus === 'over' && <TrendingUp className="w-3 h-3" />}
                           {deliveryStatus === 'under' && <TrendingDown className="w-3 h-3" />}
                           {deliveryStatus === 'met' && <Minus className="w-3 h-3" />}
-                          {deliveryStatus === 'over' && `+${deliveryPercent}%`}
+                          {deliveryStatus === 'over' && `${deliveryPercent}%`}
                           {deliveryStatus === 'under' && `${deliveryPercent}%`}
-                          {deliveryStatus === 'met' && 'Met'}
+                          {deliveryStatus === 'met' && '100%'}
                         </span>
                       )}
                       {!deliveryStatus && hasMinimum && (
